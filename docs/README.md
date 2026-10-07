@@ -14,6 +14,7 @@ Start with the [root README](../README.md) for installation and the runnable che
 6. [Country profiles](country-profiles.md) — domain metadata and profile interpretation.
 7. [Interoperability and comparisons](comparison.md) — relationship to other spatial identifiers.
 8. [Release and security](release.md) — candidate status, reproducibility, attribution, and release gates.
+9. [Automated publishing](release-automation.md) — GitHub Actions, trusted publishing, and manual upload commands.
 
 ## Contracts and operational guides
 
@@ -24,6 +25,7 @@ Start with the [root README](../README.md) for installation and the runnable che
 - [V1 to V2 migration](migration-v1-v2.md)
 - [SQLite registry](sqlite-registry.md)
 - [Boundary source attribution](../src/geosquare_v2/data/registry/boundaries/SOURCES.md)
+- [Code and boundary-data licenses](data-licenses.md)
 - [Runnable quickstart](../examples/quickstart.py)
 
 ## Optional dependencies

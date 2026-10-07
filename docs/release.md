@@ -2,9 +2,7 @@
 
 ## 1. Current release state
 
-The package target is `0.1.0rc1`, a technical candidate prepared locally only.
-It has not been uploaded to TestPyPI or PyPI, and this task performs no upload.
-The signed SQLite registry is distributed at:
+The package target is `0.1.0rc1`, a technical candidate uploaded to TestPyPI and verified in a clean Python 3.14 environment. It has not been uploaded to PyPI or Conda. The signed SQLite registry is distributed at:
 
 ```text
 src/geosquare_v2/db/registry.db
@@ -134,12 +132,11 @@ For this local `0.1.0rc1` preparation, verify:
 - table, dataset, and aggregation tests pass;
 - migration fixtures pass;
 - candidate profile and static-epoch status remain clearly non-production;
-- boundary attribution is present in [NOTICE](../NOTICE), with redistribution
-  approval still unresolved;
+- boundary attribution is present in [NOTICE](../NOTICE), and the project release owner has accepted redistribution under the recorded file-specific terms; this is not an independent legal determination;
 - the candidate package size is explicitly reviewed; and
 - the full candidate wheel/sdist inspection and clean installs pass.
 
-No TestPyPI or PyPI upload, tag, commit, or push is part of this preparation.
+TestPyPI upload and clean-install verification are complete. No PyPI or Conda upload, tag, commit, or push is part of this preparation.
 
 ## 9. Validation commands
 
@@ -166,7 +163,4 @@ Change the source artifact. Regenerate the database. Review it. Sign it again.
 
 ## 11. Candidate preparation boundary
 
-This task prepares and validates local `0.1.0rc1` artifacts only. It does not
-run a package upload command or contact TestPyPI/PyPI. The candidate remains
-blocked until a human approves boundary redistribution, technical-candidate
-geodetic status, and package size.
+This task prepared and verified local `0.1.0rc1` artifacts and verified the TestPyPI publication. It does not run a PyPI or Conda upload. PyPI publication remains a separate, explicitly authorized step after the file-level attribution decision and final release review.

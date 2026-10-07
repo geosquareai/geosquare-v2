@@ -1,6 +1,8 @@
 # GeoSquare V2
 
-GeoSquare V2 is a profile-driven, country-scoped hierarchical metric grid for durable spatial identifiers. It gives each location a versioned square-grid address derived from a signed domain profile and an exact projected grid.
+GeoSquare V2 maps the world in exact squares by using each country's projection. Our objective is to make spatial data intuitive and accessible to non-geospatial practitioners while retaining the rigor required for enterprise data platforms. Taking inspiration from the spatial simplicity of voxel environments like Minecraft, Geosquare discretizes geographic space into metric squares. A square provides an effortless navigational reference: moving through a 10~m square means advancing 10 metres and turning 90 degrees right for 10 metres. Geosquare pairs this intuitive geometry with an alternating 5x5 and 2x2 hierarchical subdivision over an invariant 50,000 km root, producing cell resolutions aligned with decimal metric habits: 50 km, 10 km, 5 km, 1 km, 500 m, 100 m, 50 m, 10 m, and 5 m.
+
+Rather than relying on an inherently distorted global projection, Geosquare establishes country-specific projected Coordinate Reference Systems to keep squares square on the ground. We evaluate this architecture across all 11 Southeast Asian (ASEAN) nations. The results show that Geosquare maintains near-zero side anisotropy ($< 0.0001\%$) and stable ground area across the region. We also present an integer-based topology and distance formulation, compute-on-read geometry derivation, a cryptographically signed registry, and a roadmap for structured human-readable aliases that address the structural shortcomings of What3Words.
 
 > **Release status: local technical candidate (`0.1.0rc1`).** The bundled registry contains 11 ASEAN domains, but its geodetic profiles and boundary data are not approved production or legal-boundary data. Do not upload this candidate or treat it as production without the release approvals described in [the release guide](docs/release.md).
 
@@ -110,7 +112,9 @@ Each profile declares its grid CRS, equal-area coverage CRS, root extent, scale 
 - [Cell datasets and manifests](docs/cell-dataset-contract.md)
 - [Country profiles and comparisons](docs/country-profiles.md)
 - [Release and security](docs/release.md)
+- [Automated publishing](docs/release-automation.md)
 - [Boundary source attribution](src/geosquare_v2/data/registry/boundaries/SOURCES.md)
+- [Code and boundary-data licenses](docs/data-licenses.md)
 
 Architecture, research, benchmarks, reviews, and local handover material remain under [`internal/`](internal/) and are not part of the public onboarding path.
 

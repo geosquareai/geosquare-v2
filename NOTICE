@@ -5,6 +5,8 @@ The Python code in this distribution is licensed under Apache-2.0 as stated in
 source and licensing records shown here; the Apache-2.0 code license does not
 replace those data terms.
 
+The Python code is Apache-2.0, while the bundled boundary data remains under its recorded file-specific source licenses. See [`docs/data-licenses.md`](docs/data-licenses.md) for the distribution model and obligations summary.
+
 ## Boundary-data status
 
 These are candidate administrative boundaries. They are not an assertion of

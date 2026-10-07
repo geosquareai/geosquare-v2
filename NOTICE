@@ -1,0 +1,87 @@
+# GeoSquare Grid V2 attribution notice
+
+The Python code in this distribution is licensed under Apache-2.0 as stated in
+`LICENSE`. The boundary data listed below are separate data inputs with the
+source and licensing records shown here; the Apache-2.0 code license does not
+replace those data terms.
+
+## Boundary-data status
+
+These are candidate administrative boundaries. They are not an assertion of
+legal sovereignty, maritime jurisdiction, or final operational policy, and they
+are not approved production geodetic data.
+
+The included source and packaged boundary resources are recorded in
+`release/boundaries/SOURCES.md`, `release/boundaries/ASEAN_BOUNDARY_METADATA.json`, and the
+mirrored `src/geosquare_v2/data/registry/boundaries/` files. Each metadata
+record provides the corresponding API endpoint, download URL, boundary ID,
+year, source, license, and SHA-256 values. The common metadata API pattern is:
+
+```text
+https://www.geoboundaries.org/api/current/gbOpen/<ISO3>/ADM0/
+```
+
+The source records and their exact license strings are:
+
+### Public Domain
+
+- `BN_full.geojson` and `BN_simplified.geojson` — Brunei Darussalam; source
+  `Wikimedia Commons`; license `Public Domain`; license source
+  `commons.wikimedia.org/wiki/File`; metadata endpoint for `BRN`.
+
+### Open Data Commons Open Database License 1.0
+
+- `KH_full.geojson` and `KH_simplified.geojson` — Cambodia; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `KHM`.
+- `ID_full.geojson` and `ID_simplified.geojson` — Indonesia; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `IDN`.
+- `LA_full.geojson` and `LA_simplified.geojson` — Lao PDR; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `LAO`.
+- `MY_full.geojson` and `MY_simplified.geojson` — Malaysia; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `MYS`.
+- `SG_full.geojson` and `SG_simplified.geojson` — Singapore; source
+  `Urban Redevelopment Authority, derived from ADM 3`; license source
+  `data.gov.sg/dataset/master-plan-2014-subzone-boundary-no-sea`; metadata
+  endpoint for `SGP`.
+- `TH_full.geojson` and `TH_simplified.geojson` — Thailand; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `THA`.
+- `TL_full.geojson` and `TL_simplified.geojson` — Timor-Leste; source
+  `OpenStreetMap, Wambacher`; license source
+  `www.openstreetmap.org/copyright`; metadata endpoint for `TLS`.
+
+### Creative Commons Attribution-ShareAlike 2.0
+
+- `MM_full.geojson` and `MM_simplified.geojson` — Myanmar; source
+  `OpenStreetMap`; license source `www.openstreetmap.org/copyright`; metadata
+  endpoint for `MMR`.
+
+### Creative Commons Attribution 3.0 Intergovernmental Organisations (CC BY 3.0 IGO)
+
+- `PH_full.geojson` and `PH_simplified.geojson` — Philippines; source
+  `OCHA Philippines, National Mapping and Resource Information Authority`;
+  license source `Data https`; metadata endpoint for `PHL`.
+
+### Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+- `VN_full.geojson` and `VN_simplified.geojson` — Viet Nam; source
+  `geoBoundaries, Wikipedia`; license source
+  `commons.wikimedia.org/wiki/File`; metadata endpoint for `VNM`.
+
+The source directory also retains `ID.geojson` and `VN.geojson`, which
+`release/boundaries/SOURCES.md` identifies as existing full candidate boundaries used
+by the current ID and VN profiles. They remain candidate inputs and must not
+be replaced without regenerating the related profile hashes, scale metadata,
+registry database, and signature.
+
+## Redistribution gate
+
+The source records above are attribution evidence, not a legal determination
+that redistribution is approved. Redistribution approval for every included
+boundary file must still be confirmed against the applicable source terms
+before any TestPyPI or PyPI publication. This technical-candidate preparation
+does not authorize an upload.

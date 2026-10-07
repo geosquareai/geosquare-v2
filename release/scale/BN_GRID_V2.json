@@ -1,0 +1,15 @@
+{
+  "domain_code": "BN",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "544e8a3b70531614f1fc0441d0a9ebf5777fe03fbfb1b9d8bc4fd07d81131bfa",
+  "sample_count": 758,
+  "max_error_pct": 0.00229680275469768,
+  "max_error_coordinate_crs84": [
+    115.04362131057508,
+    5.046726001803563
+  ],
+  "meridional_scale": 1.000022968027547,
+  "parallel_scale": 1.0000229679695047
+}

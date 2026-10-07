@@ -1,0 +1,398 @@
+[
+  {
+    "domain_code": "BN",
+    "name": "Brunei Darussalam",
+    "candidate": "LCC",
+    "boundary_file": "boundaries/BN_simplified.geojson",
+    "boundary_resolution": "simplified",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 378,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.00229680275469768,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.0006603615,
+    "ground_side_m": {
+      "min": 49.99884841243102,
+      "p05": 49.999067896007375,
+      "median": 50.000363714756894,
+      "p95": 50.00090609222576,
+      "max": 50.00091843442687
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000000370544706,
+      "p95": 1.0000000676772092,
+      "max": 1.0000000715380069,
+      "max_error_pct": 7.1538006851668e-06
+    },
+    "ground_area_ratio": {
+      "min": 0.9999540083341358,
+      "p05": 0.9999627705051162,
+      "median": 1.0000145486556766,
+      "p95": 1.0000362384289387,
+      "max": 1.0000367373758665,
+      "max_absolute_error_pct": 0.004599166586416459
+    }
+  },
+  {
+    "domain_code": "KH",
+    "name": "Cambodia",
+    "candidate": "LCC",
+    "boundary_file": "boundaries/KH_simplified.geojson",
+    "boundary_resolution": "simplified",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1357,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.048140100799742847,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.012123179999999999,
+    "ground_side_m": {
+      "min": 49.97593067175835,
+      "p05": 49.98220333193974,
+      "median": 50.00234067599785,
+      "p95": 50.019080382144736,
+      "max": 50.01918934955078
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000002039293914,
+      "p95": 1.0000003026269464,
+      "max": 1.000000328046575,
+      "max_error_pct": 3.2804657501550594e-05
+    },
+    "ground_area_ratio": {
+      "min": 0.9990377865465824,
+      "p05": 0.9992946108985227,
+      "median": 1.0000936284827766,
+      "p95": 1.000763205319643,
+      "max": 1.0007677218435331,
+      "max_absolute_error_pct": 0.09622134534176263
+    }
+  },
+  {
+    "domain_code": "ID",
+    "name": "Indonesia",
+    "candidate": "lcc_fraction_1_6",
+    "boundary_file": "boundaries/ID_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1999,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.6070515705397517,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.3749548785,
+    "ground_side_m": {
+      "min": 49.701978901491785,
+      "p05": 49.87956256028183,
+      "median": 50.150986911325376,
+      "p95": 50.23948752063867,
+      "max": 50.241463160487164
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000004735944625,
+      "p95": 1.0000009464231259,
+      "max": 1.0000011563848314,
+      "max_error_pct": 0.0001156384831446644
+    },
+    "ground_area_ratio": {
+      "min": 0.9881158211730886,
+      "p05": 0.9951892454990142,
+      "median": 1.0060485951525435,
+      "p95": 1.009602372320468,
+      "max": 1.0096818471150821,
+      "max_absolute_error_pct": 1.1884178826911396
+    }
+  },
+  {
+    "domain_code": "LA",
+    "name": "Lao PDR",
+    "candidate": "LCC",
+    "boundary_file": "boundaries/LA_simplified.geojson",
+    "boundary_resolution": "simplified",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1973,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.15693422811857705,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.030382689499999997,
+    "ground_side_m": {
+      "min": 49.921810819412826,
+      "p05": 49.93586418843706,
+      "median": 50.01598683827014,
+      "p95": 50.06201098256644,
+      "max": 50.062169502346855
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000003388195324,
+      "p95": 1.0000005556705396,
+      "max": 1.0000005936920149,
+      "max_error_pct": 5.9369201488301826e-05
+    },
+    "ground_area_ratio": {
+      "min": 0.9968754702851176,
+      "p05": 0.9974362197163514,
+      "median": 1.000639575532172,
+      "p95": 1.0024817848175764,
+      "max": 1.0024883260410162,
+      "max_absolute_error_pct": 0.3124529714882418
+    }
+  },
+  {
+    "domain_code": "MY",
+    "name": "Malaysia",
+    "candidate": "lcc_fraction_1_6",
+    "boundary_file": "boundaries/MY_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1986,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.0891244179971773,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.06286488999999999,
+    "ground_side_m": {
+      "min": 49.95552007946174,
+      "p05": 49.96187615044209,
+      "median": 50.00603037182634,
+      "p95": 50.03545448737062,
+      "max": 50.035631921903175
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000002709411469,
+      "p95": 1.0000004274597571,
+      "max": 1.0000004454980698,
+      "max_error_pct": 4.4549806976768025e-05
+    },
+    "ground_area_ratio": {
+      "min": 0.9982220384779961,
+      "p05": 0.9984756311960984,
+      "median": 1.0002412295877585,
+      "p95": 1.001418681920669,
+      "max": 1.0014257842089516,
+      "max_absolute_error_pct": 0.17779615220039346
+    }
+  },
+  {
+    "domain_code": "MM",
+    "name": "Myanmar",
+    "candidate": "lcc_fraction_1_6",
+    "boundary_file": "boundaries/MM_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1923,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.7726895418608493,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.0773465619,
+    "ground_side_m": {
+      "min": 49.616574820606886,
+      "p05": 49.70270270380665,
+      "median": 50.21821703746278,
+      "p95": 50.29992866080454,
+      "max": 50.3011969626971
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000004515120364,
+      "p95": 1.0000011992620006,
+      "max": 1.000001325818018,
+      "max_error_pct": 0.00013258180180386603
+    },
+    "ground_area_ratio": {
+      "min": 0.9847231043284294,
+      "p05": 0.9881434708327753,
+      "median": 1.0087477287008892,
+      "p95": 1.0120331285148858,
+      "max": 1.0120841658416204,
+      "max_absolute_error_pct": 1.5276895671570645
+    }
+  },
+  {
+    "domain_code": "PH",
+    "name": "Philippines",
+    "candidate": "lcc_fraction_1_6",
+    "boundary_file": "boundaries/PH_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1998,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.5860520039364214,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.0777690387,
+    "ground_side_m": {
+      "min": 49.71000096634333,
+      "p05": 49.821622444158535,
+      "median": 50.18913426438134,
+      "p95": 50.22996727056995,
+      "max": 50.23076339655519
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000003211122026,
+      "p95": 1.0000009967295875,
+      "max": 1.0000011469965393,
+      "max_error_pct": 0.00011469965393029469
+    },
+    "ground_area_ratio": {
+      "min": 0.9884348119742237,
+      "p05": 0.9928786148507759,
+      "median": 1.0075796797877643,
+      "p95": 1.0092197999900208,
+      "max": 1.0092518365252297,
+      "max_absolute_error_pct": 1.156518802577633
+    }
+  },
+  {
+    "domain_code": "SG",
+    "name": "Singapore",
+    "candidate": "LOCAL_PROJECTED",
+    "boundary_file": "boundaries/SG_simplified.geojson",
+    "boundary_resolution": "simplified",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 648,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.0008943303341002462,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 6.71424e-05,
+    "ground_side_m": {
+      "min": 49.999552319638816,
+      "p05": 49.99957693500731,
+      "median": 49.999857999264364,
+      "p95": 49.9999998128403,
+      "max": 50.000000000026596
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000000187449651,
+      "p95": 1.0000000323870357,
+      "max": 1.000000033252581,
+      "max_error_pct": 3.325258091102512e-06
+    },
+    "ground_area_ratio": {
+      "min": 0.9999821261260667,
+      "p05": 0.999983045103395,
+      "median": 0.999994319961532,
+      "p95": 0.9999999931583937,
+      "max": 0.9999999999869474,
+      "max_absolute_error_pct": 0.0017873873933260676
+    }
+  },
+  {
+    "domain_code": "TH",
+    "name": "Thailand",
+    "candidate": "lcc_fraction_1_6",
+    "boundary_file": "boundaries/TH_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1998,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.47152715405232026,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.05766310620000001,
+    "ground_side_m": {
+      "min": 49.766365420333216,
+      "p05": 49.79538453720937,
+      "median": 50.06358690994553,
+      "p95": 50.185648142194644,
+      "max": 50.18604959749724
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000005500427216,
+      "p95": 1.0000009791851285,
+      "max": 1.0000010286830232,
+      "max_error_pct": 0.00010286830232075772
+    },
+    "ground_area_ratio": {
+      "min": 0.9906774700859562,
+      "p05": 0.9918331127105746,
+      "median": 1.002545093993307,
+      "p95": 1.0074396817415254,
+      "max": 1.0074558294650633,
+      "max_absolute_error_pct": 0.9322529914043809
+    }
+  },
+  {
+    "domain_code": "TL",
+    "name": "Timor-Leste",
+    "candidate": "LCC",
+    "boundary_file": "boundaries/TL_simplified.geojson",
+    "boundary_resolution": "simplified",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1116,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.003989188489117446,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.0022175094,
+    "ground_side_m": {
+      "min": 49.99800115835094,
+      "p05": 49.99853304368944,
+      "median": 50.00062316494318,
+      "p95": 50.001566341699004,
+      "max": 50.00159460439342
+    },
+    "squareness_side_ratio": {
+      "median": 1.000000049054966,
+      "p95": 1.0000000870600616,
+      "max": 1.0000000943017047,
+      "max_error_pct": 9.430170466728782e-06
+    },
+    "ground_area_ratio": {
+      "min": 0.999920142100018,
+      "p05": 0.9999414097690489,
+      "median": 1.0000249136814818,
+      "p95": 1.000062652294524,
+      "max": 1.0000637850901577,
+      "max_absolute_error_pct": 0.007985789998199433
+    }
+  },
+  {
+    "domain_code": "VN",
+    "name": "Viet Nam",
+    "candidate": "existing_profile",
+    "boundary_file": "boundaries/VN_full.geojson",
+    "boundary_resolution": "full",
+    "level": 12,
+    "nominal_grid_edge_m": 50.0,
+    "sampled_unique_cells": 1474,
+    "skipped_boundary_points": 0,
+    "published_or_candidate_scale_error_pct": 0.49218353763940126,
+    "approval_band": "preferred",
+    "root_covers_sampled_boundary": true,
+    "root_bbox_occupancy_pct": 0.050646086400000005,
+    "ground_side_m": {
+      "min": 49.75535406526881,
+      "p05": 49.82123764935395,
+      "median": 50.016861402259984,
+      "p95": 50.18900378326232,
+      "max": 50.18991420238891
+    },
+    "squareness_side_ratio": {
+      "median": 1.0000006565515966,
+      "p95": 1.0000009604413886,
+      "max": 1.000001028400929,
+      "max_error_pct": 0.00010284009290817409
+    },
+    "ground_area_ratio": {
+      "min": 0.9902391202680301,
+      "p05": 0.9928653518878855,
+      "median": 1.0006745923228735,
+      "p95": 1.0075729529103263,
+      "max": 1.0076109847741812,
+      "max_absolute_error_pct": 0.9760879731969929
+    }
+  }
+]

@@ -1,0 +1,17 @@
+include README.md
+include LICENSE
+include NOTICE
+include CHANGELOG.md
+include release/registry.v2.json
+include release/registry-trust.json
+include src/geosquare_v2/data/cell-dataset-manifest-v1.schema.json
+recursive-include docs *.md
+recursive-include release/boundaries *.geojson *.json *.md
+recursive-include release/profiles *.json
+recursive-include release/scale *.json
+recursive-include tools *.py
+recursive-include tests *.py
+recursive-include src/geosquare_v2/data/registry/boundaries *.geojson *.json *.md
+include src/geosquare_v2/db/registry.db
+include src/geosquare_v2/db/registry.db.sig
+recursive-include examples *.py

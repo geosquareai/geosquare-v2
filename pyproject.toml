@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools==78.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geosquare-v2"
+version = "0.1.0rc1"
+description = "Profile-driven hierarchical metric grid core for Geosquare V2."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "Geosquare" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: GIS",
+]
+
+[project.optional-dependencies]
+geo = [
+  "pyproj==3.7.2",
+  "shapely==2.1.2",
+]
+registry = [
+  "cryptography==50.0.0",
+  "pyproj==3.7.2",
+  "rfc8785==0.1.4",
+]
+batch = [
+  "numpy==2.3.5",
+  "pandas==2.3.3",
+  "pyarrow==22.0.0",
+]
+table = [
+  "pandas==2.3.3",
+  "pyarrow==22.0.0",
+  "openpyxl==3.1.5",
+]
+analytics = [
+  "numpy==2.3.5",
+  "pandas==2.3.3",
+  "pyarrow==22.0.0",
+  "pyproj==3.7.2",
+  "shapely==2.1.2",
+]
+filesystem = [
+  "fsspec==2025.7.0",
+]
+s3 = [
+  "fsspec==2025.7.0",
+  "s3fs==2025.7.0",
+]
+dev = [
+  "pytest==8.4.2",
+  "hypothesis==6.168.0",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.package-data]
+geosquare_v2 = [
+  "data/registry/boundaries/*.geojson",
+  "data/registry/boundaries/*.json",
+  "data/registry/boundaries/*.md",
+  "data/cell-dataset-manifest-v1.schema.json",
+  "db/*.db",
+  "db/*.sig",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

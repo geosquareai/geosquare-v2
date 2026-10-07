@@ -1,0 +1,15 @@
+{
+  "domain_code": "LA",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "ba429d6121d6c193752bb3daaa1438a59fe339857fb168c258d23af2c5e0d0cd",
+  "sample_count": 18173,
+  "max_error_pct": 0.15695745845041298,
+  "max_error_coordinate_crs84": [
+    101.769859,
+    22.502872
+  ],
+  "meridional_scale": 1.0015695745845041,
+  "parallel_scale": 1.0015695745680986
+}

@@ -1,0 +1,15 @@
+{
+  "domain_code": "PH",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "7c3a7a39dacb5fb0c14d150061306fa5839455fbf93231854af3c6d74a1fa24f",
+  "sample_count": 22284,
+  "max_error_pct": 0.5860520039364214,
+  "max_error_coordinate_crs84": [
+    121.94566696200002,
+    21.121755276000044
+  ],
+  "meridional_scale": 1.0058605200393642,
+  "parallel_scale": 1.0058605200036923
+}

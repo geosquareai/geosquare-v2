@@ -1,0 +1,56 @@
+{
+  "metric_definition": {
+    "level": 12,
+    "ground_side_ratio": "maximum geodesic corner-to-corner side / minimum side",
+    "ground_area_ratio": "geodesic cell area / nominal grid-CRS square area",
+    "note": "These are GeoSquare profile measurements. Other systems are compared by documented design because resolutions and cell models are not directly equivalent."
+  },
+  "geosquare": [
+    {
+      "profile": "ID",
+      "level": 12,
+      "nominal_grid_edge_m": 50.0,
+      "sample_count": 500,
+      "skipped_points": 0,
+      "published_scale_error_max_pct": 1.8711202983859199,
+      "ground_side_ratio": {
+        "median": 1.0052171950244202,
+        "p95": 1.0067390069730922,
+        "max": 1.0120356129394632
+      },
+      "ground_area_ratio": {
+        "median": 0.9909866959700488,
+        "p05": 0.9815741065174403,
+        "p95": 0.993286032296988,
+        "min": 0.9756322231083226,
+        "max": 0.9933056633401774
+      },
+      "mean_side_ratio": 1.004861767003286
+    },
+    {
+      "profile": "VN",
+      "level": 12,
+      "nominal_grid_edge_m": 50.0,
+      "sample_count": 494,
+      "skipped_points": 0,
+      "published_scale_error_max_pct": 0.49218353763940126,
+      "ground_side_ratio": {
+        "median": 1.0000006561122672,
+        "p95": 1.000000965562697,
+        "max": 1.0000010272054898
+      },
+      "ground_area_ratio": {
+        "median": 1.000701724067834,
+        "p05": 0.9928613543551416,
+        "p95": 1.0075643770551717,
+        "min": 0.9902391202680301,
+        "max": 1.0076106994126108
+      },
+      "mean_side_ratio": 1.0000005811689823
+    }
+  ],
+  "optional_dependencies": {
+    "h3": false,
+    "s2sphere": false
+  }
+}

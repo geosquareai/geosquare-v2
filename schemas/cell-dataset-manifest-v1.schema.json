@@ -1,0 +1,416 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geosquare.ai/schemas/cell-dataset-manifest-v1.schema.json",
+  "title": "GeoSquare Cell Dataset Manifest v1",
+  "description": "Manifest for a single-domain, single-level GeoSquare V2 Parquet dataset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_version",
+    "dataset_type",
+    "grid_system",
+    "grid_version",
+    "domain_code",
+    "domain_id",
+    "level",
+    "profile_version",
+    "registry_version",
+    "value_fields",
+    "identity",
+    "coverage",
+    "source",
+    "storage",
+    "provenance"
+  ],
+  "properties": {
+    "manifest_version": {
+      "const": "1.0"
+    },
+    "dataset_type": {
+      "enum": [
+        "cell_values",
+        "cell_contributions"
+      ]
+    },
+    "grid_system": {
+      "const": "geosquare"
+    },
+    "grid_version": {
+      "const": "v2"
+    },
+    "domain_code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]{0,15}$"
+    },
+    "domain_id": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 511
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 14
+    },
+    "profile_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registry_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value_fields": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/valueField"
+      }
+    },
+    "identity": {
+      "$ref": "#/$defs/identity"
+    },
+    "coverage": {
+      "$ref": "#/$defs/coverage"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "storage": {
+      "$ref": "#/$defs/storage"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "nullableString": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "valueField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "parquet_type",
+        "logical_type",
+        "semantics",
+        "unit",
+        "nullable",
+        "aggregation_rule"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+          "not": {
+            "enum": [
+              "domain",
+              "level",
+              "gid",
+              "uri",
+              "packed_id",
+              "x_idx",
+              "y_idx",
+              "source_id",
+              "source_row",
+              "coverage_ratio",
+              "length_ratio",
+              "assignment_method",
+              "boundary_policy",
+              "geometry_wkb"
+            ]
+          }
+        },
+        "parquet_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "logical_type": {
+          "enum": [
+            "numeric",
+            "categorical",
+            "ordinal",
+            "range"
+          ]
+        },
+        "semantics": {
+          "enum": [
+            "COUNT",
+            "TOTAL",
+            "DENSITY",
+            "MEASUREMENT",
+            "RATE",
+            "ORDINAL",
+            "CATEGORICAL",
+            "RANGE"
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "aggregation_rule": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gid_column",
+        "uri_prefix",
+        "packed_id_column",
+        "x_idx_column",
+        "y_idx_column",
+        "unique_gid"
+      ],
+      "properties": {
+        "gid_column": {
+          "const": "gid"
+        },
+        "uri_prefix": {
+          "type": "string",
+          "pattern": "^geosquare:v2:[A-Z][A-Z0-9]{0,15}:$"
+        },
+        "packed_id_column": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "x_idx_column": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "y_idx_column": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "unique_gid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assignment_method",
+        "boundary_policy",
+        "boundary_sha256",
+        "coverage_mode",
+        "min_coverage",
+        "length_mode"
+      ],
+      "properties": {
+        "assignment_method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundary_policy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "COVERS_POINT",
+            "CENTROID_COVERED",
+            "INTERSECTS",
+            "MIN_COVERAGE",
+            null
+          ]
+        },
+        "boundary_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "coverage_mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "GRID_PLANAR",
+            "EQUAL_AREA",
+            null
+          ]
+        },
+        "min_coverage": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "length_mode": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "geometry_type",
+        "source_crs",
+        "source_id_column",
+        "source_dataset",
+        "source_row_count"
+      ],
+      "properties": {
+        "format": {
+          "type": "string",
+          "minLength": 1
+        },
+        "geometry_type": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "source_crs": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "source_id_column": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "source_dataset": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "source_row_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parquet_compression",
+        "geometry_column",
+        "geometry_format",
+        "geometry_crs",
+        "partitioning",
+        "sorted_by",
+        "row_count",
+        "unique_cell_count"
+      ],
+      "properties": {
+        "parquet_compression": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "zstd",
+            "snappy",
+            "gzip",
+            "brotli",
+            "uncompressed",
+            null
+          ]
+        },
+        "geometry_column": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "geometry_format": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "wkb",
+            "wkt",
+            "shapely",
+            null
+          ]
+        },
+        "geometry_crs": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "partitioning": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "sorted_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "row_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unique_cell_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "created_at",
+        "created_by",
+        "generator",
+        "aggregation_rule",
+        "value_semantics",
+        "notes"
+      ],
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aggregation_rule": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "value_semantics": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "COUNT",
+            "TOTAL",
+            "DENSITY",
+            "MEASUREMENT",
+            "RATE",
+            "ORDINAL",
+            "CATEGORICAL",
+            "RANGE",
+            null
+          ]
+        },
+        "notes": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "domain_code": "SG",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "d347c753ec38568609f9414da6b85ec46d2a776d1a3c99b9634822735a335c38",
+  "sample_count": 8070,
+  "max_error_pct": 0.0008944823356005216,
+  "max_error_coordinate_crs84": [
+    104.08850940000002,
+    1.400807899999988
+  ],
+  "meridional_scale": 1.000008944823356,
+  "parallel_scale": 1.0000089447402136
+}

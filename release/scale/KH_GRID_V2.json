@@ -1,0 +1,15 @@
+{
+  "domain_code": "KH",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "a44140ae62a1dbe8d7cb176bc9b8afc38a65df66c05f84edba2b8b86a8fb4649",
+  "sample_count": 11512,
+  "max_error_pct": 0.04814044440908383,
+  "max_error_coordinate_crs84": [
+    107.53618429999999,
+    14.690247100000025
+  ],
+  "meridional_scale": 1.0004814044440908,
+  "parallel_scale": 1.0004814044226993
+}

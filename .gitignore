@@ -1,0 +1,27 @@
+.DS_Store
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build and generated package metadata
+build/
+dist/
+dist-candidate/
+*.egg-info/
+
+# Archived/generated release artifacts
+release/artifacts/
+
+# Local signing keys
+*.pem
+
+# Local handover
+HANDOVER.md

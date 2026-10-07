@@ -1,0 +1,15 @@
+{
+  "domain_code": "TL",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "8d8e1ce1f1f7452e4f27923c881e04c7b88402d8f1bdbab488f682160e70b3b6",
+  "sample_count": 15104,
+  "max_error_pct": 0.003989188489117446,
+  "max_error_coordinate_crs84": [
+    124.2869033,
+    -9.504170500000033
+  ],
+  "meridional_scale": 1.0000398918848912,
+  "parallel_scale": 1.000039891826101
+}

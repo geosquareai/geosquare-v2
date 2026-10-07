@@ -1,0 +1,15 @@
+{
+  "domain_code": "MM",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "5857a9a0d091b68c2b8e07fd9e8edb1fa0cd7e8b6cad87651dcd1419e4103874",
+  "sample_count": 19508,
+  "max_error_pct": 0.7726895418608493,
+  "max_error_coordinate_crs84": [
+    97.57358308800008,
+    28.545538862000058
+  ],
+  "meridional_scale": 1.0077268954186085,
+  "parallel_scale": 1.0077268954084693
+}

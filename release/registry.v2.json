@@ -1,0 +1,75 @@
+{
+  "registry_version": "2.0.0",
+  "release_status": "candidate",
+  "proj_version_exact": "9.5.1",
+  "proj_db_sha256": "ec8cea0a5490a6f9247d9063645049e0f93fb83307067ebfc859187f0539e67e",
+  "required_proj_grids": [],
+  "domains": [
+    {
+      "domain_id": 3,
+      "domain_code": "BN",
+      "profile_file": "profiles/BN.v2.json",
+      "profile_sha256": "13d885cd3ad59d5596959e096618a749a610533e292e5510cd9a98830b64e6e1"
+    },
+    {
+      "domain_id": 4,
+      "domain_code": "KH",
+      "profile_file": "profiles/KH.v2.json",
+      "profile_sha256": "0334e9ee67dac8e54af168e25c241309f0aeefc8825f01175e5a9516420e8325"
+    },
+    {
+      "domain_id": 1,
+      "domain_code": "ID",
+      "profile_file": "profiles/ID.v2.json",
+      "profile_sha256": "95eb601ad1ff85d99d4efb63409f3e7567c6994aa71fcde6910b81228b1ea29a"
+    },
+    {
+      "domain_id": 5,
+      "domain_code": "LA",
+      "profile_file": "profiles/LA.v2.json",
+      "profile_sha256": "b45a4854986f2b6a39d32cb0aa3c7084b031402692fa00fe961d98733b7d1264"
+    },
+    {
+      "domain_id": 6,
+      "domain_code": "MY",
+      "profile_file": "profiles/MY.v2.json",
+      "profile_sha256": "73385f500cbc78a9090bd1b2f3035f9a77d251140e0a3e878d5fbad2b45dd90a"
+    },
+    {
+      "domain_id": 7,
+      "domain_code": "MM",
+      "profile_file": "profiles/MM.v2.json",
+      "profile_sha256": "546a6710b7dd04ed2dfac8c441d85c28e1b25307c484a327b57da30db5a1f66f"
+    },
+    {
+      "domain_id": 8,
+      "domain_code": "PH",
+      "profile_file": "profiles/PH.v2.json",
+      "profile_sha256": "e57c672915dcfb6fb9a24baef710779b1fa2a75c5aef6c0b4cfe8ed55b5c34fe"
+    },
+    {
+      "domain_id": 9,
+      "domain_code": "SG",
+      "profile_file": "profiles/SG.v2.json",
+      "profile_sha256": "4511c9715c188795b8661bbd25ac05e727bf6ab09967c1aafc81c6ecdf2746bc"
+    },
+    {
+      "domain_id": 10,
+      "domain_code": "TH",
+      "profile_file": "profiles/TH.v2.json",
+      "profile_sha256": "db1d8174f6b14db22237db4623e7eec2d79059b30116da5fef7cb9d2ce927258"
+    },
+    {
+      "domain_id": 11,
+      "domain_code": "TL",
+      "profile_file": "profiles/TL.v2.json",
+      "profile_sha256": "5a587e44ed9159d14acdd13d8de968037a19da8d4e43b31864c2daf73e862e2f"
+    },
+    {
+      "domain_id": 2,
+      "domain_code": "VN",
+      "profile_file": "profiles/VN.v2.json",
+      "profile_sha256": "867edbec7565d60726f986cae4d54360c6b176a926eac148a48b219eedcb8620"
+    }
+  ]
+}

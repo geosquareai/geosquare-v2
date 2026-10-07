@@ -1,0 +1,15 @@
+{
+  "domain_code": "TH",
+  "algorithm": "projection_factors_max_directional_full_boundary_v2",
+  "proj_version": "9.5.1",
+  "pyproj_version": "3.7.2",
+  "boundary_sha256": "226eeef03694dc708201f142c992a819798841c0302c89e78cac8579b5058cde",
+  "sample_count": 18869,
+  "max_error_pct": 0.47152715405232026,
+  "max_error_coordinate_crs84": [
+    99.95674090000001,
+    20.46443970000003
+  ],
+  "meridional_scale": 1.0047152715405232,
+  "parallel_scale": 1.004715271535984
+}

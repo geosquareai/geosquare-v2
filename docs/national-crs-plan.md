@@ -47,7 +47,7 @@ These are design targets, not current signed profiles. `GEOSQUARE:*` identifiers
 |---|---|---|---|---|---|
 | BN | GDBD2009, geographic base `EPSG:5246`; official Brunei BRSO `EPSG:5247` is an interoperability reference | `GEOSQUARE:BN_GDBD2009_LCC_V2` | Brunei BRSO accepted as input/reference metadata; one canonical root | Static realization pending authoritative epoch/operation review | Target |
 | KH | Cambodian national datum/grid not yet sufficiently evidenced | `GEOSQUARE:KH_NATIONAL_DATUM_LCC_V2` | No zone claim until the official Cambodian source is confirmed | Static only after authoritative datum and realization are confirmed | Deferred |
-| ID | SRGI2013 static realization target, based on geographic base `EPSG:9470` and fixed realization epoch `2012.0` | `GEOSQUARE:ID_SRGI2013_STATIC2012_LCC_V2` | SRGI2013 UTM/TM zones are input/reference metadata only | Static candidate requires pre-normalized SRGI2013-at-2012 coordinates; runtime does not perform dynamic epoch transformation | Candidate implemented in staged `0.1.0rc2` |
+| ID | SRGI2013 static realization target, based on geographic base `EPSG:9470` and fixed realization epoch `2012.0` | `GEOSQUARE:ID_SRGI2013_STATIC2012_LCC_V2` | SRGI2013 UTM/TM zones are input/reference metadata only | Static candidate requires pre-normalized SRGI2013-at-2012 coordinates; runtime does not perform dynamic epoch transformation | Candidate included in the stable `0.2.0` support scope |
 | LA | Lao 1997 geographic base `EPSG:4678` | `GEOSQUARE:LA_LAO1997_LCC_V2` | Official Lao zones are input/reference metadata only | Static realization and transformations require authority review | Target |
 | MY | GDM2000 geographic base `EPSG:4742` | `GEOSQUARE:MY_GDM2000_LCC_V2` | Peninsula RSO `EPSG:3375` and East Malaysia BRSO `EPSG:3376` are ingestion/reference metadata; one canonical root | Static candidate policy, with component behavior documented | Target |
 | MM | Myanmar Datum 2000 is a research target, but authoritative WKT/parameters are not yet available | `GEOSQUARE:MM_MYANMAR_DATUM2000_LCC_V2` | No legacy Indian datum as canonical; input use requires source metadata and tested transformation | Epoch and transformation policy pending | Deferred/research |
@@ -80,7 +80,7 @@ For each target profile, obtain and record:
 3. Implement and test epoch-aware PROJ transformations; reject missing epochs for dynamic-required profiles.
 4. Generate candidate profiles and scale reports in a new staging tree, not over the published `release/` inputs.
 5. Build a new SQLite registry, verify boundary/scale hashes and exact PROJ resources, and sign it with the existing external registry key.
-6. Build a new package version, such as `0.1.0rc2`; never overwrite the published `0.1.0rc1` artifacts.
+6. Build the selected stable package version `0.2.0`; never overwrite published candidate artifacts.
 7. Run the full test, clean-install, TestPyPI, and registry smoke-test sequence before considering PyPI.
 
 Until steps 1–3 exist, only static, explicitly documented realization profiles should be implemented. Dynamic national datum claims should remain deferred.

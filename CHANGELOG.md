@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 — proposed stable software release under option 2
+
+Status: prepared in an isolated release worktree and not published. This release may bundle all 11 domain profiles while explicitly classifying KH, MM, TH, and TL as technical/provisional. Production geodetic guarantees apply only to profiles individually approved through Gate A.
+
+### Release preparation
+
+- promoted the reviewed static-datum successor inputs from `0.1.0rc2`;
+- selected `0.2.0` because the successor changes CRS/profile behavior while preserving the pre-1.0 API contract;
+- retained GeoSquare-owned custom CRS identifiers rather than inventing EPSG codes;
+- retained the static ID realization and no-dynamic-transformation limitation;
+- corrected the malformed Philippines license-source placeholder to the canonical CC BY 3.0 IGO license text, while keeping upstream-source and redistribution approval open; and
+- regenerated release metadata in the isolated worktree pending final registry signing and release authorization.
+
 ## 0.1.0rc2 — staged static-datum technical candidate
 
 Status: staged locally and not uploaded. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified from a clean Python 3.14 environment. This successor must be reviewed before any TestPyPI or PyPI upload.

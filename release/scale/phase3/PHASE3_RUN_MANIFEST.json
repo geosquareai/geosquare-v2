@@ -1,9 +1,9 @@
 {
   "schema_version": "phase3.manifest.v1",
   "phase": "phase3",
-  "run_id": "phase3-20261007T230644.096271Z",
-  "generated_at_utc": "2026-10-07T23:06:44.096271Z",
-  "repository_commit": "2120f1fd6d9412b6cb59ce883d87964a5e7b5ffb",
+  "run_id": "phase3-20261008T054710.712305Z",
+  "generated_at_utc": "2026-10-08T05:47:10.712305Z",
+  "repository_commit": "1698d520f40b82de9f7116d618d09a6e22961597",
   "software": {
     "python": "3.14.5",
     "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
@@ -18,13 +18,13 @@
     "boundary_metadata": "release/boundaries/ASEAN_BOUNDARY_METADATA.json",
     "domain_candidates": "release/profiles/ASEAN_DOMAIN_CANDIDATES.json",
     "priority_decisions": "release/profiles/ASEAN_PRIORITY_PROFILE_DECISIONS.json",
-    "boundary_metadata_sha256": "b279e302ac6660acdf797a6893b0690e896541d9b0612b95cad4a5e3a690b424"
+    "boundary_metadata_sha256": "882bc0b12cf0b94a3d947fc44c4411d62b1160a3acc8c7c465c9a15c6480752f"
   },
   "outputs": {
     "benchmark_json": "release/scale/phase3/ASEAN_LEVEL12_BENCHMARK.json",
-    "benchmark_json_sha256": "e5e33056a9a48f97c265edddcc79bc9111ba8b221df959f1594ce412dca13701",
+    "benchmark_json_sha256": "840f9d986be5df05618782303c65646a0d43cab96643f895288893e8ef7a4091",
     "report_markdown": "internal/research/PHASE3_SCALE_AND_SQUARENESS.md",
-    "report_markdown_sha256": "5fc4b8a6857eb25c80b51997d7ab4938a2e76434e0f722e157c40757673b5e86"
+    "report_markdown_sha256": "abc082ce8df083476b19a7ce77dd5c38444cfd92baa859a9848c0b213fae3ba2"
   },
   "sampling_protocol": {
     "boundary_source": "full bundled ASEAN GeoBoundaries files",

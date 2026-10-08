@@ -33,7 +33,7 @@ Do not automatically publish to PyPI on every tag until the TestPyPI verificatio
 
 ## Local manual commands
 
-Use a single reviewed artifact directory built from the exact release commit or tag. Do not upload the archived `0.1.0rc1` files or the staged `0.1.0rc2` copy unless that exact version and content have been reviewed and approved.
+Use a single reviewed artifact directory built from the exact `v0.2.0` release commit or tag. Do not upload the archived `0.1.0rc1` files or the staged `0.1.0rc2` copy; they are historical candidate artifacts.
 
 Set the directory explicitly after review:
 

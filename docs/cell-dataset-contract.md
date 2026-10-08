@@ -249,7 +249,7 @@ A manifest must contain:
   "domain_code": "ID",
   "domain_id": 1,
   "level": 12,
-  "profile_version": "2.0.0-rc.2-asean",
+  "profile_version": "2.1.0-static-datum",
   "registry_version": "2.0.0",
   "value_fields": [],
   "identity": {},
@@ -431,7 +431,7 @@ Range example:
   "domain_code": "ID",
   "domain_id": 1,
   "level": 12,
-  "profile_version": "2.0.0-rc.2-asean",
+  "profile_version": "2.1.0-static-datum",
   "registry_version": "2.0.0",
   "value_fields": [
     {
@@ -551,7 +551,7 @@ Example:
 ```text
 manifest_version = 1.0
 grid_version = v2
-profile_version = 2.0.0-rc.2-asean
+profile_version = 2.1.0-static-datum
 ```
 
 A new manifest format can be released without changing cell IDs.

@@ -14,8 +14,10 @@ Start with the [root README](../README.md) for installation and the runnable che
 6. [Country profiles](country-profiles.md) — domain metadata and profile interpretation.
 7. [Interoperability and comparisons](comparison.md) — relationship to other spatial identifiers.
 8. [Release and security](release.md) — candidate status, reproducibility, attribution, and release gates.
-9. [Automated publishing](release-automation.md) — GitHub Actions, trusted publishing, and manual upload commands.
-10. [GitHub About and release checklist](github-release.md) — repository description, release notes, and PyPI promotion.
+9. [Gate A support matrix](gate-a-support-matrix.md) — per-domain option-2 support classification.
+10. [Gate B boundary decision](gate-b-decision.md) — provenance, attribution, and redistribution decision record.
+11. [Automated publishing](release-automation.md) — GitHub Actions, trusted publishing, and manual upload commands.
+12. [GitHub About and release checklist](github-release.md) — repository description, release notes, and PyPI promotion.
 
 ## Contracts and operational guides
 
@@ -25,7 +27,9 @@ Start with the [root README](../README.md) for installation and the runnable che
 - [Data-to-grid contract](data-to-grid-contract.md)
 - [V1 to V2 migration](migration-v1-v2.md)
 - [SQLite registry](sqlite-registry.md)
-- [Boundary source attribution](../src/geosquare_v2/data/registry/boundaries/SOURCES.md)
+- [Gate B boundary decision](gate-b-decision.md) — PH and overall boundary attribution decision.
+- [Gate B license-family review](gate-b-license-review.md) — approved non-PH license-family scopes.
+- [Gate C contract freeze](gate-c-contract-freeze.md) — frozen 0.2.0 identity, API, migration, and version rules.
 - [Code and boundary-data licenses](data-licenses.md)
 - [Runnable quickstart](../examples/quickstart.py)
 
@@ -54,9 +58,7 @@ The published distribution name is `geosquare-v2`; Python code imports `geosquar
 
 ## Current status
 
-The current successor target is `0.1.0rc2`, staged locally and not uploaded. `0.1.0rc1` was uploaded to TestPyPI and verified from a clean Python 3.14 environment. The signed successor registry contains 11 ASEAN domains, with static national-datum-based custom CRS profiles for selected domains; KH, MM, TH, and TL retain their documented provisional or pending status. All profiles and bundled boundaries remain technical candidates, not approved production geodetic or legal-boundary data.
-
-Publication remains blocked pending human approval of boundary redistribution rights and attribution, candidate geodetic status, package size, signing-key/security review, and final release authorization. See [release and security](release.md) and the local `HANDOVER.md` for the current gate list.
+The stable-release candidate is `0.2.0`, prepared in an isolated worktree and not published. It contains all 11 ASEAN domains under option 2: BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope, while KH, MM, TH, and TL remain explicitly provisional. Gate A, Gate B, and Gate C records are prepared; Gate D validation and registry signing remain before publication.
 
 ## Public API names
 
@@ -73,7 +75,7 @@ Older names remain compatibility aliases for now:
 
 ```text
 index_point    -> point_to_cell
-polyfill       -> polygon_to_cells
+polyfill       -> legacy bare-GID/coverage output; use polygon_to_cells for GridCellRecord output
 neighbourhood  -> cell_neighbours
 distance       -> cell_distance
 ```

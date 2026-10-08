@@ -11,7 +11,8 @@ The Python code is Apache-2.0, while the bundled boundary data remains under its
 
 These are candidate administrative boundaries. They are not an assertion of
 legal sovereignty, maritime jurisdiction, or final operational policy, and they
-are not approved production geodetic data.
+are not approved production geodetic data. No source or government authority is
+represented as endorsing GeoSquare.
 
 The included source and packaged boundary resources are recorded in
 `release/boundaries/SOURCES.md`, `release/boundaries/ASEAN_BOUNDARY_METADATA.json`, and the
@@ -66,7 +67,12 @@ The source records and their exact license strings are:
 
 - `PH_full.geojson` and `PH_simplified.geojson` — Philippines; source
   `OCHA Philippines, National Mapping and Resource Information Authority`;
-  license source `Data https`; metadata endpoint for `PHL`.
+  source dataset
+  `https://data.humdata.org/dataset/philippines-administrative-levels-0-to-3`;
+  license source
+  `https://creativecommons.org/licenses/by/3.0/igo/` (canonical license text;
+  geoBoundaries reports the upstream API value as `Data https`); metadata
+  endpoint for `PHL`.
 
 ### Creative Commons Attribution 4.0 International (CC BY 4.0)
 
@@ -74,16 +80,12 @@ The source records and their exact license strings are:
   `geoBoundaries, Wikipedia`; license source
   `commons.wikimedia.org/wiki/File`; metadata endpoint for `VNM`.
 
-The source directory also retains `ID.geojson` and `VN.geojson`, which
-`release/boundaries/SOURCES.md` identifies as existing full candidate boundaries used
-by the current ID and VN profiles. They remain candidate inputs and must not
-be replaced without regenerating the related profile hashes, scale metadata,
-registry database, and signature.
+The source directory also retains `ID.geojson` and `VN.geojson` as byte-identical aliases of the recorded `ID_simplified.geojson` and `VN_simplified.geojson` files. Their hashes and inherited source/license records are included in `ASEAN_BOUNDARY_METADATA.json`.
 
 ## Redistribution gate
 
-The source records above are attribution evidence, not a legal determination
-that redistribution is approved. Redistribution approval for every included
-boundary file must still be confirmed against the applicable source terms
-before any TestPyPI or PyPI publication. This technical-candidate preparation
-does not authorize an upload.
+The release owner approved redistribution of all included boundary files on
+2026-10-08 under their recorded Public Domain, ODbL 1.0, CC BY-SA 2.0, CC BY 3.0
+IGO, or CC BY 4.0 terms, with the attribution, change-disclosure, and
+non-endorsement language above. This is a project release decision, not
+independent legal advice, and does not authorize an upload by itself.

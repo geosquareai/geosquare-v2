@@ -30,6 +30,9 @@ class ReleaseProfile(DomainProfile):
     boundary_file: str = ""
     boundary_sha256: str = ""
     boundary_source: str = ""
+    datum_base_authority: str | None = None
+    epoch_policy: str | None = None
+    input_coordinate_policy: str | None = None
 
     def __post_init__(self) -> None:
         # NOTE: `super().__post_init__()` (zero-argument super) is intentionally avoided
@@ -55,6 +58,10 @@ class ReleaseProfile(DomainProfile):
             value = getattr(self, field_name)
             if not isinstance(value, str) or not value.strip():
                 raise ValidationError(f"{field_name} must be a non-empty string")
+        for field_name in ("datum_base_authority", "epoch_policy", "input_coordinate_policy"):
+            value = getattr(self, field_name)
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                raise ValidationError(f"{field_name} must be a non-empty string when provided")
         if type(self.min_level) is not int or self.min_level != 0:
             raise ValidationError("min_level must be 0")
         if type(self.max_level) is not int or self.max_level != 14:

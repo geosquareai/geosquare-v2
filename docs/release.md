@@ -2,17 +2,20 @@
 
 ## 1. Current release state
 
-The current successor target is `0.1.0rc2`, staged locally and not uploaded. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. The successor keeps the signed SQLite registry model and adds static national-datum-based custom CRS profiles for selected domains. It has not been uploaded to PyPI or Conda. The signed registry and bundled boundaries remain technical candidates, not approved production geodetic or legal-boundary data. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
+The stable-release candidate is `0.2.0`, prepared in the isolated worktree and not published. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. The stable candidate keeps the signed SQLite registry model and uses option 2: KH, MM, TH, and TL remain bundled as explicitly technical/provisional profiles. It has not been uploaded to TestPyPI or PyPI. The signed registry and bundled boundaries remain subject to final release approval and are not a claim of official national geodetic or legal-boundary status. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
 
 ```text
 src/geosquare_v2/db/registry.db
 src/geosquare_v2/db/registry.db.sig
 ```
 
-The current signed candidate contains all 11 ASEAN domains. The profiles and
-boundaries remain candidates until datum, boundary, epoch, redistribution,
-package-size, and production-approval gates pass. See [NOTICE](../NOTICE) for
-the evidence-backed boundary attribution and open redistribution gate.
+The stable candidate contains all 11 ASEAN domains. The seven datum-backed domains
+`BN`, `ID`, `LA`, `MY`, `PH`, `SG`, and `VN` are classified production-ready
+within the GeoSquare support scope. `KH`, `MM`, `TH`, and `TL` remain provisional
+technical profiles. All bundled boundary files have a recorded release-owner
+redistribution approval under their existing license terms, with attribution,
+change-disclosure, and non-endorsement requirements retained. See [NOTICE](../NOTICE)
+and the [Gate B license-family review](gate-b-license-review.md).
 
 ### Option-2 stable support model
 
@@ -30,6 +33,8 @@ requires authoritative datum/reference-frame evidence and reviewed CRS,
 transformation, area-of-use, epoch, accuracy, boundary/component, and scale
 metadata. An EPSG code is not required if the authoritative source and the
 GeoSquare-owned CRS definition are documented.
+
+The release evidence records are [the Gate A support matrix](gate-a-support-matrix.md), [the Gate B boundary decision](gate-b-decision.md), [the Gate B license-family review](gate-b-license-review.md), and [the Gate C contract freeze](gate-c-contract-freeze.md).
 
 ## 2. Release artifacts
 

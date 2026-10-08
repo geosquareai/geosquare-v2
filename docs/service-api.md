@@ -120,7 +120,9 @@ cells = service.polygon_to_cells(
 )
 ```
 
-The result is a tuple of `(bare_gid, coverage_ratio)` pairs. Use the domain and V2 version from the request when storing the result, or wrap each GID as a full URI.
+The result is a tuple of `GridCellRecord` values. Each record contains a cell, bare GID, full URI, and `coverage_ratio`; optional geometry can be included with `output_geometry=True`.
+
+The legacy `service.polyfill(...)` method remains available for compatibility and returns `(bare_gid, coverage_ratio)` pairs. It is not a return-type alias for `polygon_to_cells`; new code should use `polygon_to_cells`.
 
 ## Low-level API
 

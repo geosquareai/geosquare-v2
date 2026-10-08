@@ -21,7 +21,7 @@ def _manifest_document(profile, *, dataset_type: str = "cell_values") -> dict:
         "domain_id": profile.domain_id,
         "level": 12,
         "profile_version": profile.profile_version,
-        "registry_version": "2.0.0-rc.2-asean",
+        "registry_version": "2.0.0",
         "value_fields": [
             {
                 "name": "population",

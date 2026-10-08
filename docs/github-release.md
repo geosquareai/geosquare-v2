@@ -1,6 +1,6 @@
 # GitHub About and release checklist
 
-This guide contains the project text and checklist for the GitHub repository page, the staged `0.1.0rc2` GitHub Release, and the future PyPI promotion.
+This guide contains the project text and checklist for the proposed stable `0.2.0` GitHub Release and future PyPI publication. The prior `0.1.0rc2` candidate is historical and its artifacts must not be reused.
 
 ## Repository About
 
@@ -32,78 +32,49 @@ Suggested website after PyPI publication:
 https://pypi.org/project/geosquare-v2/
 ```
 
-Until PyPI publication, use the repository URL or the TestPyPI project page. The About description should not call the candidate production geodetic data.
+Until PyPI publication, use the repository URL or the TestPyPI project page. The About description should not call unpublished artifacts production geodetic data.
 
-## GitHub Release `v0.1.0rc2`
+## GitHub Release `v0.2.0`
 
-Create the release only after the staged successor commit has been reviewed:
+Create this release only after the stable worktree has been reviewed, Gate A/B/C records are approved, the registry is regenerated and signed, and the exact artifacts have passed clean TestPyPI verification.
 
-- Tag: `v0.1.0rc2`
-- Release title: `GeoSquare V2 0.1.0rc2`
-- Mark as a pre-release: yes
-- Mark as the latest release: no, unless the project explicitly wants the release candidate highlighted
-- Attach the exact wheel and sdist from `release/artifacts/phase-datum-rc2/project/dist/`
+- Tag: `v0.2.0`
+- Release title: `GeoSquare V2 0.2.0`
+- Mark as a pre-release: no, only after final authorization
+- Attach only the wheel and sdist built from that exact tag
 
-Suggested release summary:
+The release notes must include the support matrix:
 
-```markdown
-## GeoSquare V2 0.1.0rc2
+- `BN`, `ID`, `LA`, `MY`, `PH`, `SG`, and `VN`: production-ready within the GeoSquare support scope;
+- `KH`, `MM`, `TH`, and `TL`: technical/provisional, with no official national-datum or production-accuracy guarantee; and
+- all custom projected CRSs: GeoSquare-owned definitions, not claims of official national projected CRS authority.
 
-This is a technical release candidate for GeoSquare V2, a country-scoped hierarchical metric grid for durable square-cell identifiers.
-
-### Static CRS updates
-
-- BN: GDBD2009-based custom GeoSquare CRS;
-- ID: SRGI2013 static realization at epoch 2012.0;
-- LA: Lao 1997-based custom GeoSquare CRS;
-- MY: GDM2000-based custom GeoSquare CRS;
-- PH: PRS92-based custom GeoSquare CRS;
-- SG: SVY21-based custom GeoSquare CRS; and
-- VN: existing VN-2000 baseline.
-
-### Candidate limitations
-
-- These are GeoSquare-owned custom projected CRSs, not claims that all are official national projected CRSs.
-- ID input coordinates must already be normalized to the SRGI2013 static realization at epoch 2012.0.
-- KH and MM remain pending authoritative CRS packages.
-- TH remains on its existing technical profile; TGM2017 is a vertical/geoid model, not a horizontal CRS.
-- TL remains provisional because no verified modern national horizontal datum is available.
-- Bundled boundary data remains under its recorded file-specific licenses.
-- The package is approximately 17 MB as a wheel and 33 MB as an sdist.
-
-### Verification
-
-The staged wheel and sdist passed the 195-test suite, signed-registry verification for all 11 domains, clean wheel and sdist installation, boundary-hash checks, and ID static-2012 point smoke tests.
-
-TestPyPI and PyPI publication are separate steps.
-```
+The release notes must also retain the file-specific boundary licenses, attribution, material-change disclosure, and explicit non-endorsement wording.
 
 ## TestPyPI promotion
 
-The staged successor artifacts are:
+Build from the exact reviewed `v0.2.0` tag into one fresh artifact directory. Before upload:
 
-```text
-release/artifacts/phase-datum-rc2/project/dist/geosquare_v2-0.1.0rc2-py3-none-any.whl
-release/artifacts/phase-datum-rc2/project/dist/geosquare_v2-0.1.0rc2.tar.gz
-```
-
-Before upload:
-
-1. review the staged profile and CRS changes;
-2. run `twine check` on both files;
-3. verify the detached registry signature and public trust key;
-4. install from TestPyPI in a clean Python 3.11+ environment; and
-5. verify the ID static-2012 input limitation in the release notes.
+1. run the complete Gate D validation suite;
+2. verify the detached registry signature and trusted public key;
+3. inspect wheel and sdist contents for the database, signature, boundaries, notices, and support matrix;
+4. install both exact artifacts in clean Python 3.11+ environments;
+5. load the signed registry with boundary verification enabled; and
+6. run the point-indexing quickstart and stable support-matrix checks.
 
 ## PyPI promotion
 
-After TestPyPI verification and explicit release approval:
+After successful clean TestPyPI verification and explicit release authorization, upload the exact same files:
 
 ```zsh
-.venv/bin/python -m twine upload --repository pypi release/artifacts/phase-datum-rc2/project/dist/*
+.venv/bin/python -m twine upload --repository pypi release/artifacts/<reviewed-release>/dist/*
 ```
 
 Never overwrite a published version. If any release content changes, increment the version.
+
+## Historical rc2 note
+
+`0.1.0rc2` was a technical candidate. Its old artifact path and release text are retained only as historical context; they are not valid inputs for the `0.2.0` stable release.
 
 ## Future releases
 

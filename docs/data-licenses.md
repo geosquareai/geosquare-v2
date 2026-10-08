@@ -25,7 +25,11 @@ These records come from `release/boundaries/ASEAN_BOUNDARY_METADATA.json` and th
 | TL | `TL_full.geojson`, `TL_simplified.geojson` | OpenStreetMap, Wambacher / ODbL 1.0 |
 | VN | `VN_full.geojson`, `VN_simplified.geojson` | geoBoundaries, Wikipedia / CC BY 4.0 |
 
-The source directory also contains legacy candidate files `ID.geojson` and `VN.geojson`. They are separate release inputs and must retain their own verified provenance and license records before redistribution.
+The Philippines record identifies the source dataset as [HDX Philippines administrative levels 0–3](https://data.humdata.org/dataset/philippines-administrative-levels-0-to-3). The geoBoundaries API reports `CC BY 3.0 IGO` but exposes the malformed license-source value `Data https`; the stable record links the canonical [CC BY 3.0 IGO license text](https://creativecommons.org/licenses/by/3.0/igo/) separately.
+
+The release owner approved redistribution of all listed boundary files on 2026-10-08 under their recorded Public Domain, ODbL 1.0, CC BY-SA 2.0, CC BY 3.0 IGO, or CC BY 4.0 terms, with the required attribution, change-disclosure, and non-endorsement language. This approval is a project release decision, not legal advice.
+
+The source directory also contains legacy candidate files `ID.geojson` and `VN.geojson`. They are byte-identical aliases of `ID_simplified.geojson` and `VN_simplified.geojson`, and their hashes and inherited source/license records are included in `ASEAN_BOUNDARY_METADATA.json`.
 
 ## What users must preserve
 

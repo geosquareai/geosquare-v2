@@ -153,4 +153,4 @@ __all__ = [
     "write_table",
 ]
 
-__version__ = "0.1.0rc1"
+__version__ = "0.2.0"

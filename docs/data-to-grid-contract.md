@@ -25,7 +25,7 @@ Use one naming pattern: **input_to_output**.
 The current names remain as aliases for now:
 
 - `index_point` → `point_to_cell`;
-- `polyfill` → `polygon_to_cells`;
+- `polyfill` → legacy bare-GID/coverage output; use `polygon_to_cells` for `GridCellRecord` output;
 - `neighbourhood` → `cell_neighbours`;
 - `distance` → `cell_distance`.
 

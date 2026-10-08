@@ -5,11 +5,11 @@
   "pyproj_version": "3.7.2",
   "boundary_sha256": "544e8a3b70531614f1fc0441d0a9ebf5777fe03fbfb1b9d8bc4fd07d81131bfa",
   "sample_count": 758,
-  "max_error_pct": 0.00229680275469768,
+  "max_error_pct": 0.002296806014778774,
   "max_error_coordinate_crs84": [
     115.04362131057508,
     5.046726001803563
   ],
-  "meridional_scale": 1.000022968027547,
-  "parallel_scale": 1.0000229679695047
+  "meridional_scale": 1.0000229680601478,
+  "parallel_scale": 1.0000229679695085
 }

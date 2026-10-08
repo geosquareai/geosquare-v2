@@ -1,0 +1,109 @@
+{
+  "schema_version": "geosquare-phase4-run-manifest-v1",
+  "run_id": "20261008T013349Z",
+  "repository_commit": "2120f1fd6d9412b6cb59ce883d87964a5e7b5ffb",
+  "repository_dirty": true,
+  "output_path": "release/scale/phase4/QUERY_PERFORMANCE_BENCHMARK.json",
+  "output_sha256": "c7c07cb066712bfde43c6d5958872589272e1e6b8d30b41f8f3e460e666bc94b",
+  "report_path": "internal/research/QUERY_PERFORMANCE_BENCHMARK.md",
+  "report_sha256": "07b012d9c729a674766d0cc28e85e606410f019b7b54c42aab9871d463ccf75f",
+  "input_sha256": "7775f0ef476a44fc574837a5579c7c76769214d8fc7127f54dd361da82f96d19",
+  "profile_sha256": "95eb601ad1ff85d99d4efb63409f3e7567c6994aa71fcde6910b81228b1ea29a",
+  "zone_wkt_sha256": "a69ef32af22b512e2b005ff9f9ff556178066bbfa9b0b46fe738278f9424a1e3",
+  "software": {
+    "python": "3.14.5",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 12,
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "pyproj": "3.7.2",
+    "proj": "9.5.1",
+    "proj_db_sha256": "ec8cea0a5490a6f9247d9063645049e0f93fb83307067ebfc859187f0539e67e",
+    "duckdb": "1.4.3"
+  },
+  "protocol": {
+    "benchmark": "GeoSquare v2 Phase 4 query performance",
+    "schema_version": "geosquare-phase4-query-performance-v1",
+    "domain_code": "ID",
+    "profile_version": "2.0.0-rc.2-asean",
+    "level": 12,
+    "point_count": 1000000,
+    "seed": 20260315,
+    "duckdb_threads": 1,
+    "warmups": 2,
+    "repetitions": 10,
+    "timing_scope": "DuckDB execute plus fetchall; preparation and serialization excluded",
+    "memory_scope": "process resource maximum RSS; per-workload delta is diagnostic",
+    "point_distribution": {
+      "generator": "seeded_uniform_projected_clusters",
+      "seed": 20260315,
+      "cluster_count": 10,
+      "cluster_sizes": [
+        100000,
+        100000,
+        100000,
+        100000,
+        100000,
+        100000,
+        100000,
+        100000,
+        100000,
+        100000
+      ],
+      "cluster_centers_lonlat": [
+        [
+          106.8456,
+          -6.2088
+        ],
+        [
+          112.7521,
+          -7.2575
+        ],
+        [
+          98.6722,
+          3.5952
+        ],
+        [
+          119.4327,
+          -5.1477
+        ],
+        [
+          107.6191,
+          -6.9175
+        ],
+        [
+          115.2167,
+          -8.65
+        ],
+        [
+          110.4262,
+          -6.9667
+        ],
+        [
+          104.7458,
+          -2.9909
+        ],
+        [
+          105.2667,
+          -5.4292
+        ],
+        [
+          110.3695,
+          -7.7956
+        ]
+      ],
+      "cluster_half_side_m": 4000.0,
+      "level": 12,
+      "unique_packed_cell_count": 252617,
+      "unique_gid_count": 252617
+    },
+    "spatial_workload": {
+      "predicate": "ST_Within",
+      "zone_definition": "densified projected square around the first fixed cluster centre",
+      "zone_half_side_m": 4500.0,
+      "segments_per_edge": 32
+    }
+  }
+}

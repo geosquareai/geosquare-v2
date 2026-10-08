@@ -84,7 +84,7 @@ The local benchmark measures the current ID and VN profiles at level 12. The all
 
 Level 12 is the 50 m grid-CRS level.
 
-It samples actual boundary points from the full candidate boundaries. It transforms the projected square corners back to WGS84 and measures geodesic side lengths and area.
+It samples raw GeoJSON boundary vertices with deterministic stride decimation: `benchmark_grid_systems.py` uses up to 500 vertices for ID and VN, the all-ASEAN squareness benchmark uses up to 2,000 vertices per candidate, and the cross-system benchmark uses up to 100 vertices per country. These Phase 2 baselines do not densify long segments or include a designed interior sample. The scripts transform projected cell corners back to WGS84 and measure geodesic side lengths and area.
 
 Run it with:
 
@@ -107,21 +107,21 @@ The full 11-country table is in [`ASEAN_SQUARENESS_BENCHMARK.md`](ASEAN_SQUARENE
 
 ### Current measurements
 
-| Profile | Median side ratio | P95 side ratio | Maximum side ratio | Ground area ratio range |
-|---|---:|---:|---:|---:|
-| Indonesia | 1.0052 | 1.0067 | 1.0120 | 0.9756–0.9933 |
-| Viet Nam | 1.0000 | 1.000001 | 1.000001 | 0.9902–1.0076 |
+| Profile | Median side ratio | P95 side ratio | Maximum side ratio | Ground area ratio p05–p95 | Sampling |
+|---|---:|---:|---:|---:|---|
+| Indonesia | 1.0000004745 | 1.0000009452 | 1.0000011564 | 0.995189–1.009593 | 500 raw boundary vertices |
+| Viet Nam | 1.0000006561 | 1.0000009656 | 1.0000010272 | 0.992861–1.007564 | 500 raw boundary vertices |
+
+The current signed Indonesia profile is the LCC candidate `GEOSQUARE:ID_LCC_FRACTION_1_6_V2`; its separately published candidate projection-factor scale error is 0.6071%. That projection-factor value is not the same metric as Level-12 geodesic side ratio. The Phase 2 values above are boundary-sampling measurements, not universal guarantees.
 
 Interpretation:
 
-- Vietnam is extremely close to a square in this sample.
-- Indonesia remains close to square in shape, even though its profile publishes a larger scale error.
-- The side ratio is more useful for “squareness”.
-- The area ratio is more useful for “how much ground area this cell covers”.
+- Viet Nam is extremely close to a square in this boundary sample.
+- The current Indonesia LCC candidate is also close to square at Level 12, despite its separate 0.6071% candidate projection-factor scale error.
+- The side ratio is useful for sampled ground squareness; the area ratio is useful for sampled ground coverage.
+- Neither metric is a profile approval or a universal national guarantee.
 
-These are sample measurements, not a universal guarantee. They should become part of profile approval.
-
-The local environment does not currently have the `h3` or `s2sphere` Python packages. The S2 and H3 comparison below is based on their public technical documentation, not a local package benchmark.
+The cross-system comparison was rerun locally with the pinned optional dependencies `h3==4.3.1` and `s2sphere==0.2.5`; those versions are recorded in `release/scale/ASEAN_CROSS_SYSTEM_BENCHMARK.json`. The comparison still uses up to 100 raw boundary vertices per country and a first-sample/average-area resolution-selection protocol, so it is a Phase 2 baseline rather than a like-for-like national evaluation.
 
 ## 4. System comparison
 
@@ -316,18 +316,15 @@ web_mercator_tile
 
 The next work should be:
 
-1. Add profile squareness and area-consistency reports to the release process.
-2. Finish the datum review for the six priority ASEAN profiles.
-3. Keep the LCC candidates as drafts until the datum is correct.
-4. Add optional S2/H3 benchmark dependencies in a separate comparison environment if numerical cross-system tests are needed.
-5. Add interoperability helpers later, after the GeoSquare contract is stable.
-6. Continue improving data conversion and aggregation.
+1. Complete the Phase 3 rerun using full boundaries for all 11 domains.
+2. Densify boundary segments deterministically and add exactly 2,048 accepted interior points per domain.
+3. Record seeds, point-set hashes, boundary/profile hashes, software versions, CRS metadata, and sample counts in new `release/scale/phase3/` artifacts.
+4. Compare Phase 3 results with these raw-vertex Phase 2 baselines without overwriting them.
+5. Finish the datum, boundary-authority, zone/component, and profile-approval review for the candidate domains.
+6. Add optional S2/H3 benchmark dependencies only in the separate comparison environment.
+7. Update the paper only from the versioned Phase 3 artifacts after an independent claim audit.
 
-Do not spend the next cycle on:
-
-- difficult global countries;
-- human aliases; or
-- trying to make GeoSquare behave like H3 or S2.
+Do not treat the heuristic `approval_band` values in the benchmark JSON as geodetic approval. The LCC candidates remain drafts until the datum and boundary reviews close.
 
 ## Sources and note
 

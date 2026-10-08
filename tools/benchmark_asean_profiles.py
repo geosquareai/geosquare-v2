@@ -78,6 +78,8 @@ def selected_candidates() -> list[dict]:
         if decision is not None:
             candidate = review_by_key[(code, decision["recommended_candidate"])]
             boundary_file = ROOT / candidate["boundary_file"]
+            if not boundary_file.is_file():
+                boundary_file = ROOT / "release" / candidate["boundary_file"]
             result.append(
                 {
                     "domain_code": code,
@@ -89,12 +91,15 @@ def selected_candidates() -> list[dict]:
             )
         else:
             candidate = initial_by_code[code]
+            boundary_file = ROOT / candidate["boundary_file"]
+            if not boundary_file.is_file():
+                boundary_file = ROOT / "release" / candidate["boundary_file"]
             result.append(
                 {
                     "domain_code": code,
                     "name": domain["name"],
                     "candidate": candidate,
-                    "boundary_file": ROOT / candidate["boundary_file"],
+                    "boundary_file": boundary_file,
                     "boundary_resolution": "simplified",
                 }
             )
@@ -211,6 +216,7 @@ def measure(selected: dict) -> dict:
 def main() -> None:
     records = [measure(item) for item in selected_candidates()]
     OUTPUT.write_text(json.dumps(records, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    report_output = Path("..") / ".." / OUTPUT.relative_to(ROOT)
     lines = [
         "# ASEAN GeoSquare squareness benchmark",
         "",
@@ -236,7 +242,7 @@ def main() -> None:
             "Area ratio is geodesic ground area divided by the nominal 50 m × 50 m grid area.",
             "These are candidate measurements, not final profile approval.",
             "",
-            f"Detailed JSON: [`{OUTPUT.relative_to(ROOT)}`]({OUTPUT.relative_to(ROOT)})",
+            f"Detailed JSON: [`{report_output}`]({report_output})",
         ]
     )
     MARKDOWN_OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

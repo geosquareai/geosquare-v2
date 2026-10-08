@@ -1,4 +1,4 @@
-# ASEAN GeoSquare versus other grid systems
+# ASEAN cross-system 50 m benchmark
 
 This compares cells selected near a 50 m target. It is not a claim that the systems have identical resolutions.
 
@@ -62,24 +62,4 @@ This compares cells selected near a 50 m target. It is not a claim that the syst
 
 A square has compactness about 0.7854. A regular hexagon has compactness about 0.9069. Compactness is included to distinguish shape, not to declare hexagons worse.
 
-Detailed JSON: [`scale/ASEAN_CROSS_SYSTEM_BENCHMARK.json`](../../release/scale/ASEAN_CROSS_SYSTEM_BENCHMARK.json)
-
-## How to read this comparison
-
-The systems do not have identical resolution controls.
-
-- GeoSquare uses the selected country candidate at level 12.
-- H3 uses the resolution whose average cell area is closest to 2,500 m² at the first country sample.
-- S2 uses the level whose sample-center cell area is closest to 2,500 m².
-- Geohash uses the string length whose sample-center rectangle area is closest to 2,500 m².
-- Web Mercator uses a 50 m square in the projected map plane.
-
-This is a practical comparison. It is not a formal mathematical equivalence between systems.
-
-## Release recommendation
-
-The benchmark supports releasing GeoSquare for its intended use: country-scoped metric squares.
-
-Keep S2, H3, geohash, and Web Mercator as optional comparison or secondary-index systems. Do not add them as GeoSquare runtime dependencies.
-
-The cross-system result does not replace country-profile approval. Each GeoSquare profile still needs its own datum, boundary, CRS, and release review.
+Detailed JSON: [`../../release/scale/ASEAN_CROSS_SYSTEM_BENCHMARK.json`](../../release/scale/ASEAN_CROSS_SYSTEM_BENCHMARK.json)

@@ -12,20 +12,20 @@
       "nominal_grid_edge_m": 50.0,
       "sample_count": 500,
       "skipped_points": 0,
-      "published_scale_error_max_pct": 1.8711202983859199,
+      "published_scale_error_max_pct": 0.6070515705397517,
       "ground_side_ratio": {
-        "median": 1.0052171950244202,
-        "p95": 1.0067390069730922,
-        "max": 1.0120356129394632
+        "median": 1.0000004744567073,
+        "p95": 1.000000945190107,
+        "max": 1.0000011563848314
       },
       "ground_area_ratio": {
-        "median": 0.9909866959700488,
-        "p05": 0.9815741065174403,
-        "p95": 0.993286032296988,
-        "min": 0.9756322231083226,
-        "max": 0.9933056633401774
+        "median": 1.0060418342689545,
+        "p05": 0.9951892454990142,
+        "p95": 1.009593203787622,
+        "min": 0.9881556670470513,
+        "max": 1.009681544614461
       },
-      "mean_side_ratio": 1.004861767003286
+      "mean_side_ratio": 1.000000492391755
     },
     {
       "profile": "VN",
@@ -50,7 +50,7 @@
     }
   ],
   "optional_dependencies": {
-    "h3": false,
-    "s2sphere": false
+    "h3": true,
+    "s2sphere": true
   }
 }

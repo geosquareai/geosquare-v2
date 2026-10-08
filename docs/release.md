@@ -2,7 +2,7 @@
 
 ## 1. Current release state
 
-The package target is `0.1.0rc1`, a technical candidate uploaded to TestPyPI and verified in a clean Python 3.14 environment. It has not been uploaded to PyPI or Conda. The signed SQLite registry is distributed at:
+The current successor target is `0.1.0rc2`, staged locally and not uploaded. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. The successor keeps the signed SQLite registry model and adds static national-datum-based custom CRS profiles for selected domains. It has not been uploaded to PyPI or Conda. The signed registry and bundled boundaries remain technical candidates, not approved production geodetic or legal-boundary data. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
 
 ```text
 src/geosquare_v2/db/registry.db
@@ -13,6 +13,23 @@ The current signed candidate contains all 11 ASEAN domains. The profiles and
 boundaries remain candidates until datum, boundary, epoch, redistribution,
 package-size, and production-approval gates pass. See [NOTICE](../NOTICE) for
 the evidence-backed boundary attribution and open redistribution gate.
+
+### Option-2 stable support model
+
+The selected release policy allows a stable software package to contain both
+production-ready and technical/provisional domain profiles. `KH`, `MM`, `TH`,
+and `TL` may remain bundled under their existing `GEOSQUARE:*` identifiers,
+but the stable release must identify them as provisional and must not promise
+official national datum support, authoritative transformations, or production
+accuracy for those domains. The stable support guarantee applies only to the
+profiles explicitly classified as production-ready in the release support
+matrix.
+
+Promotion of one of these four profiles is an independent Gate A decision. It
+requires authoritative datum/reference-frame evidence and reviewed CRS,
+transformation, area-of-use, epoch, accuracy, boundary/component, and scale
+metadata. An EPSG code is not required if the authoritative source and the
+GeoSquare-owned CRS definition are documented.
 
 ## 2. Release artifacts
 

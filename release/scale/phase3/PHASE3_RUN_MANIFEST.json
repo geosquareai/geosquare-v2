@@ -1,0 +1,39 @@
+{
+  "schema_version": "phase3.manifest.v1",
+  "phase": "phase3",
+  "run_id": "phase3-20261007T230644.096271Z",
+  "generated_at_utc": "2026-10-07T23:06:44.096271Z",
+  "repository_commit": "2120f1fd6d9412b6cb59ce883d87964a5e7b5ffb",
+  "software": {
+    "python": "3.14.5",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "pyproj": "3.7.2",
+    "proj": "9.5.1",
+    "proj_db_sha256": "ec8cea0a5490a6f9247d9063645049e0f93fb83307067ebfc859187f0539e67e",
+    "shapely": "2.1.2",
+    "h3": "4.3.1",
+    "s2sphere": "0.2.5"
+  },
+  "inputs": {
+    "boundary_metadata": "release/boundaries/ASEAN_BOUNDARY_METADATA.json",
+    "domain_candidates": "release/profiles/ASEAN_DOMAIN_CANDIDATES.json",
+    "priority_decisions": "release/profiles/ASEAN_PRIORITY_PROFILE_DECISIONS.json",
+    "boundary_metadata_sha256": "b279e302ac6660acdf797a6893b0690e896541d9b0612b95cad4a5e3a690b424"
+  },
+  "outputs": {
+    "benchmark_json": "release/scale/phase3/ASEAN_LEVEL12_BENCHMARK.json",
+    "benchmark_json_sha256": "e5e33056a9a48f97c265edddcc79bc9111ba8b221df959f1594ce412dca13701",
+    "report_markdown": "internal/research/PHASE3_SCALE_AND_SQUARENESS.md",
+    "report_markdown_sha256": "5fc4b8a6857eb25c80b51997d7ab4938a2e76434e0f722e157c40757673b5e86"
+  },
+  "sampling_protocol": {
+    "boundary_source": "full bundled ASEAN GeoBoundaries files",
+    "boundary_crs": "OGC:CRS84",
+    "boundary_densification": "source rings sampled under a 20,000-vertex cap; each segment split at <=0.5 degrees and <=25 parts",
+    "interior_sampling": "uniform bounding-box rejection sampling accepted with Shapely geometry.covers",
+    "interior_count": 2048,
+    "base_seed": 20260301,
+    "seed_rule": "base seed plus 1-based ASEAN domain ordinal",
+    "metrics_use": "combined densified-boundary and interior points, deduplicated by canonical Level-12 cell"
+  }
+}

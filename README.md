@@ -4,7 +4,9 @@ GeoSquare V2 maps the world in exact squares by using each country's projection.
 
 Rather than relying on an inherently distorted global projection, Geosquare establishes country-specific projected Coordinate Reference Systems to keep squares square on the ground. We evaluate this architecture across all 11 Southeast Asian (ASEAN) nations. The results show that Geosquare maintains near-zero side anisotropy ($< 0.0001\%$) and stable ground area across the region. We also present an integer-based topology and distance formulation, compute-on-read geometry derivation, a cryptographically signed registry, and a roadmap for structured human-readable aliases that address the structural shortcomings of What3Words.
 
-> **Release status: local technical candidate (`0.1.0rc1`).** The bundled registry contains 11 ASEAN domains, but its geodetic profiles and boundary data are not approved production or legal-boundary data. Do not upload this candidate or treat it as production without the release approvals described in [the release guide](docs/release.md).
+> **Release status: successor technical candidate (`0.1.0rc2`).** The `0.1.0rc1` candidate was uploaded to TestPyPI and verified from a clean environment. This `0.1.0rc2` successor is staged locally and has not been uploaded. It adds static national-datum-based custom CRS profiles for selected domains, while KH, MM, TH, and TL retain their documented provisional or pending status. Treat all profiles and boundaries as technical candidates, not production or legal-boundary data. See [the release guide](docs/release.md).
+>
+> **Selected stable-release policy: option 2.** A future stable software release may bundle all 11 domain profiles, but it will publish a per-domain support matrix. KH, MM, TH, and TL may remain bundled as technical/provisional profiles and will not receive an official-national-datum, authoritative-transformation, or production-accuracy guarantee until their individual Gate A reviews pass.
 
 ## Install
 

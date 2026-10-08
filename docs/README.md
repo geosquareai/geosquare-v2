@@ -15,6 +15,7 @@ Start with the [root README](../README.md) for installation and the runnable che
 7. [Interoperability and comparisons](comparison.md) — relationship to other spatial identifiers.
 8. [Release and security](release.md) — candidate status, reproducibility, attribution, and release gates.
 9. [Automated publishing](release-automation.md) — GitHub Actions, trusted publishing, and manual upload commands.
+10. [GitHub About and release checklist](github-release.md) — repository description, release notes, and PyPI promotion.
 
 ## Contracts and operational guides
 
@@ -53,7 +54,7 @@ The published distribution name is `geosquare-v2`; Python code imports `geosquar
 
 ## Current status
 
-The package target is `0.1.0rc1`, a local technical candidate. It has not been uploaded to TestPyPI or PyPI. The signed registry contains 11 ASEAN domains, but its static/candidate profiles and bundled boundaries are not approved production geodetic or legal-boundary data.
+The current successor target is `0.1.0rc2`, staged locally and not uploaded. `0.1.0rc1` was uploaded to TestPyPI and verified from a clean Python 3.14 environment. The signed successor registry contains 11 ASEAN domains, with static national-datum-based custom CRS profiles for selected domains; KH, MM, TH, and TL retain their documented provisional or pending status. All profiles and bundled boundaries remain technical candidates, not approved production geodetic or legal-boundary data.
 
 Publication remains blocked pending human approval of boundary redistribution rights and attribution, candidate geodetic status, package size, signing-key/security review, and final release authorization. See [release and security](release.md) and the local `HANDOVER.md` for the current gate list.
 

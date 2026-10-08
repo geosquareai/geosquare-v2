@@ -20,4 +20,4 @@ Side error is `(longest side / shortest side - 1) × 100`.
 Area ratio is geodesic ground area divided by the nominal 50 m × 50 m grid area.
 These are candidate measurements, not final profile approval.
 
-Detailed JSON: [`scale/ASEAN_SQUARENESS_BENCHMARK.json`](../../release/scale/ASEAN_SQUARENESS_BENCHMARK.json)
+Detailed JSON: [`../../release/scale/ASEAN_SQUARENESS_BENCHMARK.json`](../../release/scale/ASEAN_SQUARENESS_BENCHMARK.json)

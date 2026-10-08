@@ -1,11 +1,29 @@
 # Changelog
 
+## 0.1.0rc2 — staged static-datum technical candidate
+
+Status: staged locally and not uploaded. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified from a clean Python 3.14 environment. This successor must be reviewed before any TestPyPI or PyPI upload.
+
+### Changes
+
+- added static GeoSquare custom CRS profiles based on GDBD2009 for BN, Lao 1997 for LA, GDM2000 for MY, PRS92 for PH, and SVY21 for SG;
+- added the ID SRGI2013 static realization at epoch 2012.0, with an explicit pre-normalized-input limitation;
+- retained the VN-2000 baseline;
+- kept KH and MM pending authoritative CRS packages;
+- kept TH on its existing technical profile because TGM2017 is a vertical/geoid model rather than a horizontal CRS;
+- kept TL provisional because no verified modern national horizontal datum is available; and
+- added a staged successor generator and registry/artifact validation workflow.
+
+### Candidate limitations
+
+- The custom projected CRSs are GeoSquare-owned technical projections, not claims that they are official national projected CRSs.
+- The static policy does not perform dynamic coordinate-epoch, tectonic, or deformation transformations.
+- ID inputs must already be normalized to the SRGI2013 static realization at epoch 2012.0.
+- Bundled boundary data remains under its recorded file-specific licenses.
+
 ## 0.1.0rc1 — ASEAN V2 technical candidate
 
-Status: local candidate preparation only. Not uploaded to TestPyPI or PyPI.
-The candidate remains non-production and is subject to the boundary
-redistribution, geodetic-status, and package-size approval gates. See
-[NOTICE](NOTICE).
+Status: uploaded to TestPyPI and verified from a clean Python 3.14 environment. Not uploaded to PyPI or Conda. The candidate remains non-production; its profile and boundary data are distributed with their documented technical and file-specific limitations. See [NOTICE](NOTICE) and [the release guide](docs/release.md).
 
 ### Added
 

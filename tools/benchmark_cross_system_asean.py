@@ -233,10 +233,14 @@ def load_selected_candidates() -> list[dict]:
         if decision:
             candidate = priority_by_key[(code, decision["recommended_candidate"])]
             boundary = ROOT / candidate["boundary_file"]
+            if not boundary.is_file():
+                boundary = ROOT / "release" / candidate["boundary_file"]
             source = "full"
         else:
             candidate = initial[code]
             boundary = ROOT / candidate["boundary_file"]
+            if not boundary.is_file():
+                boundary = ROOT / "release" / candidate["boundary_file"]
             source = "simplified"
         result.append((code, domain["name"], candidate, boundary, source))
     return result
@@ -328,6 +332,7 @@ def main() -> None:
     }
     OUTPUT.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
+    report_output = Path("..") / ".." / OUTPUT.relative_to(ROOT)
     lines = [
         "# ASEAN cross-system 50 m benchmark",
         "",
@@ -349,7 +354,7 @@ def main() -> None:
             "",
             "A square has compactness about 0.7854. A regular hexagon has compactness about 0.9069. Compactness is included to distinguish shape, not to declare hexagons worse.",
             "",
-            f"Detailed JSON: [`{OUTPUT.relative_to(ROOT)}`]({OUTPUT.relative_to(ROOT)})",
+            f"Detailed JSON: [`{report_output}`]({report_output})",
         ]
     )
     MARKDOWN_OUTPUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

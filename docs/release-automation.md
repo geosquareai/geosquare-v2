@@ -33,24 +33,25 @@ Do not automatically publish to PyPI on every tag until the TestPyPI verificatio
 
 ## Local manual commands
 
-For the current `0.1.0rc1` candidate, the validated files are:
+Use a single reviewed artifact directory built from the exact release commit or tag. Do not upload the archived `0.1.0rc1` files or the staged `0.1.0rc2` copy unless that exact version and content have been reviewed and approved.
 
-```text
-release/artifacts/phase-c-license-final/geosquare_v2-0.1.0rc1-py3-none-any.whl
-release/artifacts/phase-c-license-final/geosquare_v2-0.1.0rc1.tar.gz
-```
-
-Manual TestPyPI upload:
+Set the directory explicitly after review:
 
 ```zsh
-.venv/bin/python -m twine check release/artifacts/phase-c-license-final/*
-.venv/bin/python -m twine upload --repository testpypi release/artifacts/phase-c-license-final/*
+ARTIFACT_DIR=release/artifacts/<reviewed-release>/dist
 ```
 
-Manual PyPI upload after TestPyPI verification and explicit release approval:
+Manual TestPyPI validation/upload:
 
 ```zsh
-.venv/bin/python -m twine upload --repository pypi release/artifacts/phase-c-license-final/*
+.venv/bin/python -m twine check "$ARTIFACT_DIR"/*
+.venv/bin/python -m twine upload --repository testpypi "$ARTIFACT_DIR"/*
 ```
 
-Never use `--skip-existing` to hide a version or artifact mismatch. If a published candidate needs content changes, increment the version.
+After clean TestPyPI installation, smoke verification, and explicit release approval, upload the exact same files to PyPI:
+
+```zsh
+.venv/bin/python -m twine upload --repository pypi "$ARTIFACT_DIR"/*
+```
+
+Never use `--skip-existing` to hide a version or artifact mismatch. If a published candidate needs content changes, increment the version. Keep KH/MM/TH/TL's provisional status in the release notes and support matrix when using the option-2 stable-release policy.

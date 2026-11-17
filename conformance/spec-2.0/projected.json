@@ -1,0 +1,5089 @@
+{
+  "cases": [
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "ID",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "VN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "BN",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "KH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "LA",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MY",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "MM",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "PH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "SG",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TH",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "2",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "3",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 1,
+      "x_m": -15000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y",
+        "x_idx": 4,
+        "y_idx": 4
+      },
+      "level": 1,
+      "x_m": 15000000.0,
+      "y_m": 15000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 1,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 1,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "23",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 2,
+      "x_m": -20000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5",
+        "x_idx": 9,
+        "y_idx": 9
+      },
+      "level": 2,
+      "x_m": 20000000.0,
+      "y_m": 20000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 2,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 2,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 5,
+      "x_m": -24900000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y",
+        "x_idx": 499,
+        "y_idx": 499
+      },
+      "level": 5,
+      "x_m": 24900000.0,
+      "y_m": 24900000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 5,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 5,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 9,
+      "x_m": -24999000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y",
+        "x_idx": 49999,
+        "y_idx": 49999
+      },
+      "level": 9,
+      "x_m": 24999000.0,
+      "y_m": 24999000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 9,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 9,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999951.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 12,
+      "x_m": -24999950.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5",
+        "x_idx": 999999,
+        "y_idx": 999999
+      },
+      "level": 12,
+      "x_m": 24999950.0,
+      "y_m": 24999950.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 12,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 12,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22222222222222",
+        "x_idx": 0,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999996.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "22222222222223",
+        "x_idx": 1,
+        "y_idx": 0
+      },
+      "level": 14,
+      "x_m": -24999995.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 25000000.0,
+      "y_m": 25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": {
+        "gid": "Y5Y5Y5Y5Y5Y5Y5",
+        "x_idx": 9999999,
+        "y_idx": 9999999
+      },
+      "level": 14,
+      "x_m": 24999995.0,
+      "y_m": 24999995.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 14,
+      "x_m": 25000001.0,
+      "y_m": -25000000.0
+    },
+    {
+      "domain_code": "TL",
+      "expect": "reject",
+      "level": 14,
+      "x_m": -25000000.0,
+      "y_m": 25000001.0
+    }
+  ],
+  "description": "Half-open cell rule in grid CRS. A coordinate on an internal edge belongs to the cell on its high side. The maximum root edge belongs to the last cell. Outside the root is rejected.",
+  "domains": [
+    {
+      "domain_code": "ID",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "VN",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "BN",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "KH",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "LA",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "MY",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "MM",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "PH",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "SG",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "TH",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    },
+    {
+      "domain_code": "TL",
+      "origin_x_m": -25000000.0,
+      "origin_y_m": -25000000.0,
+      "root_side_m": 50000000.0
+    }
+  ]
+}

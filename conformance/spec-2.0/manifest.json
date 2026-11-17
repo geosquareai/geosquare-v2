@@ -1,0 +1,110 @@
+{
+  "domains": [
+    {
+      "domain_code": "ID",
+      "domain_id": 1,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "VN",
+      "domain_id": 2,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "BN",
+      "domain_id": 3,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "KH",
+      "domain_id": 4,
+      "production_ready": false,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "LA",
+      "domain_id": 5,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "MY",
+      "domain_id": 6,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "MM",
+      "domain_id": 7,
+      "production_ready": false,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "PH",
+      "domain_id": 8,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "SG",
+      "domain_id": 9,
+      "production_ready": true,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "TH",
+      "domain_id": 10,
+      "production_ready": false,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "TL",
+      "domain_id": 11,
+      "production_ready": false,
+      "profile_version": "2.1.0-static-datum",
+      "support_status": "provisional_technical_candidate"
+    }
+  ],
+  "files": {
+    "codec.json": {
+      "bytes": 26086,
+      "sha256": "0b21fa57dc6ab143781bb863ff59e4d3a214663d273e82b112cbb8576488443b"
+    },
+    "detect.json": {
+      "bytes": 16927,
+      "sha256": "5828f8cffba2857317badba2fba95d4ed39cc522fe48c6054fbf8b8a49d390cb"
+    },
+    "points.json": {
+      "bytes": 3733,
+      "sha256": "109b631ba5570250b05e2c033c07b42cd4779ded0681aa35b4951bd725ee19a0"
+    },
+    "projected.json": {
+      "bytes": 95402,
+      "sha256": "9adda936236bc605880ebb558bfcaf396a3fc16eda49830c21b6983e6e3acc74"
+    },
+    "topology.json": {
+      "bytes": 48715,
+      "sha256": "8a1f458ae7af74c00c6880b75c5530144f88c75f20a7387105c5d48d630732fe"
+    }
+  },
+  "generated_by": "tools/generate_conformance_vectors.py",
+  "geosquare_v2_version": "1.0.0",
+  "proj_version": "9.5.1",
+  "proj_version_exact": "9.5.1",
+  "registry_version": "2.0.0",
+  "spec_version": "2.0",
+  "vector_set": "geosquare-conformance"
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="400" viewBox="0 0 960 400" role="img" aria-labelledby="overview-title overview-desc">
+  <title id="overview-title">GeoSquare V2 overview</title>
+  <desc id="overview-desc">Your points, polygons and tables pass through a country projection to become exact squares. Squares convert to cell URIs, GIDs and geometry. A signed registry is checked on every load.</desc>
+  <rect x="0" y="0" width="960" height="400" rx="14" fill="#ffffff"/>
+  <text x="480" y="46" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#0f172a">GeoSquare V2</text>
+  <text x="480" y="76" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#334155">Exact squares on each country's own projection</text>
+
+  <rect x="30" y="112" width="200" height="142" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <text x="130" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Your data</text>
+  <text x="130" y="176" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">Points</text>
+  <text x="130" y="200" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">Polygons</text>
+  <text x="130" y="224" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">Tables</text>
+
+  <line x1="232" y1="183" x2="262" y2="183" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="262,174 278,183 262,192" fill="#2563eb"/>
+
+  <rect x="280" y="112" width="200" height="142" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="380" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Country projection</text>
+  <text x="380" y="180" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1d4ed8">11 domains</text>
+  <text x="380" y="210" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">One CRS per country</text>
+
+  <line x1="482" y1="183" x2="512" y2="183" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="512,174 528,183 512,192" fill="#2563eb"/>
+
+  <rect x="530" y="112" width="200" height="142" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="630" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Exact squares</text>
+  <text x="630" y="180" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#1d4ed8">9 levels</text>
+  <text x="630" y="210" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">50 km down to 5 m</text>
+
+  <line x1="732" y1="183" x2="762" y2="183" stroke="#2563eb" stroke-width="3"/>
+  <polygon points="762,174 778,183 762,192" fill="#2563eb"/>
+
+  <rect x="780" y="112" width="150" height="142" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <text x="855" y="144" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#0f172a">Outputs</text>
+  <text x="855" y="176" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">Cell URI</text>
+  <text x="855" y="200" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">GID</text>
+  <text x="855" y="224" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#334155">Geometry</text>
+
+  <rect x="30" y="284" width="900" height="50" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="480" y="315" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#065f46">Signed registry: checked on every load, before any cell is computed</text>
+
+  <text x="480" y="368" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#64748b">Levels: 50 km, 10 km, 5 km, 1 km, 500 m, 100 m, 50 m, 10 m, 5 m</text>
+</svg>

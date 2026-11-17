@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from geosquare_v2.db import MigrationTool  # noqa: E402
+from geosquare_v2.proj_digest import proj_db_content_digest  # noqa: E402
 
 REGISTRY = ROOT / "src" / "geosquare_v2" / "data" / "registry"
 BOUNDARIES = REGISTRY / "boundaries"
@@ -207,7 +208,7 @@ def main() -> None:
             "registry_version": "2.0.0",
             "release_status": "candidate",
             "proj_version_exact": pyproj.proj_version_str,
-            "proj_db_sha256": sha256(proj_db),
+            "proj_db_sha256": proj_db_content_digest(proj_db),
             "required_proj_grids": [],
             "domains": [
                 {"domain_id": 1, "domain_code": "ID", "profile_file": "profiles/ID.v2.json", "profile_sha256": sha256(id_path)},

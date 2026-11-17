@@ -16,6 +16,7 @@ from .errors import (
     ProjResourceVerificationError,
     RegistryDependencyError,
 )
+from .proj_digest import verify_proj_database
 from .registry import DomainRegistry
 from .release import ReleaseProfile
 
@@ -93,7 +94,7 @@ class RegistryLoader:
         if not isinstance(expected_db_hash, str):
             raise ManifestValidationError("proj_db_sha256 is required")
         data_dir = Path(pyproj.datadir.get_data_dir())
-        self._verify_hash(data_dir / "proj.db", expected_db_hash, "PROJ database")
+        verify_proj_database(data_dir / "proj.db", expected_db_hash)
         for resource in self._require_list(manifest, "required_proj_grids"):
             if not isinstance(resource, dict):
                 raise ManifestValidationError("required_proj_grids entries must be objects")

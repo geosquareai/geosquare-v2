@@ -1,10 +1,20 @@
 from __future__ import annotations
 
+from pathlib import Path
+
+import pyproj
 import pytest
 from pyproj import CRS
 
 from geosquare_v2.grid import GeosquareGrid
+from geosquare_v2.proj_digest import proj_db_content_digest
 from geosquare_v2.release import ReleaseProfile
+
+
+@pytest.fixture(scope="session", autouse=True)
+def _warm_proj_digest_cache() -> None:
+    """Hash the bundled PROJ database once so per-example timing checks see a cache hit."""
+    proj_db_content_digest(Path(pyproj.datadir.get_data_dir()) / "proj.db")
 
 
 @pytest.fixture(scope="session")

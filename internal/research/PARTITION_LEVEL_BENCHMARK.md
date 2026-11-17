@@ -68,7 +68,7 @@ At level 9, most files hold about 400 rows and weigh about 40 KiB. Parquet metad
 ## 6. Decision
 
 1. **Full table (66 bytes per row).** Partition at level 5. Each full partition is about 252 MiB, and national 50 m data gives 481 land partitions.
-2. **Thin table (5.5 bytes per row).** No level gives 64 to 512 MiB. Level 4 gives 521 MiB, just over the 512 MiB cap. Level 5 gives 21 MiB. This needs a human choice (see section 8).
+2. **Thin table (5.5 bytes per row).** No level gives 64 to 512 MiB. Level 4 gives 521 MiB, just over the 512 MiB cap. Level 5 gives 21 MiB. Decided: level 4 (see section 8).
 3. **National 1 km data.** The full table holds about 1.9 million rows. At 66 bytes per row that is about 119 MiB, under the cap. Write one file with no partition.
 4. **Sort by `packed_id`.** A parent range is one contiguous block. The benchmark touched 1 of 7 row groups for a 1 km parent.
 
@@ -81,12 +81,12 @@ Spec 2.0 section 15 turns this into the rule. Choose the coarsest level whose fu
 - The benchmark does not measure query time on S3, only partition count, file size, and row-group pruning.
 - Row group size was fixed at 8,192 rows. Other sizes were not tried.
 
-## 8. Open decision
+## 8. Decision
 
-For thin 50 m tables, pick one:
+Thin 50 m tables use level 4. Decided on 2026-11-17.
 
-- **Level 4.** Files of about 521 MiB. Fewer partitions, a little over the cap.
-- **Level 5.** Files of about 21 MiB. More partitions, under the 64 MiB floor.
+- Files are about 521 MiB, about 2% over the 512 MiB cap. Few objects to list and read.
+- The rejected option, level 5, gives about 21 MiB files under the 64 MiB floor, and 481 objects.
 
 Reproduce with:
 

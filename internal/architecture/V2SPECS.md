@@ -310,8 +310,8 @@ Spec 2.0 coverage. The executable scalar vectors are in `conformance/spec-2.0/`,
 | All GID characters at every level | `codec.json` (`cells`), `tests/test_core_conformance.py` |
 | Invalid characters, malformed GIDs, empty GID, level limits | `codec.json` (`invalid_gids`) and the level 0 cell with GID `""` |
 | Every root edge and internal boundary rule | `projected.json` (half-open rule, root max edge, outside rejects) |
-| Canonical, GID, and Int64 round trips | `codec.json` (`cells`, `invalid_packed_ids`) |
-| Parent and child consistency, child counts | `topology.json` (`parent_of`, `children_of`), `descendant_ranges` |
+| Canonical, GID, and Int64 round trips, all 11 domains | `codec.json` (`cells`, `packed_ids_by_domain`, `invalid_packed_ids`) |
+| Parent and child consistency, child counts | `topology.json` (`parent_of`, `children_of`), `descendant_ranges`, `descendant_ranges_by_domain` |
 | Neighbour carries, `k_ring`, `k_disk` | `topology.json` (`neighbours`, cells on parent edges) |
 | Projected square, WGS84 densification, equal-area polyfill | Not yet vectorized |
 | Scalar, NumPy, Arrow, SQL/UDF equivalence | Scalar only. Batch and SQL vectors come in Phase 1 and later |
@@ -394,6 +394,7 @@ Cell datasets follow [the cell dataset contract](../../docs/cell-dataset-contrac
    c. Choose the coarsest `L` whose bytes per full partition is at most 512 MiB. If no level qualifies, choose `L = D` and record the oversize in the manifest notes.
    d. If the chosen partitions are under 64 MiB, the dataset is small. Record that in the manifest notes.
    e. Partition directories are written only for prefixes that hold data.
+   f. Recorded decision (2026-11-17): thin 50 m tables, at 5.5 bytes per row, use level 4. Each full partition is about 521 MiB, the only recorded case above the 512 MiB cap.
 5. **Row groups.** The reference benchmark used 8,192 rows per row group. A parent range then touches a few row groups, not the whole file.
 6. **Manifest.** `partitioning` lists `domain_code`, `level`, and `gid_prefix:<L>` in that order. `sorted_by` is `["packed_id"]` unless rule 1 says otherwise.
 

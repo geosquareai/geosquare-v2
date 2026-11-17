@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pytest
 
-from geosquare_v2.codec import SUBDIVISIONS, cell_side_m, gid_to_indices
+from geosquare_v2.codec import SUBDIVISIONS, canonical_to_gid, cell_side_m, gid_to_indices
 from geosquare_v2.detect import detect_table
 from geosquare_v2.errors import GeosquareError
 from geosquare_v2.packing import unpack_int64
@@ -132,6 +132,48 @@ def test_points_cover_every_domain_and_flag_provisional_ones():
         assert len(gids["12"]) == 12
         assert gids["12"].startswith(gids["9"]) and gids["9"].startswith(gids["7"]) and gids["7"].startswith(gids["5"])
         assert case["production_ready"] == (case["domain_code"] not in {"KH", "MM", "TH", "TL"})
+
+
+def test_packed_ids_by_domain_decode_to_their_own_domain():
+    codec = _committed("codec.json")
+    section = codec["packed_ids_by_domain"]
+    domains = section["domains"]
+    assert len(domains) == EXPECTED_DOMAIN_COUNT
+    assert sorted(domains.values()) == list(range(1, EXPECTED_DOMAIN_COUNT + 1))
+    assert section["cells"], "no cells in packed_ids_by_domain"
+    for cell in section["cells"]:
+        assert set(cell["packed_ids"]) == set(domains)
+        assert gid_to_indices(cell["gid"]) == (cell["level"], cell["x_idx"], cell["y_idx"])
+        for code, domain_id in domains.items():
+            assert unpack_int64(int(cell["packed_ids"][code])) == (
+                domain_id, cell["level"], cell["x_idx"], cell["y_idx"],
+            ), code
+
+
+def test_domain_ranges_lower_bound_is_a_descendant_of_the_parent():
+    topology = _committed("topology.json")
+    domains = _committed("codec.json")["packed_ids_by_domain"]["domains"]
+    records = topology["descendant_ranges_by_domain"]["records"]
+    assert records
+    for record in records:
+        assert set(record["ranges"]) == set(domains)
+        for code, bounds in record["ranges"].items():
+            domain_id, level, x_idx, y_idx = unpack_int64(int(bounds["lo"]))
+            assert domain_id == domains[code]
+            assert level == record["child_level"]
+            assert canonical_to_gid(level, x_idx, y_idx).startswith(record["parent_gid"])
+            assert int(bounds["lo"]) < int(bounds["hi"])
+
+
+def test_domain_ranges_agree_with_id_ranges():
+    topology = _committed("topology.json")
+    id_ranges = {
+        (r["parent_gid"], r["child_level"]): (r["lo"], r["hi"]) for r in topology["descendant_ranges"]
+    }
+    for record in topology["descendant_ranges_by_domain"]["records"]:
+        key = (record["parent_gid"], record["child_level"])
+        if "ID" in record["ranges"] and key in id_ranges:
+            assert (record["ranges"]["ID"]["lo"], record["ranges"]["ID"]["hi"]) == id_ranges[key]
 
 
 def test_detection_cases_match_reference_detector():

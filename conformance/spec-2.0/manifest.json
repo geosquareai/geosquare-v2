@@ -80,8 +80,8 @@
   ],
   "files": {
     "codec.json": {
-      "bytes": 26086,
-      "sha256": "0b21fa57dc6ab143781bb863ff59e4d3a214663d273e82b112cbb8576488443b"
+      "bytes": 128083,
+      "sha256": "87c362e4dc9085403ca9453a88a51bfd8783f299f72ce33d6b792c3688c383bd"
     },
     "detect.json": {
       "bytes": 16927,
@@ -96,8 +96,8 @@
       "sha256": "9adda936236bc605880ebb558bfcaf396a3fc16eda49830c21b6983e6e3acc74"
     },
     "topology.json": {
-      "bytes": 48715,
-      "sha256": "8a1f458ae7af74c00c6880b75c5530144f88c75f20a7387105c5d48d630732fe"
+      "bytes": 117204,
+      "sha256": "b57b7eda842c815b798b30b6820641b9d29b1f0dde55e8753000d573c4221023"
     }
   },
   "generated_by": "tools/generate_conformance_vectors.py",

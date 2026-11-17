@@ -1,6 +1,6 @@
 # Gate B boundary-data and attribution decision
 
-**Release candidate:** `0.2.0`
+**Release candidate:** `1.0.0`
 **Status:** PH redistribution approved; separate non-PH license-family review prepared
 **Scope:** bundled boundary resources used by the stable candidate
 

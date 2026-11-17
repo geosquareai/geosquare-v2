@@ -1,6 +1,6 @@
 # Gate B non-Philippines license-family review
 
-**Release candidate:** `0.2.0`
+**Release candidate:** `1.0.0`
 **Status:** all four non-PH license families approved by the release owner
 **Scope:** all non-Philippines boundary files in the stable candidate
 

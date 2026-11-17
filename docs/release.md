@@ -2,7 +2,7 @@
 
 ## 1. Current release state
 
-The stable-release candidate is `0.2.0`, prepared in the isolated worktree and not published. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. The stable candidate keeps the signed SQLite registry model and uses option 2: KH, MM, TH, and TL remain bundled as explicitly technical/provisional profiles. It has not been uploaded to TestPyPI or PyPI. The signed registry and bundled boundaries remain subject to final release approval and are not a claim of official national geodetic or legal-boundary status. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
+The stable release is `1.0.0`, prepared in the isolated worktree and not published. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are already on PyPI. The 1.0.0 release keeps the signed SQLite registry model and uses option 2: `KH*`, `MM*`, `TH*`, and `TL*` remain bundled as explicitly technical/provisional profiles. The asterisk marks them. It has not been uploaded to TestPyPI or PyPI. The signed registry and bundled boundaries remain subject to final release approval and are not a claim of official national geodetic or legal-boundary status. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
 
 ```text
 src/geosquare_v2/db/registry.db

@@ -29,7 +29,7 @@ Start with the [root README](../README.md) for installation and the runnable che
 - [SQLite registry](sqlite-registry.md)
 - [Gate B boundary decision](gate-b-decision.md) — PH and overall boundary attribution decision.
 - [Gate B license-family review](gate-b-license-review.md) — approved non-PH license-family scopes.
-- [Gate C contract freeze](gate-c-contract-freeze.md) — frozen 0.2.0 identity, API, migration, and version rules.
+- [Gate C contract freeze](gate-c-contract-freeze.md) — frozen 1.0.0 identity, API, migration, and version rules.
 - [Code and boundary-data licenses](data-licenses.md)
 - [Runnable quickstart](../examples/quickstart.py)
 
@@ -58,7 +58,7 @@ The published distribution name is `geosquare-v2`; Python code imports `geosquar
 
 ## Current status
 
-The stable-release candidate is `0.2.0`, prepared in an isolated worktree and not published. It contains all 11 ASEAN domains under option 2: BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope, while KH, MM, TH, and TL remain explicitly provisional. Gate A, Gate B, and Gate C records are prepared; Gate D validation and registry signing remain before publication.
+The stable release is `1.0.0`, prepared in an isolated worktree and not published. It contains all 11 ASEAN domains under option 2: BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope, while `KH*`, `MM*`, `TH*`, and `TL*` remain provisional technical candidates. The asterisk marks them. Gate A, Gate B, and Gate C records are prepared; Gate D validation and registry signing remain before publication.
 
 ## Public API names
 

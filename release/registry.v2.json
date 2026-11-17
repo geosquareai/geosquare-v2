@@ -2,7 +2,7 @@
   "registry_version": "2.0.0",
   "release_status": "stable",
   "proj_version_exact": "9.5.1",
-  "proj_db_sha256": "ec8cea0a5490a6f9247d9063645049e0f93fb83307067ebfc859187f0539e67e",
+  "proj_db_sha256": "c9b58a1bba6fff3ecebb627ad71062a94dc93392657987b01dcd6d5e461af03c",
   "required_proj_grids": [],
   "domains": [
     {

@@ -19,6 +19,7 @@ from cryptography.hazmat.primitives.asymmetric import ed25519
 import pyproj
 from pyproj import CRS
 
+from geosquare_v2.proj_digest import proj_db_content_digest
 from geosquare_v2.db import DbRegistryLoader, MigrationTool
 
 # Kept for reference by any future test that needs the real boundary GeoJSON files
@@ -124,7 +125,7 @@ def build_legacy_json_registry(root: Path, domain_codes: tuple[str, ...] = _DOMA
             "registry_version": "2.0.0",
             "release_status": "candidate",
             "proj_version_exact": pyproj.proj_version_str,
-            "proj_db_sha256": _sha256(proj_db_path),
+            "proj_db_sha256": proj_db_content_digest(proj_db_path),
             "required_proj_grids": [],
             "domains": domains,
         },

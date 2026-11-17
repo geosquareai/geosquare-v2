@@ -1,10 +1,19 @@
 # GeoSquare V2
 
+![GeoSquare V2 overview: points, polygons and tables become exact squares on each country's projection](https://raw.githubusercontent.com/geosquareai/geosquare-v2/main/docs/assets/geosquare-overview.svg)
+
+GeoSquare V2 does four things:
+
+- Turns points, polygons, lines and tables into exact squares.
+- Uses a country-specific projection for each of 11 ASEAN domains, so squares stay square on the ground.
+- Gives every cell a stable URI, GID and geometry at 9 levels, from 50 km down to 5 m.
+- Checks a signed registry on every load, before any cell is computed.
+
 GeoSquare V2 maps the world in exact squares by using each country's projection. Our objective is to make spatial data intuitive and accessible to non-geospatial practitioners while retaining the rigor required for enterprise data platforms. Taking inspiration from the spatial simplicity of voxel environments like Minecraft, Geosquare discretizes geographic space into metric squares. A square provides an effortless navigational reference: moving through a 10~m square means advancing 10 metres and turning 90 degrees right for 10 metres. Geosquare pairs this intuitive geometry with an alternating 5x5 and 2x2 hierarchical subdivision over an invariant 50,000 km root, producing cell resolutions aligned with decimal metric habits: 50 km, 10 km, 5 km, 1 km, 500 m, 100 m, 50 m, 10 m, and 5 m.
 
 Rather than relying on an inherently distorted global projection, Geosquare establishes country-specific projected Coordinate Reference Systems to keep squares square on the ground. We evaluate this architecture across all 11 Southeast Asian (ASEAN) nations. The results show that Geosquare maintains near-zero side anisotropy ($< 0.0001\%$) and stable ground area across the region. We also present an integer-based topology and distance formulation, compute-on-read geometry derivation, a cryptographically signed registry, and a roadmap for structured human-readable aliases that address the structural shortcomings of What3Words.
 
-> **Release status: stable `1.0.0` (prepared, not published).** Under option 2 this release bundles all 11 ASEAN profiles. BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope. KH\*, MM\*, TH\*, and TL\* are provisional technical candidates. The asterisk marks them. They receive no official-national-datum, authoritative-transformation, or production-accuracy guarantee. Bundled boundaries keep their file-specific licenses and release-owner attribution/redistribution approval. See [the release guide](docs/release.md).
+> **Release status: stable `1.0.0`.** Published to TestPyPI on 2026-11-17. Not yet on PyPI. This release bundles all 11 ASEAN profiles. BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope. KH\*, MM\*, TH\*, and TL\* are provisional technical candidates. The asterisk marks them. They receive no official-national-datum, authoritative-transformation, or production-accuracy guarantee. Continuous integration tests Python 3.11 to 3.14 on Linux. Bundled boundaries keep their file-specific licenses and release-owner attribution/redistribution approval. See [the release guide](docs/release.md).
 
 ## Install
 
@@ -30,13 +39,13 @@ Python 3.11 or newer is required.
 
 ## Quickstart
 
-The verified checkout example loads the signed candidate registry, verifies its packaged boundaries, and indexes a WGS84 point through the high-level service API:
+The verified checkout example loads the signed registry, verifies its packaged boundaries, and indexes a WGS84 point through the high-level service API:
 
 ```zsh
 python examples/quickstart.py
 ```
 
-Read the complete example at [`examples/quickstart.py`](examples/quickstart.py). It uses `release/registry-trust.json` as a public-key example for the bundled candidate. Production applications must manage and approve their trusted public keys independently.
+Read the complete example at [`examples/quickstart.py`](examples/quickstart.py). It uses `release/registry-trust.json` as a public-key example for the bundled registry. Production applications must manage and approve their trusted public keys independently.
 
 The essential application call is:
 

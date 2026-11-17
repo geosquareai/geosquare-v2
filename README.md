@@ -4,7 +4,7 @@ GeoSquare V2 maps the world in exact squares by using each country's projection.
 
 Rather than relying on an inherently distorted global projection, Geosquare establishes country-specific projected Coordinate Reference Systems to keep squares square on the ground. We evaluate this architecture across all 11 Southeast Asian (ASEAN) nations. The results show that Geosquare maintains near-zero side anisotropy ($< 0.0001\%$) and stable ground area across the region. We also present an integer-based topology and distance formulation, compute-on-read geometry derivation, a cryptographically signed registry, and a roadmap for structured human-readable aliases that address the structural shortcomings of What3Words.
 
-> **Release status: proposed stable `0.2.0` (not published).** This build is prepared from the reviewed `0.1.0rc2` successor inputs. Under option 2 it bundles all 11 profiles: BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope, while KH, MM, TH, and TL remain technical/provisional. The four provisional profiles receive no official-national-datum, authoritative-transformation, or production-accuracy guarantee. Bundled boundaries retain their file-specific licenses and release-owner attribution/redistribution approval. See [the release guide](docs/release.md).
+> **Release status: stable `1.0.0` (prepared, not published).** Under option 2 this release bundles all 11 ASEAN profiles. BN, ID, LA, MY, PH, SG, and VN are production-ready within the GeoSquare support scope. KH\*, MM\*, TH\*, and TL\* are provisional technical candidates. The asterisk marks them. They receive no official-national-datum, authoritative-transformation, or production-accuracy guarantee. Bundled boundaries keep their file-specific licenses and release-owner attribution/redistribution approval. See [the release guide](docs/release.md).
 
 ## Install
 
@@ -95,9 +95,9 @@ The `registry` extra is needed for `DbRegistryLoader`; it also supplies PyProj f
 
 ## Domains and candidate data
 
-The signed candidate registry currently includes:
+The signed registry includes these 11 domains. An asterisk (`*`) marks a provisional technical candidate:
 
-`BN`, `KH`, `ID`, `LA`, `MY`, `MM`, `PH`, `SG`, `TH`, `TL`, and `VN`.
+`BN`, `KH*`, `ID`, `LA`, `MY`, `MM*`, `PH`, `SG`, `TH*`, `TL*`, and `VN`.
 
 Each profile declares its grid CRS, equal-area coverage CRS, root extent, scale metadata, reference-epoch policy, and operational-boundary metadata. The exact values are in the signed SQLite registry, not in this summary. The registry database and detached signature are packaged at `src/geosquare_v2/db/`; boundary GeoJSON files are packaged under `src/geosquare_v2/data/registry/boundaries/`.
 

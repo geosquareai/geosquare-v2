@@ -1,6 +1,6 @@
 # Gate A support matrix
 
-**Release candidate:** `0.2.0`
+**Release:** `1.0.0`
 **Profile version:** `2.1.0-static-datum`
 **Policy:** option 2
 **Status:** release-owner classification recorded; production support is limited to the seven approved domains below
@@ -10,16 +10,18 @@ The release owner approved `BN`, `ID`, `LA`, `MY`, `PH`, `SG`, and `VN` as produ
 | Domain | Support classification | Datum/reference basis | Decision status | Production guarantee |
 |---|---|---|---|---|
 | `BN` | Production-ready | GDBD2009, `EPSG:5246` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `KH` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
+| `KH*` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
 | `ID` | Production-ready | SRGI2013 static realization at `2012.0`, `EPSG:9470` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
 | `LA` | Production-ready | Lao 1997, `EPSG:4678` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
 | `MY` | Production-ready | GDM2000, `EPSG:4742` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `MM` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
+| `MM*` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
 | `PH` | Production-ready | PRS92, `EPSG:4683` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
 | `SG` | Production-ready | SVY21, `EPSG:4757` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `TH` | Provisional technical candidate | National horizontal datum not established; WGS84-style technical base | Provisional | No |
-| `TL` | Provisional technical candidate | Modern national horizontal datum not verified; WGS84-style technical base | Provisional | No |
+| `TH*` | Provisional technical candidate | National horizontal datum not established; WGS84-style technical base | Provisional | No |
+| `TL*` | Provisional technical candidate | Modern national horizontal datum not verified; WGS84-style technical base | Provisional | No |
 | `VN` | Production-ready | VN-2000, `EPSG:4756` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
+
+`*` marks a provisional technical candidate.
 
 ## Evidence and limitations
 

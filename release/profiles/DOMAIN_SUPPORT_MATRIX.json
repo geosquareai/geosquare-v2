@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "release_version": "0.2.0",
+  "release_version": "1.0.0",
   "profile_version": "2.1.0-static-datum",
   "policy": "option-2",
   "overall_status": "release-owner-classified-with-provisional-domains",

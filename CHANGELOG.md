@@ -1,8 +1,24 @@
 # Changelog
 
-## 0.2.0 — proposed stable software release under option 2
+## 1.0.0 — first stable major release
 
-Status: prepared in an isolated release worktree and not published. This release may bundle all 11 domain profiles while explicitly classifying KH, MM, TH, and TL as technical/provisional. Production geodetic guarantees apply only to profiles individually approved through Gate A.
+Status: prepared in the isolated `release/v1.0.0` worktree and not published. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are already on PyPI. 1.0.0 carries the frozen 0.2.0 contract forward.
+
+### Support scope (option 2)
+
+- Production-ready within the GeoSquare support scope: `BN`, `ID`, `LA`, `MY`, `PH`, `SG`, `VN`.
+- Provisional technical candidates, marked with an asterisk: `KH*`, `MM*`, `TH*`, `TL*`. They stay bundled under their `GEOSQUARE:*` identifiers. They have no official national-datum, authoritative-transformation, or production-accuracy guarantee.
+
+### Notes
+
+- Custom projected CRSs are GeoSquare-owned. They are not official national projected CRSs.
+- ID inputs must already be normalized to the SRGI2013 realization at epoch `2012.0`. The runtime does not apply dynamic epoch transformations.
+- Bundled boundaries keep their file-specific licenses. See [NOTICE](NOTICE).
+- The package classifier is `Development Status :: 5 - Production/Stable`. The support matrix above, not the classifier, defines which domains carry a production guarantee.
+
+## 0.2.0 — published to PyPI on 2026-10-08 (superseded by 1.0.0)
+
+Status: published to PyPI on 2026-10-08. This release may bundle all 11 domain profiles while explicitly classifying KH, MM, TH, and TL as technical/provisional. Production geodetic guarantees apply only to profiles individually approved through Gate A.
 
 ### Release preparation
 

@@ -1,12 +1,12 @@
 # Gate C contract freeze
 
-**Release:** `0.2.0`
+**Release:** `1.0.0`
 **Registry version:** `2.0.0`
 **Profile version:** `2.1.0-static-datum`
 **Decision date:** `2026-10-08`
-**Status:** frozen for the isolated stable-release candidate
+**Status:** frozen for the 1.0.0 stable release
 
-This record freezes the public identity, API, migration, dataset, profile, and support-scope contracts for the `0.2.0` release. It does not authorize signing, publication, or a claim that the custom CRSs are official national projected CRSs.
+This record freezes the public identity, API, migration, dataset, profile, and support-scope contracts for the `1.0.0` release. The 0.2.0 build is already on PyPI, so this freeze carries forward unchanged. It does not authorize signing, publication, or a claim that the custom CRSs are official national projected CRSs.
 
 ## Canonical identity
 
@@ -48,13 +48,13 @@ The stable candidate freezes:
 
 | Item | Frozen value |
 |---|---|
-| Package version | `0.2.0` |
-| Python import version | `geosquare_v2.__version__ == "0.2.0"` |
+| Package version | `1.0.0` |
+| Python import version | `geosquare_v2.__version__ == "1.0.0"` |
 | Registry version | `2.0.0` |
 | Profile version | `2.1.0-static-datum` |
 | Support policy | option 2 |
 | Production-ready domains | BN, ID, LA, MY, PH, SG, VN |
-| Provisional technical domains | KH, MM, TH, TL |
+| Provisional technical domains | `KH*`, `MM*`, `TH*`, `TL*` |
 
 The machine-readable support classification is [`DOMAIN_SUPPORT_MATRIX.json`](../release/profiles/DOMAIN_SUPPORT_MATRIX.json).
 

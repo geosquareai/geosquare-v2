@@ -533,6 +533,93 @@ def _detect_section() -> dict[str, Any]:
     }
 
 
+def _descendant_bounds(domain_id: int, level: int, x_idx: int, y_idx: int, child_level: int) -> tuple[int, int]:
+    """Packed bounds of every level-``child_level`` descendant of one cell, for one domain."""
+    parent_path = (pack_int64(domain_id, level, x_idx, y_idx) >> 1) & ((1 << _path_bits(level)) - 1)
+    shift = _path_bits(child_level) - _path_bits(level)
+    base = (domain_id << 54) | (child_level << 50)
+    lo = base | ((parent_path << shift) << 1)
+    hi = base | (((parent_path << shift) + (1 << shift) - 1) << 1)
+    return lo, hi
+
+
+def _is_valid_packed(value: int) -> bool:
+    try:
+        unpack_int64(value)
+    except GeosquareError:
+        return False
+    return True
+
+
+def _packed_by_domain_section(profiles) -> dict[str, Any]:
+    domain_ids = {profile.domain_code: profile.domain_id for profile in profiles}
+    _require(len(set(domain_ids.values())) == len(domain_ids), "domain IDs must be unique")
+    cells = []
+    for level in range(len(SUBDIVISIONS) + 1):
+        for x_idx, y_idx in _sample_indices(level):
+            packed_ids = {}
+            for profile in profiles:
+                packed = pack_int64(profile.domain_id, level, x_idx, y_idx)
+                _require(
+                    unpack_int64(packed) == (profile.domain_id, level, x_idx, y_idx),
+                    f"{profile.domain_code}: packing round trip failed at level {level}",
+                )
+                packed_ids[profile.domain_code] = str(packed)
+            cells.append(
+                {
+                    "level": level,
+                    "x_idx": x_idx,
+                    "y_idx": y_idx,
+                    "gid": canonical_to_gid(level, x_idx, y_idx),
+                    "packed_ids": packed_ids,
+                }
+            )
+    return {
+        "description": (
+            "The same cells packed under every domain. GIDs and indices do not depend on the domain, "
+            "so only the domain bits of each packed_ids value change."
+        ),
+        "domains": domain_ids,
+        "cells": cells,
+    }
+
+
+def _domain_ranges_section(grid: GeosquareGrid, profiles) -> dict[str, Any]:
+    max_level = len(SUBDIVISIONS)
+    records = []
+    for level in range(max_level - 1):
+        for x_idx, y_idx in _sample_indices(level)[:PARENT_SAMPLE_COUNT]:
+            parent = CanonicalCell("ID", level, x_idx, y_idx)
+            for child_level in (level + 1, level + 2):
+                if child_level > max_level:
+                    continue
+                descendants = _descendants(grid, parent, child_level - level)
+                ranges = {}
+                for profile in profiles:
+                    lo, hi = _descendant_bounds(profile.domain_id, level, x_idx, y_idx, child_level)
+                    expected = {pack_int64(profile.domain_id, d.level, d.x_idx, d.y_idx) for d in descendants}
+                    valid_in_range = {value for value in range(lo, hi + 1, 2) if _is_valid_packed(value)}
+                    _require(min(expected) == lo, f"{profile.domain_code}: lower bound is not the first descendant")
+                    _require(valid_in_range == expected, f"{profile.domain_code}: range does not match descendants")
+                    ranges[profile.domain_code] = {"lo": str(lo), "hi": str(hi)}
+                records.append(
+                    {
+                        "parent_gid": canonical_to_gid(level, x_idx, y_idx),
+                        "parent_level": level,
+                        "child_level": child_level,
+                        "descendant_count": len(descendants),
+                        "ranges": ranges,
+                    }
+                )
+    return {
+        "description": (
+            "Descendant packed ranges (spec section 8.1) for every domain. Each range is computed "
+            "with that domain's ID, so only the domain bits differ between domains."
+        ),
+        "records": records,
+    }
+
+
 def build_all() -> dict[str, bytes]:
     """Return every vector file as bytes, keyed by file name, including ``manifest.json``."""
     registry = _load_registry()
@@ -543,9 +630,14 @@ def build_all() -> dict[str, bytes]:
     support = {entry["domain_code"]: entry for entry in json.loads(SUPPORT_MATRIX.read_text(encoding="utf-8"))["domains"]}
     release = json.loads(RELEASE_MANIFEST.read_text(encoding="utf-8"))
 
+    codec = _codec_section("ID", id_profile.domain_id)
+    codec["packed_ids_by_domain"] = _packed_by_domain_section(profiles)
+    topology = _topology_section(grid, "ID", id_profile.domain_id)
+    topology["descendant_ranges_by_domain"] = _domain_ranges_section(grid, profiles)
+
     files: dict[str, bytes] = {
-        "codec.json": _dumps(_codec_section("ID", id_profile.domain_id)),
-        "topology.json": _dumps(_topology_section(grid, "ID", id_profile.domain_id)),
+        "codec.json": _dumps(codec),
+        "topology.json": _dumps(topology),
         "projected.json": _dumps(_projected_section(profiles)),
         "points.json": _dumps(_points_section(service, profiles, support)),
         "detect.json": _dumps(_detect_section()),

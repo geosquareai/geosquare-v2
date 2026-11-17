@@ -1,6 +1,6 @@
 # Geosquare Core Specification v2.0
 
-**Status:** implementation baseline
+**Status:** frozen as spec 2.0 for registry 2.0.0. Changes follow section 16.
 **Scope:** normative contract for the current country-domain candidate release, including the ASEAN profiles in the signed candidate registry.
 **Supersedes:** the proposed implementation details in `PROJECT.md` where they conflict with this document. `PROJECT.md` remains the product vision and historical rationale.
 
@@ -237,6 +237,20 @@ A projected cell geometry is derived directly as:
 
 This exact projected square is authoritative. A reprojected WGS84 geometry may require edge densification for visually correct large-cell geometry; a four-corner transform alone is only an approximation for non-linear or oblique transformations.
 
+### 8.1 Descendant packed ranges
+
+Let `B_L` be the path width of level `L`: 5 bits for each 5×5 step and 2 bits for each 2×2 step among the first `L` levels. For a cell at level `L` with packed value `p` and a descendant level `K ≥ L`:
+
+```text
+shift       = B_K - B_L
+parent_path = (p >> 1) & ((1 << B_L) - 1)
+base        = (domain_id << 54) | (K << 50)
+lo          = base | ((parent_path << shift) << 1)
+hi          = base | (((parent_path << shift) + (1 << shift) - 1) << 1)
+```
+
+Every level-`K` descendant of the parent has a packed value in `[lo, hi]`, and `lo` is the first descendant. Some bit patterns inside the interval are not valid codes, for example a 5×5 code from 25 to 31. A reader must not treat them as cells. For valid data, `packed_id BETWEEN lo AND hi` returns exactly the descendants.
+
 ## 9. Polyfill and coverage ratios
 
 `polyfill_stream` accepts a polygonal input geometry, its source CRS, a V2 domain and level, coverage mode, threshold, and candidate limit. It must:
@@ -287,6 +301,23 @@ Before a domain is released, it must ship reproducible fixtures covering:
 - projected square geometry, densified WGS84 geometry, and equal-area fractional polyfill; and
 - scalar, NumPy, Arrow, and SQL/UDF equivalence.
 
+Spec 2.0 coverage. The executable scalar vectors are in `conformance/spec-2.0/`, and `tests/test_conformance_vectors.py` checks them:
+
+| Required item | Where it is covered in spec 2.0 |
+|---|---|
+| Registry signature, profile hashes, PROJ resources | `tests/test_db_registry_loader.py`, `tests/test_proj_digest.py`, section 13 |
+| Grid and equal-area CRS parsing, distortion metadata | Not yet vectorized. `scale_error_max_pct` appears in `examples/quickstart.py` |
+| All GID characters at every level | `codec.json` (`cells`), `tests/test_core_conformance.py` |
+| Invalid characters, malformed GIDs, empty GID, level limits | `codec.json` (`invalid_gids`) and the level 0 cell with GID `""` |
+| Every root edge and internal boundary rule | `projected.json` (half-open rule, root max edge, outside rejects) |
+| Canonical, GID, and Int64 round trips | `codec.json` (`cells`, `invalid_packed_ids`) |
+| Parent and child consistency, child counts | `topology.json` (`parent_of`, `children_of`), `descendant_ranges` |
+| Neighbour carries, `k_ring`, `k_disk` | `topology.json` (`neighbours`, cells on parent edges) |
+| Projected square, WGS84 densification, equal-area polyfill | Not yet vectorized |
+| Scalar, NumPy, Arrow, SQL/UDF equivalence | Scalar only. Batch and SQL vectors come in Phase 1 and later |
+| Lon/lat to GID, all 11 domains | `points.json`, with provisional domains marked |
+| Detection rules (section 14) | `detect.json` |
+
 ## 12. Implementation sequence
 
 1. Create signed registry tooling and reviewed ASEAN domain profiles with real CRS WKT2, boundaries, hashes, scale analysis, and fixtures.
@@ -295,3 +326,88 @@ Before a domain is released, it must ship reproducible fixtures covering:
 4. Implement equal-area fractional polyfill and explicit operational-boundary predicates.
 5. Add vectorized interfaces and warehouse implementations from shared reference vectors.
 6. Add a V1 migration adapter as a separate package/module; it must not silently treat V1 values as V2 GIDs.
+
+## 13. Registry distribution format
+
+The runtime registry is a SQLite database with a detached Ed25519 signature.
+
+| File | Role |
+|---|---|
+| `src/geosquare_v2/db/registry.db` | SQLite database, schema version 1. Tables: `manifest`, `required_proj_grids`, `domains`, `profiles`, `scale_metadata` |
+| `src/geosquare_v2/db/registry.db.sig` | Signature sidecar (JSON), described below |
+| `release/registry-trust.json` | Trusted public keys: key ID to base64 Ed25519 public key |
+| `release/registry.v2.json` | Reviewed, unsigned source manifest. `MigrationTool` builds `registry.db` from it |
+| `release/profiles/*.v2.json`, `release/boundaries/*` | Profile and boundary sources. Their hashes are stored in the database |
+
+The sidecar has this shape:
+
+```json
+{
+  "algorithm": "Ed25519",
+  "key_id": "geosquare-registry-2026-09",
+  "value": "<base64 signature>",
+  "sha256": "<hex SHA-256 of the registry.db bytes>"
+}
+```
+
+The signature covers the 32-byte SHA-256 digest of the database file. It does not cover a JSON document.
+
+A conforming loader rejects the registry when any check fails: algorithm is not `Ed25519`; key ID is not trusted; the SHA-256 does not match; the signature does not verify; the installed PROJ version or a PROJ resource hash differs from the database; a profile hash differs; or a boundary hash differs when boundaries are verified. Partial initialization is not allowed.
+
+Domain listing reads metadata only and does not need the signature. Any use that returns coordinates must load the verified registry.
+
+## 14. Column detection rules
+
+Before a reader treats any value as a spatial key, it classifies each column. The reference implementation is `geosquare_v2.detect`, and the vectors are in `conformance/spec-2.0/detect.json`.
+
+Rules for every column:
+
+1. The column is read at its declared type. Import code must read GID-like text as text. An int64 column is never a GID column.
+2. A column is accepted when at least 99% of its non-null values pass the check. Failing values are reported, never repaired. Values are not trimmed, lowercased, or converted.
+3. Detection never maps a V1 identifier to V2. A V1 value that fails the V2 check is rejected.
+
+| Kind | Column type | Check | Domain source | Outcomes |
+|---|---|---|---|---|
+| `uri` | string | Starts with `geosquare:v2:<DOMAIN>:<GID>`. `<DOMAIN>` matches `[A-Z][A-Z0-9]{0,15}` and the GID passes the `gid` check | The URI. A domain hint that differs from the URI fails the value | `certain`, `rejected` |
+| `gid` | string | Length 5 to 14. Each character is valid for its position: odd positions use the base-5 set `23456789CEFGHJLMNPQRTVWXY`, even positions use `2345` | User or file | `needs_domain` if none is given, `needs_confirmation` if every value is digits, `certain`, `rejected` |
+| `packed_id` | int64 | Non-negative. Unpacks, and packs back to the same value | The value carries the domain ID (1 to 511) | `certain`, `rejected` |
+| `xy_indices` | two int64 columns named `x_idx` and `y_idx` | Each index is from 0 to `side_cell_count(level) - 1` | User or file | `needs_level` if no level is given, `needs_domain`, `certain`, `rejected` |
+
+Notes:
+
+- Length 5 is the minimum for bare GIDs. Shorter strings collide with ordinary codes.
+- All-digit GIDs stay `needs_confirmation`. A digit-only string can also be an ordinary code.
+- The level for `xy_indices` comes from the user. The detector never guesses it.
+- When `x_idx` and `y_idx` are both int64, they form one `xy_indices` result. They are not also tested as packed IDs.
+- The known trap is the V1 10 km column `gid10km` in the KYL parcel data. Its values are 7 characters long, and the sixth character is `7`, which is outside the base-2 set at level 6. The detector rejects them.
+
+## 15. Cell dataset layout
+
+Cell datasets follow [the cell dataset contract](../../docs/cell-dataset-contract.md). This section sets the physical layout choices for spec 2.0.
+
+1. **Sort.** Each Parquet file is sorted by `packed_id`. A parent range is then one contiguous block (section 8.1). A query dataset meant for rectangular windows may instead sort by `x_idx` and `y_idx`. Its manifest must then list that order in `sorted_by`.
+2. **Compression.** `zstd`.
+3. **Partition token.** A dataset can partition by GID prefix. The token is `gid_prefix:<L>`, where `1 <= L <= dataset level`. The directory name is `gid_prefix=<first L characters of the GID>`.
+4. **Partition level rule.**
+   a. Measure bytes per row on a sample written with the dataset's real columns.
+   b. For each candidate `L`, compute bytes per full partition as `(side(L) / side(D))^2 * bytes_per_row`. `D` is the dataset level, and a full partition holds every cell of that prefix.
+   c. Choose the coarsest `L` whose bytes per full partition is at most 512 MiB. If no level qualifies, choose `L = D` and record the oversize in the manifest notes.
+   d. If the chosen partitions are under 64 MiB, the dataset is small. Record that in the manifest notes.
+   e. Partition directories are written only for prefixes that hold data.
+5. **Row groups.** The reference benchmark used 8,192 rows per row group. A parent range then touches a few row groups, not the whole file.
+6. **Manifest.** `partitioning` lists `domain_code`, `level`, and `gid_prefix:<L>` in that order. `sorted_by` is `["packed_id"]` unless rule 1 says otherwise.
+
+The measurements behind these rules are in [the partition level benchmark](../research/PARTITION_LEVEL_BENCHMARK.md).
+
+## 16. Spec 2.0 freeze
+
+The following are frozen at spec 2.0: sections 3 to 10 (hierarchy, GID, canonical indexing, packing, topology, polyfill definitions), section 8.1, and sections 13 to 15. The executable form is `conformance/spec-2.0/`. `tests/test_conformance_vectors.py` fails when the committed files differ from the reference implementation.
+
+Change rules:
+
+- **Patch (2.0.x).** Documentation, test fixes, or new vectors for behaviour the spec already requires. No existing expected value changes.
+- **Minor (2.x).** Additive changes only: optional manifest fields, new vector files, or a new registry release. Existing expected values stay the same.
+- **Major (3.0).** Any change to the GID alphabet, packing layout, hierarchy, half-open rule, detection thresholds, or the registry signature format.
+- **Registry release.** A new profile or a new hash is a registry release, not a spec change. It changes `points.json` and `manifest.json`. Regenerate the vectors, review the diff, and record the new registry version.
+
+Engines pin three things: the spec version, the registry version, and the SHA-256 of `conformance/spec-2.0/manifest.json`. `points.json` depends on PROJ 9.5.1, which the registry pins exactly.

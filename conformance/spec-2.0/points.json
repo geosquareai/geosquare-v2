@@ -1,0 +1,161 @@
+{
+  "cases": [
+    {
+      "domain_code": "ID",
+      "gids": {
+        "12": "H462L5W3L2Y3",
+        "5": "H462L",
+        "7": "H462L5W",
+        "9": "H462L5W3L"
+      },
+      "lat": 0.114714,
+      "lon": 113.321534,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "ID",
+      "gids": {
+        "12": "H2X545V394J4",
+        "5": "H2X54",
+        "7": "H2X545V",
+        "9": "H2X545V39"
+      },
+      "lat": -6.2088,
+      "lon": 106.8456,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "VN",
+      "gids": {
+        "12": "H3T4T4X5R225",
+        "5": "H3T4T",
+        "7": "H3T4T4X",
+        "9": "H3T4T4X5R"
+      },
+      "lat": 15.981051,
+      "lon": 107.868144,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "BN",
+      "gids": {
+        "12": "H46363436294",
+        "5": "H4636",
+        "7": "H463634",
+        "9": "H46363436"
+      },
+      "lat": 4.525753,
+      "lon": 114.535538,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "KH",
+      "gids": {
+        "12": "H52222G5G2E5",
+        "5": "H5222",
+        "7": "H52222G",
+        "9": "H52222G5G"
+      },
+      "lat": 12.547473,
+      "lon": 105.132458,
+      "production_ready": false,
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "LA",
+      "gids": {
+        "12": "H522235343L3",
+        "5": "H5222",
+        "7": "H522235",
+        "9": "H52223534"
+      },
+      "lat": 18.206297,
+      "lon": 104.692439,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "MY",
+      "gids": {
+        "12": "H2Y4V5X292R2",
+        "5": "H2Y4V",
+        "7": "H2Y4V5X",
+        "9": "H2Y4V5X29"
+      },
+      "lat": 3.995855,
+      "lon": 102.08728,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "MM",
+      "gids": {
+        "12": "H463629484R2",
+        "5": "H4636",
+        "7": "H463629",
+        "9": "H46362948"
+      },
+      "lat": 19.259754,
+      "lon": 95.919335,
+      "production_ready": false,
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "PH",
+      "gids": {
+        "12": "H3T3T2P55572",
+        "5": "H3T3T",
+        "7": "H3T3T2P",
+        "9": "H3T3T2P55"
+      },
+      "lat": 7.689755,
+      "lon": 125.236552,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "SG",
+      "gids": {
+        "12": "H4636363C284",
+        "5": "H4636",
+        "7": "H463636",
+        "9": "H4636363C"
+      },
+      "lat": 1.340438,
+      "lon": 103.830237,
+      "production_ready": true,
+      "support_status": "production_ready"
+    },
+    {
+      "domain_code": "TH",
+      "gids": {
+        "12": "H52222424333",
+        "5": "H5222",
+        "7": "H522224",
+        "9": "H52222424"
+      },
+      "lat": 13.038762,
+      "lon": 101.700176,
+      "production_ready": false,
+      "support_status": "provisional_technical_candidate"
+    },
+    {
+      "domain_code": "TL",
+      "gids": {
+        "12": "H3T4T4T392W3",
+        "5": "H3T4T",
+        "7": "H3T4T4T",
+        "9": "H3T4T4T39"
+      },
+      "lat": -8.893209,
+      "lon": 125.757875,
+      "production_ready": false,
+      "support_status": "provisional_technical_candidate"
+    }
+  ],
+  "description": "Lon/lat to GID at several levels. Points come from each boundary's representative point. Provisional domains are included and marked with their support status."
+}

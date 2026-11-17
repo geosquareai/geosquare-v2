@@ -1,0 +1,643 @@
+{
+  "cases": [
+    {
+      "columns": {
+        "place_uri": {
+          "dtype": "string",
+          "values": [
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E2",
+            "geosquare:v2:ID:H2X545M5X4E3"
+          ]
+        }
+      },
+      "expect": {
+        "place_uri": {
+          "domain_codes": [
+            "ID"
+          ],
+          "kind": "uri",
+          "levels": [
+            9,
+            12
+          ],
+          "status": "certain"
+        }
+      },
+      "name": "uri_column_certain"
+    },
+    {
+      "columns": {
+        "place_uri": {
+          "dtype": "string",
+          "values": [
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:VN:G2P2X4657"
+          ]
+        }
+      },
+      "expect": {
+        "place_uri": {
+          "domain_codes": [
+            "ID",
+            "VN"
+          ],
+          "kind": "uri",
+          "levels": [
+            9
+          ],
+          "status": "certain"
+        }
+      },
+      "name": "uri_column_two_domains"
+    },
+    {
+      "columns": {
+        "place_uri": {
+          "dtype": "string",
+          "values": [
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657"
+          ]
+        }
+      },
+      "domain_code": "VN",
+      "expect": {
+        "place_uri": {
+          "kind": "uri",
+          "status": "rejected"
+        }
+      },
+      "name": "uri_domain_mismatch_with_hint_rejected"
+    },
+    {
+      "columns": {
+        "place_uri": {
+          "dtype": "string",
+          "values": [
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:G2P2X4657",
+            "geosquare:v2:ID:J3N2M75",
+            "geosquare:v2:ID:J3N2M75"
+          ]
+        }
+      },
+      "expect": {
+        "place_uri": {
+          "kind": "uri",
+          "status": "rejected"
+        }
+      },
+      "name": "uri_two_percent_invalid_rejected"
+    },
+    {
+      "columns": {
+        "gid": {
+          "dtype": "string",
+          "values": [
+            "G2P2X4657",
+            "H2X545M5X4E2"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "gid": {
+          "domain_codes": [
+            "ID"
+          ],
+          "kind": "gid",
+          "levels": [
+            9,
+            12
+          ],
+          "status": "certain"
+        }
+      },
+      "name": "bare_gid_with_domain_certain"
+    },
+    {
+      "columns": {
+        "gid": {
+          "dtype": "string",
+          "values": [
+            "G2P2X4657",
+            "H2X545M5X4E2"
+          ]
+        }
+      },
+      "expect": {
+        "gid": {
+          "kind": "gid",
+          "levels": [
+            9,
+            12
+          ],
+          "status": "needs_domain"
+        }
+      },
+      "name": "bare_gid_without_domain_needs_domain"
+    },
+    {
+      "columns": {
+        "gid": {
+          "dtype": "string",
+          "values": [
+            "g2p2x4657",
+            "g2p2x4657",
+            "g2p2x4657"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "gid": {
+          "kind": "gid",
+          "status": "rejected"
+        }
+      },
+      "name": "lowercase_gid_rejected"
+    },
+    {
+      "columns": {
+        "gid10km": {
+          "dtype": "string",
+          "values": [
+            "J3N2M75",
+            "J3N2M75",
+            "J3N2M75",
+            "J3N2M75"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "gid10km": {
+          "kind": "gid",
+          "status": "rejected"
+        }
+      },
+      "name": "v1_gid10km_style_rejected"
+    },
+    {
+      "columns": {
+        "code": {
+          "dtype": "string",
+          "values": [
+            "2345",
+            "2345"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "code": {
+          "kind": "gid",
+          "status": "rejected"
+        }
+      },
+      "name": "gid_below_min_length_rejected"
+    },
+    {
+      "columns": {
+        "code": {
+          "dtype": "string",
+          "values": [
+            "23456",
+            "23456"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "code": {
+          "kind": "gid",
+          "levels": [
+            5
+          ],
+          "status": "needs_confirmation"
+        }
+      },
+      "name": "all_digit_gid_needs_confirmation"
+    },
+    {
+      "columns": {
+        "code": {
+          "dtype": "int64",
+          "values": [
+            "23456",
+            "23456"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "code": {
+          "kind": "gid",
+          "status": "rejected"
+        }
+      },
+      "name": "digit_gid_in_int_column_rejected"
+    },
+    {
+      "columns": {
+        "packed_id": {
+          "dtype": "int64",
+          "values": [
+            "28147503648720074",
+            "31528546977439304"
+          ]
+        }
+      },
+      "expect": {
+        "packed_id": {
+          "domain_ids": [
+            1
+          ],
+          "kind": "packed_id",
+          "levels": [
+            9,
+            12
+          ],
+          "status": "certain"
+        }
+      },
+      "name": "packed_ids_certain"
+    },
+    {
+      "columns": {
+        "packed_id": {
+          "dtype": "int64",
+          "values": [
+            "28147503648720075",
+            "28147503648720075",
+            "28147503648720075"
+          ]
+        }
+      },
+      "expect": {
+        "packed_id": {
+          "kind": "packed_id",
+          "status": "rejected"
+        }
+      },
+      "name": "packed_odd_value_rejected"
+    },
+    {
+      "columns": {
+        "packed_id": {
+          "dtype": "int64",
+          "values": [
+            "1125899906842624",
+            "1125899906842624",
+            "1125899906842624"
+          ]
+        }
+      },
+      "expect": {
+        "packed_id": {
+          "kind": "packed_id",
+          "status": "rejected"
+        }
+      },
+      "name": "packed_domain_zero_rejected"
+    },
+    {
+      "columns": {
+        "population": {
+          "dtype": "int64",
+          "values": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
+      "expect": {
+        "population": {
+          "kind": "packed_id",
+          "status": "rejected"
+        }
+      },
+      "name": "plain_int_column_rejected"
+    },
+    {
+      "columns": {
+        "x_idx": {
+          "dtype": "int64",
+          "values": [
+            "0",
+            "49999"
+          ]
+        },
+        "y_idx": {
+          "dtype": "int64",
+          "values": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "expect": {
+        "x_idx+y_idx": {
+          "kind": "xy_indices",
+          "status": "needs_level"
+        }
+      },
+      "name": "xy_indices_need_level"
+    },
+    {
+      "columns": {
+        "x_idx": {
+          "dtype": "int64",
+          "values": [
+            "0",
+            "49999"
+          ]
+        },
+        "y_idx": {
+          "dtype": "int64",
+          "values": [
+            "0",
+            "1"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "x_idx+y_idx": {
+          "domain_codes": [
+            "ID"
+          ],
+          "kind": "xy_indices",
+          "levels": [
+            9
+          ],
+          "status": "certain"
+        }
+      },
+      "level": 9,
+      "name": "xy_indices_certain_at_level_9"
+    },
+    {
+      "columns": {
+        "x_idx": {
+          "dtype": "int64",
+          "values": [
+            "50000",
+            "50000",
+            "50000"
+          ]
+        },
+        "y_idx": {
+          "dtype": "int64",
+          "values": [
+            "0",
+            "0",
+            "0"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "x_idx+y_idx": {
+          "kind": "xy_indices",
+          "status": "rejected"
+        }
+      },
+      "level": 9,
+      "name": "xy_indices_out_of_range_rejected"
+    },
+    {
+      "columns": {
+        "city": {
+          "dtype": "string",
+          "values": [
+            "Jakarta",
+            "Bandung"
+          ]
+        }
+      },
+      "domain_code": "ID",
+      "expect": {
+        "city": {
+          "kind": "gid",
+          "status": "rejected"
+        }
+      },
+      "name": "text_column_rejected"
+    },
+    {
+      "columns": {
+        "ratio": {
+          "dtype": "float64",
+          "values": [
+            "0.5"
+          ]
+        }
+      },
+      "expect": {
+        "ratio": {
+          "kind": "none",
+          "status": "rejected"
+        }
+      },
+      "name": "float_column_rejected"
+    }
+  ],
+  "description": "Hand-written detection cases checked against geosquare_v2.detect. int64 values are decimal strings, so values above 2^53 stay exact in JSON."
+}

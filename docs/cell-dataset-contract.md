@@ -516,6 +516,8 @@ s3://bucket/population/
 
 The first implementation should support the single-domain layout first.
 
+Partition directories by GID prefix (`gid_prefix=<prefix>`), the sort order, and the partition level rule are fixed in spec 2.0, section 15.
+
 ## 11. Validation rules
 
 A reader must reject a dataset when:

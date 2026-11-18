@@ -9,7 +9,7 @@ from typing import Any
 
 from .boundary import BoundaryPredicate, OperationalBoundary
 from .codec import cell_side_m
-from .crs import validate_wgs84_point, wgs84_to_grid_transformer
+from .crs import require_crs_released, validate_wgs84_point, wgs84_to_grid_transformer
 from .errors import OutsideOperationalBoundaryError, ValidationError
 from .grid import GeosquareGrid
 from .model import CanonicalCell, ProjectedBounds
@@ -161,6 +161,7 @@ class GeosquareService:
         """Index a lon/lat point without manually creating a CRS transformer."""
         longitude, latitude = _validate_lonlat(longitude, latitude)
         context = self._context(domain_code)
+        require_crs_released(context.profile)
         validate_wgs84_point(context.profile, longitude, latitude)
         cell = context.grid.canonical_from_lonlat(
             longitude,

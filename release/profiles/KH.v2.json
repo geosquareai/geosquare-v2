@@ -8,7 +8,7 @@
   "reference_epoch": null,
   "grid_crs": "GEOSQUARE:KH_LCC_V2",
   "equal_area_crs": "EPSG:8857",
-  "profile_version": "2.1.0-static-datum",
+  "profile_version": "2.2.0-explicit-datum",
   "crs_authority": "GEOSQUARE:KH_LCC_V2",
   "crs_wkt2": "PROJCRS[\"Geosquare Cambodia / LCC V2\",BASEGEOGCRS[\"unknown\",DATUM[\"World Geodetic System 1984\",ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1]],ID[\"EPSG\",6326]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of false origin\",12.30190505,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",104.9807535,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Latitude of 1st standard parallel\",10.70968015,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",13.89412995,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
   "equal_area_crs_authority": "EPSG:8857",
@@ -22,5 +22,17 @@
   "boundary_source_crs": "OGC:CRS84",
   "boundary_file": "../boundaries/KH_full.geojson",
   "boundary_sha256": "a44140ae62a1dbe8d7cb176bc9b8afc38a65df66c05f84edba2b8b86a8fb4649",
-  "boundary_source": "geoBoundaries gbOpen KHM ADM0, KHM-ADM0-94605694, 2017, Open Data Commons Open Database License 1.0"
+  "boundary_source": "geoBoundaries gbOpen KHM ADM0, KHM-ADM0-94605694, 2017, Open Data Commons Open Database License 1.0",
+  "support_status": "candidate",
+  "datum_transformation": {
+    "source_crs": "EPSG:4326",
+    "axis_order": "longitude_latitude",
+    "mode": "none",
+    "operation_id": null,
+    "operation_pipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=lcc lat_0=12.30190505 lon_0=104.9807535 lat_1=10.70968015 lat_2=13.89412995 x_0=0 y_0=0 ellps=WGS84",
+    "operation_source": "GeoSquare no-datum review; WGS84-style technical profile",
+    "area_of_use": {"west_lon": 102.2, "south_lat": 9.8, "east_lon": 107.8, "north_lat": 14.8},
+    "stated_accuracy_m": 2.0,
+    "reference_epoch": null
+  }
 }

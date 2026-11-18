@@ -35,6 +35,7 @@ class ReleaseProfile(DomainProfile):
     epoch_policy: str | None = None
     input_coordinate_policy: str | None = None
     datum_transformation: DatumTransformation | dict[str, object] | None = None
+    support_status: str = "blocked"
 
     def __post_init__(self) -> None:
         # NOTE: `super().__post_init__()` (zero-argument super) is intentionally avoided
@@ -64,6 +65,8 @@ class ReleaseProfile(DomainProfile):
             value = getattr(self, field_name)
             if value is not None and (not isinstance(value, str) or not value.strip()):
                 raise ValidationError(f"{field_name} must be a non-empty string when provided")
+        if self.support_status not in {"released", "candidate", "blocked"}:
+            raise ValidationError("support_status must be released, candidate, or blocked")
         if self.datum_transformation is None:
             raise ValidationError("datum_transformation is required")
         object.__setattr__(

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from .codec import BASE_2_MATRIX, BASE_5_MATRIX, SUBDIVISIONS, side_cell_count, validate_level
-from .crs import wgs84_to_grid_transformer
+from .crs import require_crs_released, wgs84_to_grid_transformer
 from .errors import GeometryDependencyError, OutOfDomainError, ValidationError
 from .grid import GeosquareGrid
 
@@ -118,6 +118,7 @@ def encode_lonlat_numpy(grid: GeosquareGrid, longitude: Any, latitude: Any, leve
         raise ValidationError(
             f"{int(outside.sum())} coordinates are outside the datum operation area of use"
         )
+    require_crs_released(grid.profile)
     transformer = wgs84_to_grid_transformer(grid.profile)
     # PyProj 3.7.2's scalar fast path misclassifies NumPy 2.3 arrays on Python 3.14.
     # Lists select PyProj's vector transform path; numeric indexing remains NumPy-vectorized.

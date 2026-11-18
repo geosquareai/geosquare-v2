@@ -82,7 +82,8 @@ CREATE TABLE profiles (
     boundary_file             TEXT NOT NULL,
     boundary_sha256           TEXT NOT NULL,
     boundary_source           TEXT NOT NULL,
-    datum_transformation_json TEXT NOT NULL
+    datum_transformation_json TEXT NOT NULL,
+    support_status             TEXT NOT NULL
 );
 
 CREATE TABLE scale_metadata (
@@ -271,6 +272,10 @@ class MigrationTool:
             raise ManifestValidationError(
                 f"profile {domain_code!r} has invalid datum_transformation"
             ) from exc
+        if profile.get("support_status") not in {"released", "candidate", "blocked"}:
+            raise ManifestValidationError(
+                f"profile {domain_code!r} has invalid support_status"
+            )
 
         scale_relative = _require_string(profile, "scale_error_evaluation_metadata")
         scale_path = _safe_path(self._root, profile_path.parent, scale_relative)
@@ -377,7 +382,7 @@ class MigrationTool:
             "INSERT INTO profiles (domain_id, profile_version, crs_authority, crs_wkt2, "
             "equal_area_crs_authority, equal_area_crs_wkt2, min_level, max_level, scale_error_max_pct, "
             "scale_error_method, scale_metadata_sha256, boundary_source_crs, boundary_file, "
-            "boundary_sha256, boundary_source, datum_transformation_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "boundary_sha256, boundary_source, datum_transformation_json, support_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 domain["domain_id"],
                 profile.get("profile_version"),
@@ -395,6 +400,7 @@ class MigrationTool:
                 profile.get("boundary_sha256"),
                 profile.get("boundary_source"),
                 _canonical_datum_transformation_json(profile.get("datum_transformation")),
+                profile.get("support_status"),
             ),
         )
 
@@ -653,7 +659,7 @@ class DbRegistryLoader:
                 "p.profile_version, p.crs_authority, p.crs_wkt2, p.equal_area_crs_authority, "
                 "p.equal_area_crs_wkt2, p.min_level, p.max_level, p.scale_error_max_pct, "
                 "p.scale_error_method, p.scale_metadata_sha256, p.boundary_source_crs, p.boundary_file, "
-                "p.boundary_sha256, p.boundary_source, p.datum_transformation_json, "
+                "p.boundary_sha256, p.boundary_source, p.datum_transformation_json, p.support_status, "
                 "s.algorithm, s.proj_version, s.pyproj_version, s.boundary_sha256, s.sample_count, "
                 "s.max_error_pct, s.max_error_coordinate_crs84_lon, s.max_error_coordinate_crs84_lat, "
                 "s.meridional_scale, s.parallel_scale "
@@ -701,6 +707,7 @@ class DbRegistryLoader:
             boundary_sha256,
             boundary_source,
             datum_transformation_json,
+            support_status,
             algorithm,
             proj_version,
             pyproj_version,
@@ -771,6 +778,7 @@ class DbRegistryLoader:
             boundary_sha256=boundary_sha256,
             boundary_source=boundary_source,
             datum_transformation=datum_transformation,
+            support_status=support_status,
         )
 
     @staticmethod

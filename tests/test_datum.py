@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from dataclasses import replace
+
 import pytest
 
-from geosquare_v2.crs import validate_wgs84_point, wgs84_to_grid_transformer
+from geosquare_v2.crs import require_crs_released, validate_wgs84_point, wgs84_to_grid_transformer
 from geosquare_v2.datum import AreaOfUse, DatumTransformation
 from geosquare_v2.errors import ValidationError
 from geosquare_v2.release import ReleaseProfile
@@ -68,3 +70,10 @@ def test_release_profile_requires_datum_metadata(profile):
 def test_point_outside_operation_area_is_rejected(profile):
     with pytest.raises(ValidationError, match="outside the datum operation area"):
         validate_wgs84_point(profile, 0.0, 86.0)
+
+
+def test_unreleased_profile_fails_the_runtime_gate(profile):
+    blocked = replace(profile, support_status="blocked")
+
+    with pytest.raises(ValidationError, match="has not passed the CRS release gate"):
+        require_crs_released(blocked)

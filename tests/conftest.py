@@ -26,6 +26,7 @@ def profile() -> ReleaseProfile:
         origin_x_m=-25_000_000.0,
         origin_y_m=-25_000_000.0,
         reference_epoch=2000.0,
+        support_status="released",
         grid_crs="EPSG:3857",
         equal_area_crs="EPSG:6933",
         profile_version="test-1",

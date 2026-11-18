@@ -8,7 +8,7 @@
   "reference_epoch": 2012.0,
   "grid_crs": "GEOSQUARE:ID_SRGI2013_STATIC2012_LCC_V2",
   "equal_area_crs": "EPSG:8857",
-  "profile_version": "2.1.0-static-datum",
+  "profile_version": "2.2.0-explicit-datum",
   "crs_authority": "GEOSQUARE:ID_SRGI2013_STATIC2012_LCC_V2",
   "crs_wkt2": "PROJCRS[\"GeoSquare ID / SRGI2013 static realization 2012.0 custom metric V2\",BASEGEOGCRS[\"SRGI2013 static realization 2012.0\",DATUM[\"Sistem Referensi Geospasial Indonesia 2013\",ELLIPSOID[\"WGS 84\",6378137,298.257223563,LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8901]]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",-8.18864928333332,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",3.08805798333335,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",-2.55029564999998,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",118.01521445,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
   "equal_area_crs_authority": "EPSG:8857",
@@ -25,5 +25,17 @@
   "boundary_source": "geoBoundaries gbOpen IDN ADM0, IDN-ADM0-11942859, 2017, Open Data Commons Open Database License 1.0",
   "datum_base_authority": "EPSG:9470",
   "epoch_policy": "static_realization",
-  "input_coordinate_policy": "Coordinates must be pre-normalized to the SRGI2013 static realization at epoch 2012.0; runtime does not perform dynamic epoch transformation."
+  "input_coordinate_policy": "WGS 84 longitude/latitude is accepted; the declared static operation targets SRGI2013 at epoch 2012.0.",
+  "support_status": "candidate",
+  "datum_transformation": {
+    "source_crs": "EPSG:4326",
+    "axis_order": "longitude_latitude",
+    "mode": "explicit_operation",
+    "operation_id": "INVERSE(EPSG:15912)+EPSG:9472",
+    "operation_pipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=push v_3 step proj=cart ellps=WGS84 step proj=helmert x=-0.2773 y=0.0534 z=0.4819 rx=0.0192857593841035 ry=-0.00589917345866696 rz=0.00199870597253436 s=-0.028 convention=coordinate_frame step inv proj=cart ellps=WGS84 step proj=pop v_3 step proj=lcc lat_0=-2.55029564999998 lon_0=118.01521445 lat_1=-8.18864928333332 lat_2=3.08805798333335 x_0=0 y_0=0 ellps=WGS84",
+    "operation_source": "https://epsg.io/15912; https://epsg.io/9472",
+    "area_of_use": {"west_lon": 92.01, "south_lat": -13.95, "east_lon": 141.46, "north_lat": 7.79},
+    "stated_accuracy_m": 1.2,
+    "reference_epoch": 2012.0
+  }
 }

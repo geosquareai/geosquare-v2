@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "profile_version": "2.2.0-explicit-datum",
+  "proj_version": "9.5.1",
+  "sample_count_per_domain": 300,
+  "method": "Explicit profile pipeline compared with pinned PROJ CRS transform; GID checks use levels 9 and 12.",
+  "domains": [
+    {
+      "domain_code": "BN",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "ID",
+      "support_status": "candidate",
+      "mode": "explicit_operation",
+      "operation_id": "INVERSE(EPSG:15912)+EPSG:9472",
+      "stated_accuracy_m": 1.2,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "KH",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "LA",
+      "support_status": "candidate",
+      "mode": "explicit_operation",
+      "operation_id": "INVERSE(EPSG:1065)",
+      "stated_accuracy_m": 5.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "MM",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "MY",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "PH",
+      "support_status": "candidate",
+      "mode": "explicit_operation",
+      "operation_id": "INVERSE(EPSG:15708)",
+      "stated_accuracy_m": 0.05,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "SG",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "TH",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "TL",
+      "support_status": "candidate",
+      "mode": "none",
+      "operation_id": null,
+      "stated_accuracy_m": 2.0,
+      "max_coordinate_difference_m": 0.0,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 0}
+    },
+    {
+      "domain_code": "VN",
+      "support_status": "blocked",
+      "mode": "explicit_operation",
+      "operation_id": "INVERSE(EPSG:6960)",
+      "stated_accuracy_m": 1.0,
+      "max_coordinate_difference_m": 0.8177843532466795,
+      "gid_changes_vs_pinned_proj": {"9": 0, "12": 1}
+    }
+  ]
+}

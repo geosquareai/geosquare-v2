@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.2.0-rc1 — explicit datum QA candidate
+
+Status: engineering candidate. No domain has a production guarantee yet.
+
+### Changes
+
+- added a required `datum_transformation` object to every profile;
+- wrote complete WGS 84 longitude/latitude to grid pipelines;
+- selected `INVERSE(EPSG:15912) + EPSG:9472` for ID;
+- selected `INVERSE(EPSG:1065)` for LA;
+- selected `INVERSE(EPSG:15708)` for PH;
+- selected `INVERSE(EPSG:6960)` for VN, but kept VN blocked;
+- added 300-point pipeline parity QA for every domain; and
+- added a runtime gate for candidate and blocked profiles.
+
+### Limits
+
+- ID, LA, and PH still need independent control points.
+- VN has two competing EPSG operations and stays blocked.
+- The report proves repeatable numbers, not field accuracy.
+- The registry must be rebuilt and signed before release.
+
 ## 1.0.0 — first stable major release
 
 Status: prepared in the isolated `release/v1.0.0` worktree and not published. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are already on PyPI. 1.0.0 carries the frozen 0.2.0 contract forward.

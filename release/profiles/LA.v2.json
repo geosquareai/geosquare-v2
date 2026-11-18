@@ -8,7 +8,7 @@
   "reference_epoch": null,
   "grid_crs": "GEOSQUARE:LA_LAO1997_LCC_V2",
   "equal_area_crs": "EPSG:8857",
-  "profile_version": "2.1.0-static-datum",
+  "profile_version": "2.2.0-explicit-datum",
   "crs_authority": "GEOSQUARE:LA_LAO1997_LCC_V2",
   "crs_wkt2": "PROJCRS[\"GeoSquare LA / Lao 1997 custom metric V2\",BASEGEOGCRS[\"Lao 1997\",DATUM[\"Lao National Datum 1997\",ELLIPSOID[\"Krassowsky 1940\",6378245,298.3,LENGTHUNIT[\"metre\",1]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433]],ID[\"EPSG\",4678]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",15.3418453333334,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",21.0705258666667,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",18.2061856,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",103.8596618,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
   "equal_area_crs_authority": "EPSG:8857",
@@ -24,5 +24,18 @@
   "boundary_sha256": "ba429d6121d6c193752bb3daaa1438a59fe339857fb168c258d23af2c5e0d0cd",
   "boundary_source": "geoBoundaries gbOpen LAO ADM0, LAO-ADM0-69401296, 2017, Open Data Commons Open Database License 1.0",
   "datum_base_authority": "EPSG:4678",
-  "epoch_policy": "static_realization"
+  "epoch_policy": "static_realization",
+  "input_coordinate_policy": "WGS 84 longitude/latitude is accepted; runtime applies the declared static Lao 1997 operation.",
+  "support_status": "candidate",
+  "datum_transformation": {
+    "source_crs": "EPSG:4326",
+    "axis_order": "longitude_latitude",
+    "mode": "explicit_operation",
+    "operation_id": "INVERSE(EPSG:1065)",
+    "operation_pipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=push v_3 step proj=cart ellps=WGS84 step proj=helmert x=-44.585 y=131.212 z=39.544 step inv proj=cart ellps=krass step proj=pop v_3 step proj=lcc lat_0=18.2061856 lon_0=103.8596618 lat_1=15.3418453333334 lat_2=21.0705258666667 x_0=0 y_0=0 ellps=krass",
+    "operation_source": "https://epsg.io/1065",
+    "area_of_use": {"west_lon": 100.09, "south_lat": 13.92, "east_lon": 107.64, "north_lat": 22.5},
+    "stated_accuracy_m": 5.0,
+    "reference_epoch": null
+  }
 }

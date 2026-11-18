@@ -33,7 +33,12 @@ def main() -> None:
         boundary_root=boundary_root,
         verify_boundaries=True,
     ).load()
-    service = GeosquareService(registry, boundary_root=boundary_root)
+    # This checkout contains candidate CRS profiles.
+    service = GeosquareService(
+        registry,
+        boundary_root=boundary_root,
+        allow_candidate_crs=True,
+    )
 
     indexed = service.point_to_cell(
         "ID",

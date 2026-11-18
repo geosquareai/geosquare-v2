@@ -1,6 +1,6 @@
 {
   "algorithm": "Ed25519",
   "key_id": "geosquare-registry-2026-09",
-  "value": "2DcaW6LzgbuTIhAokRShhHqPDXmp+OnsysZ6EPtZtMNdr4C6gxnNNR63u+PQlepiEb7iypT0J9C0t7TiS18lAA==",
-  "sha256": "f77f610d0cc76f5a53df5cb11e4fe9073dccac9c8724613652b82dc99aa93fd8"
+  "value": "h1nreTI61kvKhZZb7HtiyzGvOuDHqXMY93k6i9nlhAkq6TrX8JmHRa+tk1pn0C/1QHGQZ7kiHffFKAxDfiiHDg==",
+  "sha256": "5cbeea99a63e5cad67514b85785ee23895378815be41ea376cfb763ac51ecafd"
 }

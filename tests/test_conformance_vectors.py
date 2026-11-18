@@ -19,6 +19,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 VECTOR_DIR = REPO_ROOT / "conformance" / "spec-2.0"
 GENERATOR = REPO_ROOT / "tools" / "generate_conformance_vectors.py"
 EXPECTED_DOMAIN_COUNT = 11
+EXPECTED_PROVISIONAL_DOMAINS = {"BN", "KH", "ID", "LA", "MY", "MM", "PH", "SG", "TH", "TL", "VN"}
 
 
 def _load_generator():
@@ -59,7 +60,7 @@ def test_manifest_declares_spec_and_all_domains():
     assert manifest["spec_version"] == "2.0"
     assert len(manifest["domains"]) == EXPECTED_DOMAIN_COUNT
     provisional = {d["domain_code"] for d in manifest["domains"] if not d["production_ready"]}
-    assert provisional == {"KH", "MM", "TH", "TL"}
+    assert provisional == EXPECTED_PROVISIONAL_DOMAINS
 
 
 def test_codec_covers_every_level_with_round_trips():
@@ -131,7 +132,7 @@ def test_points_cover_every_domain_and_flag_provisional_ones():
         gids = case["gids"]
         assert len(gids["12"]) == 12
         assert gids["12"].startswith(gids["9"]) and gids["9"].startswith(gids["7"]) and gids["7"].startswith(gids["5"])
-        assert case["production_ready"] == (case["domain_code"] not in {"KH", "MM", "TH", "TL"})
+        assert case["production_ready"] is False
 
 
 def test_packed_ids_by_domain_decode_to_their_own_domain():

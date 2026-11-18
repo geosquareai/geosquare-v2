@@ -43,7 +43,7 @@ def test_verified_profiles_work_across_optional_analytics_layers(signed_profiles
     bounds = grid.projected_bounds(cell)
 
     assert projected_cell_geometry(grid, cell).is_valid
-    assert wgs84_cell_geometry(grid, cell).is_valid
+    assert wgs84_cell_geometry(grid, cell, allow_candidate_crs=True).is_valid
 
     half_cell = box(bounds.min_x, bounds.min_y, (bounds.min_x + bounds.max_x) / 2, bounds.max_y)
     coverage = polyfill(grid, half_cell, profile.crs_wkt2, 9, coverage_mode=CoverageMode.EQUAL_AREA, max_candidate_limit=10)

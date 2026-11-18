@@ -8,7 +8,7 @@
   "reference_epoch": null,
   "grid_crs": "GEOSQUARE:MY_GDM2000_LCC_V2",
   "equal_area_crs": "EPSG:8857",
-  "profile_version": "2.1.0-static-datum",
+  "profile_version": "2.2.0-explicit-datum",
   "crs_authority": "GEOSQUARE:MY_GDM2000_LCC_V2",
   "crs_wkt2": "PROJCRS[\"GeoSquare MY / GDM2000 custom metric V2\",BASEGEOGCRS[\"GDM2000\",DATUM[\"Geodetic Datum of Malaysia 2000\",ELLIPSOID[\"GRS 1980\",6378137,298.257222101,LENGTHUNIT[\"metre\",1]]],PRIMEM[\"Greenwich\",0,ANGLEUNIT[\"degree\",0.0174532925199433]],ID[\"EPSG\",4742]],CONVERSION[\"unknown\",METHOD[\"Lambert Conic Conformal (2SP)\",ID[\"EPSG\",9802]],PARAMETER[\"Latitude of 1st standard parallel\",1.93865375000001,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8823]],PARAMETER[\"Latitude of 2nd standard parallel\",6.27798475000003,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8824]],PARAMETER[\"Latitude of false origin\",4.10831925000002,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8821]],PARAMETER[\"Longitude of false origin\",109.4548108,ANGLEUNIT[\"degree\",0.0174532925199433],ID[\"EPSG\",8822]],PARAMETER[\"Easting at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8826]],PARAMETER[\"Northing at false origin\",0,LENGTHUNIT[\"metre\",1],ID[\"EPSG\",8827]]],CS[Cartesian,2],AXIS[\"(E)\",east,ORDER[1],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]],AXIS[\"(N)\",north,ORDER[2],LENGTHUNIT[\"metre\",1,ID[\"EPSG\",9001]]]]",
   "equal_area_crs_authority": "EPSG:8857",
@@ -24,5 +24,17 @@
   "boundary_sha256": "20ffa28d8b7980060d43418a6a4a250ffdbcd805c514189accec9f799a181d77",
   "boundary_source": "geoBoundaries gbOpen MYS ADM0, MYS-ADM0-87038898, 2017, Open Data Commons Open Database License 1.0",
   "datum_base_authority": "EPSG:4742",
-  "epoch_policy": "static_realization"
+  "epoch_policy": "static_realization",
+  "support_status": "candidate",
+  "datum_transformation": {
+    "source_crs": "EPSG:4326",
+    "axis_order": "longitude_latitude",
+    "mode": "none",
+    "operation_id": null,
+    "operation_pipeline": "proj=pipeline step proj=unitconvert xy_in=deg xy_out=rad step proj=lcc lat_0=4.10831925000002 lon_0=109.4548108 lat_1=1.93865375000001 lat_2=6.27798475000003 x_0=0 y_0=0 ellps=GRS80",
+    "operation_source": "GeoSquare no-datum review; projection parameters from the profile CRS WKT2",
+    "area_of_use": {"west_lon": 99.5, "south_lat": 0.7, "east_lon": 119.4, "north_lat": 7.5},
+    "stated_accuracy_m": 2.0,
+    "reference_epoch": null
+  }
 }

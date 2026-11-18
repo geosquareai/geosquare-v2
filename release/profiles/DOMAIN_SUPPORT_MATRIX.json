@@ -1,34 +1,34 @@
 {
-  "schema_version": "1.0",
-  "release_version": "1.0.0",
-  "profile_version": "2.1.0-static-datum",
-  "policy": "option-2",
-  "overall_status": "release-owner-classified-with-provisional-domains",
-  "production_geodetic_claim": "limited_to_domains_with_production_ready_true",
+  "schema_version": "1.1",
+  "release_version": "2.2.0-rc1",
+  "profile_version": "2.2.0-explicit-datum",
+  "policy": "option-1-explicit-datum-operation",
+  "overall_status": "datum-qa-candidate-vn-blocked",
+  "production_geodetic_claim": "none until the profile passes the CRS release gate",
   "boundary_claim": "Bundled boundaries are candidate administrative inputs, not legal or sovereign boundary certification.",
-  "interpretation": "The package may bundle all 11 domains. Production-ready is a GeoSquare release-owner classification and is not an official national-authority endorsement.",
+  "interpretation": "This candidate release writes every WGS84-to-grid operation explicitly. Candidate status is not an official national-authority endorsement or legal/geodetic certification.",
   "approval_record": {
-    "decision": "Seven datum-backed domains approved production-ready; KH/MM/TH/TL retained as provisional technical candidates.",
-    "decision_date": "2026-10-08",
-    "decision_scope": "GeoSquare stable-release support classification"
+    "decision": "Use explicit EPSG operations for ID, LA, and PH. Keep VN blocked until its operation review closes.",
+    "decision_date": "2026-11-18",
+    "decision_scope": "Engineering QA decision; release-owner approval is still required"
   },
   "domains": [
     {
       "domain_code": "BN",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "GDBD2009",
       "datum_authority": "EPSG:5246",
       "reference_epoch": null,
       "profile_file": "BN.v2.json",
       "scale_report": "../scale/BN_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "no-datum-operation-review-pending",
+      "approval_basis": null,
+      "evidence_gaps": ["independent datum control points", "release-owner approval"]
     },
     {
       "domain_code": "KH",
-      "support_status": "provisional_technical_candidate",
+      "support_status": "candidate",
       "production_ready": false,
       "datum_basis": "Not established; WGS84-style technical base only",
       "datum_authority": null,
@@ -36,50 +36,51 @@
       "profile_file": "KH.v2.json",
       "scale_report": "../scale/KH_GRID_V2.json",
       "review_status": "provisional-by-release-owner-decision",
+      "approval_basis": "provisional",
       "evidence_gaps": ["authoritative Cambodian datum/package", "transformation and accuracy", "domain area of use", "component policy"]
     },
     {
       "domain_code": "ID",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "SRGI2013 static realization at 2012.0",
       "datum_authority": "EPSG:9470",
       "reference_epoch": 2012.0,
       "profile_file": "ID.v2.json",
       "scale_report": "../scale/ID_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "explicit-operation-selected-qa-pending",
+      "approval_basis": "EPSG:15912 + EPSG:9472",
+      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
     },
     {
       "domain_code": "LA",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "Lao 1997",
       "datum_authority": "EPSG:4678",
       "reference_epoch": null,
       "profile_file": "LA.v2.json",
       "scale_report": "../scale/LA_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "explicit-operation-selected-qa-pending",
+      "approval_basis": "INVERSE(EPSG:1065)",
+      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
     },
     {
       "domain_code": "MY",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "GDM2000",
       "datum_authority": "EPSG:4742",
       "reference_epoch": null,
       "profile_file": "MY.v2.json",
       "scale_report": "../scale/MY_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "no-datum-operation-review-pending",
+      "approval_basis": null,
+      "evidence_gaps": ["independent datum control points", "release-owner approval"]
     },
     {
       "domain_code": "MM",
-      "support_status": "provisional_technical_candidate",
+      "support_status": "candidate",
       "production_ready": false,
       "datum_basis": "Not established; WGS84-style technical base only",
       "datum_authority": null,
@@ -87,37 +88,38 @@
       "profile_file": "MM.v2.json",
       "scale_report": "../scale/MM_GRID_V2.json",
       "review_status": "provisional-by-release-owner-decision",
+      "approval_basis": "provisional",
       "evidence_gaps": ["authoritative Myanmar datum package", "transformation and accuracy", "domain area of use", "component policy"]
     },
     {
       "domain_code": "PH",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "PRS92",
       "datum_authority": "EPSG:4683",
       "reference_epoch": null,
       "profile_file": "PH.v2.json",
       "scale_report": "../scale/PH_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "explicit-operation-selected-qa-pending",
+      "approval_basis": "INVERSE(EPSG:15708)",
+      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
     },
     {
       "domain_code": "SG",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "candidate",
+      "production_ready": false,
       "datum_basis": "SVY21",
       "datum_authority": "EPSG:4757",
       "reference_epoch": null,
       "profile_file": "SG.v2.json",
       "scale_report": "../scale/SG_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "no-datum-operation-review-pending",
+      "approval_basis": null,
+      "evidence_gaps": ["independent datum control points", "release-owner approval"]
     },
     {
       "domain_code": "TH",
-      "support_status": "provisional_technical_candidate",
+      "support_status": "candidate",
       "production_ready": false,
       "datum_basis": "Not established; WGS84-style technical base only",
       "datum_authority": null,
@@ -125,11 +127,12 @@
       "profile_file": "TH.v2.json",
       "scale_report": "../scale/TH_GRID_V2.json",
       "review_status": "provisional-by-release-owner-decision",
+      "approval_basis": "provisional",
       "evidence_gaps": ["authoritative Thai horizontal datum/operation", "transformation and accuracy", "domain area of use", "coastal/island policy"]
     },
     {
       "domain_code": "TL",
-      "support_status": "provisional_technical_candidate",
+      "support_status": "candidate",
       "production_ready": false,
       "datum_basis": "Not established; WGS84-style technical base only",
       "datum_authority": null,
@@ -137,20 +140,21 @@
       "profile_file": "TL.v2.json",
       "scale_report": "../scale/TL_GRID_V2.json",
       "review_status": "provisional-by-release-owner-decision",
+      "approval_basis": "provisional",
       "evidence_gaps": ["verified modern Timor-Leste horizontal datum", "transformation and accuracy", "domain area of use", "component policy"]
     },
     {
       "domain_code": "VN",
-      "support_status": "production_ready",
-      "production_ready": true,
+      "support_status": "blocked",
+      "production_ready": false,
       "datum_basis": "VN-2000",
       "datum_authority": "EPSG:4756",
       "reference_epoch": 2000.0,
       "profile_file": "VN.v2.json",
       "scale_report": "../scale/VN_GRID_V2.json",
-      "review_status": "release-owner-approved",
-      "approval_basis": "release-owner-approval-2026-10-08",
-      "evidence_gaps": []
+      "review_status": "blocked-datum-operation-review",
+      "approval_basis": "INVERSE(EPSG:6960) is provisional only",
+      "evidence_gaps": ["official VN-2000 operation selection", "regional operation policy", "independent datum control points", "release-owner approval"]
     }
   ]
 }

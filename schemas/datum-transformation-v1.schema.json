@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://geosquare.ai/schemas/datum-transformation-v1.schema.json",
+  "title": "GeoSquare V2 explicit datum transformation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_crs",
+    "axis_order",
+    "mode",
+    "operation_id",
+    "operation_pipeline",
+    "operation_source",
+    "area_of_use",
+    "stated_accuracy_m",
+    "reference_epoch"
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "none"}}},
+      "then": {"properties": {"operation_id": {"type": "null"}}}
+    }
+  ],
+  "properties": {
+    "source_crs": {
+      "const": "EPSG:4326"
+    },
+    "axis_order": {
+      "const": "longitude_latitude"
+    },
+    "mode": {
+      "enum": ["none", "explicit_operation"]
+    },
+    "operation_id": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "operation_pipeline": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Complete source lon/lat to grid x/y pipeline. It must run without CRS database lookup."
+    },
+    "operation_source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "area_of_use": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["west_lon", "south_lat", "east_lon", "north_lat"],
+      "properties": {
+        "west_lon": {"type": "number", "minimum": -180, "maximum": 180},
+        "south_lat": {"type": "number", "minimum": -90, "maximum": 90},
+        "east_lon": {"type": "number", "minimum": -180, "maximum": 180},
+        "north_lat": {"type": "number", "minimum": -90, "maximum": 90}
+      }
+    },
+    "stated_accuracy_m": {
+      "type": "number",
+      "minimum": 0
+    },
+    "reference_epoch": {
+      "type": ["number", "null"]
+    }
+  }
+}

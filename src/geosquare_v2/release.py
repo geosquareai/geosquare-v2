@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import re
 
+from .datum import DatumTransformation
 from .errors import ValidationError
 from .model import DomainProfile, _validate_finite_number
 
@@ -33,6 +34,8 @@ class ReleaseProfile(DomainProfile):
     datum_base_authority: str | None = None
     epoch_policy: str | None = None
     input_coordinate_policy: str | None = None
+    datum_transformation: DatumTransformation | dict[str, object] | None = None
+    support_status: str = "blocked"
 
     def __post_init__(self) -> None:
         # NOTE: `super().__post_init__()` (zero-argument super) is intentionally avoided
@@ -62,6 +65,19 @@ class ReleaseProfile(DomainProfile):
             value = getattr(self, field_name)
             if value is not None and (not isinstance(value, str) or not value.strip()):
                 raise ValidationError(f"{field_name} must be a non-empty string when provided")
+        if self.support_status not in {"released", "candidate", "blocked"}:
+            raise ValidationError("support_status must be released, candidate, or blocked")
+        if self.datum_transformation is None:
+            raise ValidationError("datum_transformation is required")
+        object.__setattr__(
+            self,
+            "datum_transformation",
+            DatumTransformation.from_mapping(self.datum_transformation),
+        )
+        if self.reference_epoch != self.datum_transformation.reference_epoch:
+            raise ValidationError(
+                "reference_epoch must match datum_transformation.reference_epoch"
+            )
         if type(self.min_level) is not int or self.min_level != 0:
             raise ValidationError("min_level must be 0")
         if type(self.max_level) is not int or self.max_level != 14:

@@ -1,6 +1,6 @@
 {
   "registry_version": "2.0.0",
-  "release_status": "stable",
+  "release_status": "candidate",
   "proj_version_exact": "9.5.1",
   "proj_db_sha256": "c9b58a1bba6fff3ecebb627ad71062a94dc93392657987b01dcd6d5e461af03c",
   "required_proj_grids": [],
@@ -9,67 +9,67 @@
       "domain_id": 3,
       "domain_code": "BN",
       "profile_file": "profiles/BN.v2.json",
-      "profile_sha256": "2cf78c8b1c2561c3d8297d45aa52e2f25314e2610149b8275a0b6b0459d61679"
+      "profile_sha256": "b1208c27a3fedccb979c7d6c78936097149326964e756813001d937dbd95f3e7"
     },
     {
       "domain_id": 4,
       "domain_code": "KH",
       "profile_file": "profiles/KH.v2.json",
-      "profile_sha256": "5c617420b1d2ddd26a4bdfb4603f8297a1028bb6a86e5105e18f1e85e919f0ed"
+      "profile_sha256": "ad397abda5b34fe4e32f4b1a4a5bd2b1ce2fa4ab5fded1b05063570ce7de9294"
     },
     {
       "domain_id": 1,
       "domain_code": "ID",
       "profile_file": "profiles/ID.v2.json",
-      "profile_sha256": "7578a2109754e0c4285f4a0d592c4bda5861b92503a60af2943bc8e187d41b24"
+      "profile_sha256": "335b2471160d2c369ae26c022eb8dd3a55cae0a604726f9d0bdad75ab7e99164"
     },
     {
       "domain_id": 5,
       "domain_code": "LA",
       "profile_file": "profiles/LA.v2.json",
-      "profile_sha256": "d6237f6c8afdd3d0f30b9284721837532f462e29d5afde1e0f612cff1c40313a"
+      "profile_sha256": "7f234351d7e223f2599b3e56c8ec910a4d69add6da61c8a7a076e5cdecb4803b"
     },
     {
       "domain_id": 6,
       "domain_code": "MY",
       "profile_file": "profiles/MY.v2.json",
-      "profile_sha256": "2a18be9507ae67b403c5bd871f0b81d5163b41019db3be0c0f7dd0cbe590f674"
+      "profile_sha256": "12662d23955693e70361a7c48bcb88cad15930c75cfcccf556bdf1559f5bec06"
     },
     {
       "domain_id": 7,
       "domain_code": "MM",
       "profile_file": "profiles/MM.v2.json",
-      "profile_sha256": "f7c39d97b15e19542a88012e3674409313a9713368b7c7848850bcd03a904329"
+      "profile_sha256": "c97227aa5ebe40c34db7be5a6df2fde2d7e53e3e4090aef166e2c57bbc1dca46"
     },
     {
       "domain_id": 8,
       "domain_code": "PH",
       "profile_file": "profiles/PH.v2.json",
-      "profile_sha256": "86e491a75791dca2416cd96781a3c5a1fef0b0a5d417b26dc5dae098492cd5e8"
+      "profile_sha256": "5016c5a1248af80369451cd879e84bc7382c7968d82b3b0ef07f949f37c8bac0"
     },
     {
       "domain_id": 9,
       "domain_code": "SG",
       "profile_file": "profiles/SG.v2.json",
-      "profile_sha256": "3c4f7bf4fd1a3711e21d1a1a19685e80c373f647f1bb26f01f914290090f779a"
+      "profile_sha256": "e205394c7ac43f04879070141eee971f6cd0ce7a015bfb11ef6abd8e4d48d765"
     },
     {
       "domain_id": 10,
       "domain_code": "TH",
       "profile_file": "profiles/TH.v2.json",
-      "profile_sha256": "72d13b46c1f0207ca4c521ce63f1218950d087eebcaf95a49531c3c470fab49d"
+      "profile_sha256": "1d2ce96678d384ebbd1af04af28631481e52c8ee8450fb2e13070e1416e2c220"
     },
     {
       "domain_id": 11,
       "domain_code": "TL",
       "profile_file": "profiles/TL.v2.json",
-      "profile_sha256": "e4d264c07f8a80423bf76c310dd7d9ee60e2ee64cbf45f3a1ab21e45b5e34697"
+      "profile_sha256": "6ce56c14c11c2710ceb3a9ae68fac999f61359900edf6eb4fdad8ae3b11adc27"
     },
     {
       "domain_id": 2,
       "domain_code": "VN",
       "profile_file": "profiles/VN.v2.json",
-      "profile_sha256": "40d76a91b94488d8d097d77bbbd070c90950af90cff0d4f8d17baf1fb8e8ecea"
+      "profile_sha256": "b251868dd562104f840bd36134c8221ecba9690d742df5dec63df52e753054ab"
     }
   ]
 }

@@ -1,32 +1,38 @@
 # Gate A support matrix
 
-**Release:** `1.0.0`
-**Profile version:** `2.1.0-static-datum`
-**Policy:** option 2
-**Status:** release-owner classification recorded; production support is limited to the seven approved domains below
+**Release:** `2.2.0-rc1`
+**Profile version:** `2.2.0-explicit-datum`
+**Policy:** explicit datum operation per profile
+**Status:** CRS QA candidate; VN remains blocked
 
-The release owner approved `BN`, `ID`, `LA`, `MY`, `PH`, `SG`, and `VN` as production-ready for the GeoSquare stable-release support scope. `KH`, `MM`, `TH`, and `TL` remain bundled as provisional technical candidates. This is a GeoSquare release classification, not an official national-authority endorsement or legal/geodetic certification. The machine-readable source is [`release/profiles/DOMAIN_SUPPORT_MATRIX.json`](../release/profiles/DOMAIN_SUPPORT_MATRIX.json).
+The profile now writes the full WGS 84 longitude/latitude to grid pipeline. PROJ must not choose a datum operation from its database. The machine-readable source is [`release/profiles/DOMAIN_SUPPORT_MATRIX.json`](../release/profiles/DOMAIN_SUPPORT_MATRIX.json).
 
-| Domain | Support classification | Datum/reference basis | Decision status | Production guarantee |
+| Domain | Support status | Datum/reference basis | Written operation | Production guarantee |
 |---|---|---|---|---|
-| `BN` | Production-ready | GDBD2009, `EPSG:5246` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `KH*` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
-| `ID` | Production-ready | SRGI2013 static realization at `2012.0`, `EPSG:9470` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `LA` | Production-ready | Lao 1997, `EPSG:4678` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `MY` | Production-ready | GDM2000, `EPSG:4742` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `MM*` | Provisional technical candidate | National datum not established; WGS84-style technical base | Provisional | No |
-| `PH` | Production-ready | PRS92, `EPSG:4683` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `SG` | Production-ready | SVY21, `EPSG:4757` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
-| `TH*` | Provisional technical candidate | National horizontal datum not established; WGS84-style technical base | Provisional | No |
-| `TL*` | Provisional technical candidate | Modern national horizontal datum not verified; WGS84-style technical base | Provisional | No |
-| `VN` | Production-ready | VN-2000, `EPSG:4756` | Release-owner approved 2026-10-08 | Yes, within GeoSquare scope |
+| `BN` | Candidate | GDBD2009, `EPSG:5246` | None; explicit projection pipeline | No |
+| `KH*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
+| `ID` | Candidate | SRGI2013 at `2012.0`, `EPSG:9470` | `INVERSE(EPSG:15912) + EPSG:9472` | No |
+| `LA` | Candidate | Lao 1997, `EPSG:4678` | `INVERSE(EPSG:1065)` | No |
+| `MY` | Candidate | GDM2000, `EPSG:4742` | None; explicit projection pipeline | No |
+| `MM*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
+| `PH` | Candidate | PRS92, `EPSG:4683` | `INVERSE(EPSG:15708)` | No |
+| `SG` | Candidate | SVY21, `EPSG:4757` | None; explicit projection pipeline | No |
+| `TH*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
+| `TL*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
+| `VN` | **Blocked** | VN-2000, `EPSG:4756` | `INVERSE(EPSG:6960)`, provisional | No |
 
 `*` marks a provisional technical candidate.
 
-## Evidence and limitations
+## QA result
 
-The profiles have custom GeoSquare WKT2 projected CRSs, linked scale reports, pinned PROJ/pyproj measurements, boundary hashes, and phase-3 root-coverage evidence. ID remains explicitly static: input coordinates must already be normalized to the SRGI2013 realization at epoch `2012.0`, and the runtime does not perform dynamic epoch transformation.
+The report is [`release/crs-qa-2.2.0-rc1.json`](../release/crs-qa-2.2.0-rc1.json). It compares 300 spread-out boundary points per domain.
 
-Production-ready here means approved for the GeoSquare release support scope using the recorded static profile and documented limitations. It does not mean that the custom projected CRS is an official national projected CRS, that GeoSquare performs authoritative datum transformations, or that the bundled boundary is legally authoritative.
+ID, LA, and PH match the pinned PROJ result with the written pipeline. Their GID checks also match at levels 9 and 12. This proves reproducibility. It does not prove real-world accuracy without independent control points.
 
-KH, MM, TH, and TL remain provisional because their national horizontal datum/reference-frame evidence and transformation policies are unresolved. They must not be described as official national CRS support or as having production geodetic accuracy guarantees.
+VN stays blocked because EPSG offers more than one operation. The chosen `EPSG:6960` pipeline differs from automatic PROJ selection by up to `0.82 m` in the sample. One level-12 GID changed.
+
+## Release gate still open
+
+A domain needs independent control points, round-trip checks, edge checks, ground-size checks, and release-owner approval. Until then, candidate profiles must not be called production-ready.
+
+The stated operation accuracy is not the same as source-point accuracy. A point near a 50 m cell edge may have more than one reasonable GID.

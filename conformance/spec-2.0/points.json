@@ -10,8 +10,8 @@
       },
       "lat": 0.114714,
       "lon": 113.321534,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "ID",
@@ -23,8 +23,8 @@
       },
       "lat": -6.2088,
       "lon": 106.8456,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "VN",
@@ -36,8 +36,8 @@
       },
       "lat": 15.981051,
       "lon": 107.868144,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "BN",
@@ -49,8 +49,8 @@
       },
       "lat": 4.525753,
       "lon": 114.535538,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "KH",
@@ -63,7 +63,7 @@
       "lat": 12.547473,
       "lon": 105.132458,
       "production_ready": false,
-      "support_status": "provisional_technical_candidate"
+      "support_status": "candidate"
     },
     {
       "domain_code": "LA",
@@ -75,8 +75,8 @@
       },
       "lat": 18.206297,
       "lon": 104.692439,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "MY",
@@ -88,8 +88,8 @@
       },
       "lat": 3.995855,
       "lon": 102.08728,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "MM",
@@ -102,7 +102,7 @@
       "lat": 19.259754,
       "lon": 95.919335,
       "production_ready": false,
-      "support_status": "provisional_technical_candidate"
+      "support_status": "candidate"
     },
     {
       "domain_code": "PH",
@@ -114,8 +114,8 @@
       },
       "lat": 7.689755,
       "lon": 125.236552,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "SG",
@@ -127,8 +127,8 @@
       },
       "lat": 1.340438,
       "lon": 103.830237,
-      "production_ready": true,
-      "support_status": "production_ready"
+      "production_ready": false,
+      "support_status": "candidate"
     },
     {
       "domain_code": "TH",
@@ -141,7 +141,7 @@
       "lat": 13.038762,
       "lon": 101.700176,
       "production_ready": false,
-      "support_status": "provisional_technical_candidate"
+      "support_status": "candidate"
     },
     {
       "domain_code": "TL",
@@ -154,7 +154,7 @@
       "lat": -8.893209,
       "lon": 125.757875,
       "production_ready": false,
-      "support_status": "provisional_technical_candidate"
+      "support_status": "candidate"
     }
   ],
   "description": "Lon/lat to GID at several levels. Points come from each boundary's representative point. Provisional domains are included and marked with their support status."

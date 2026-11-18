@@ -3,79 +3,79 @@
     {
       "domain_code": "ID",
       "domain_id": 1,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "VN",
       "domain_id": 2,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "BN",
       "domain_id": 3,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "KH",
       "domain_id": 4,
       "production_ready": false,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "provisional_technical_candidate"
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "LA",
       "domain_id": 5,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "MY",
       "domain_id": 6,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "MM",
       "domain_id": 7,
       "production_ready": false,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "provisional_technical_candidate"
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "PH",
       "domain_id": 8,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "SG",
       "domain_id": 9,
-      "production_ready": true,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "production_ready"
+      "production_ready": false,
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "TH",
       "domain_id": 10,
       "production_ready": false,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "provisional_technical_candidate"
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     },
     {
       "domain_code": "TL",
       "domain_id": 11,
       "production_ready": false,
-      "profile_version": "2.1.0-static-datum",
-      "support_status": "provisional_technical_candidate"
+      "profile_version": "2.2.0-explicit-datum",
+      "support_status": "candidate"
     }
   ],
   "files": {
@@ -88,8 +88,8 @@
       "sha256": "5828f8cffba2857317badba2fba95d4ed39cc522fe48c6054fbf8b8a49d390cb"
     },
     "points.json": {
-      "bytes": 3733,
-      "sha256": "109b631ba5570250b05e2c033c07b42cd4779ded0681aa35b4951bd725ee19a0"
+      "bytes": 3597,
+      "sha256": "b1d3b9cc6dd17b4247e6c352b06622f1fe33138eaa1e21fc79743278c1e2a9d4"
     },
     "projected.json": {
       "bytes": 95402,
@@ -101,7 +101,7 @@
     }
   },
   "generated_by": "tools/generate_conformance_vectors.py",
-  "geosquare_v2_version": "1.0.0",
+  "geosquare_v2_version": "1.1.0rc1",
   "proj_version": "9.5.1",
   "proj_version_exact": "9.5.1",
   "registry_version": "2.0.0",

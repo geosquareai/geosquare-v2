@@ -626,7 +626,12 @@ def build_all() -> dict[str, bytes]:
     profiles = tuple(sorted(registry.profiles(), key=lambda profile: profile.domain_id))
     id_profile = registry.get("ID")
     grid = GeosquareGrid(id_profile)
-    service = GeosquareService(registry, boundary_root=REGISTRY_DIR)
+    # The committed vectors include candidate domains.
+    service = GeosquareService(
+        registry,
+        boundary_root=REGISTRY_DIR,
+        allow_candidate_crs=True,
+    )
     support = {entry["domain_code"]: entry for entry in json.loads(SUPPORT_MATRIX.read_text(encoding="utf-8"))["domains"]}
     release = json.loads(RELEASE_MANIFEST.read_text(encoding="utf-8"))
 

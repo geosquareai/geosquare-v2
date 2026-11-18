@@ -9,7 +9,8 @@ from typing import Any
 
 from .boundary import BoundaryPredicate, OperationalBoundary
 from .codec import cell_side_m
-from .errors import GeometryDependencyError, OutsideOperationalBoundaryError, ValidationError
+from .crs import validate_wgs84_point, wgs84_to_grid_transformer
+from .errors import OutsideOperationalBoundaryError, ValidationError
 from .grid import GeosquareGrid
 from .model import CanonicalCell, ProjectedBounds
 from .polyfill import CoverageMode, polyfill
@@ -99,17 +100,7 @@ class GeosquareService:
         profile = self.registry.get(domain_code)
         if not isinstance(profile, ReleaseProfile):
             raise ValidationError("GeosquareService requires verified ReleaseProfile entries")
-        try:
-            from pyproj import CRS, Transformer
-        except ImportError as exc:  # pragma: no cover - exercised without registry/geo extras
-            raise GeometryDependencyError(
-                "GeosquareService requires the 'geo' optional dependency group"
-            ) from exc
-        transformer = Transformer.from_crs(
-            CRS.from_epsg(4326),
-            CRS.from_user_input(profile.crs_wkt2),
-            always_xy=True,
-        )
+        transformer = wgs84_to_grid_transformer(profile)
         context = _DomainContext(profile, GeosquareGrid(profile), transformer)
         self._contexts[domain_code] = context
         return context
@@ -170,6 +161,7 @@ class GeosquareService:
         """Index a lon/lat point without manually creating a CRS transformer."""
         longitude, latitude = _validate_lonlat(longitude, latitude)
         context = self._context(domain_code)
+        validate_wgs84_point(context.profile, longitude, latitude)
         cell = context.grid.canonical_from_lonlat(
             longitude,
             latitude,

@@ -41,6 +41,8 @@ from .conversion import (
     polygon_to_cells,
 )
 from .db import DbRegistryLoader, RegistryDomainSummary, list_registry_domains
+from .crs import validate_wgs84_point, wgs84_to_grid_transformer
+from .datum import AreaOfUse, DatumTransformation
 from .errors import (
     CandidateLimitExceededError,
     CellDatasetError,
@@ -74,6 +76,10 @@ from .table import geometry_table_to_cells, read_table, table_to_cells, table_to
 __all__ = [
     "BoundaryPredicate",
     "OperationalBoundary",
+    "AreaOfUse",
+    "DatumTransformation",
+    "validate_wgs84_point",
+    "wgs84_to_grid_transformer",
     "BASE_2_MATRIX",
     "CategoryRule",
     "NumericRule",

@@ -3,8 +3,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 import pyarrow as pa
-from pyproj import CRS, Transformer
 
+from geosquare_v2 import wgs84_to_grid_transformer
 from geosquare_v2.batch import (
     encode_lonlat_arrow,
     encode_lonlat_numpy,
@@ -30,7 +30,7 @@ def test_numpy_projected_encoding_matches_scalar_including_root_edges(grid):
 
 
 def test_numpy_lonlat_encoding_matches_scalar(grid, profile):
-    transformer = Transformer.from_crs(CRS.from_epsg(4326), CRS.from_user_input(profile.crs_wkt2), always_xy=True)
+    transformer = wgs84_to_grid_transformer(profile)
     result = encode_lonlat_numpy(grid, np.array([0.0]), np.array([0.0]), 4)
     cell = grid.canonical_from_lonlat(0.0, 0.0, 4, transformer)
 

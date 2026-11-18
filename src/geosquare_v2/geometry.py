@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from .crs import wgs84_to_grid_transformer
 from .errors import GeometryDependencyError, ValidationError
 from .grid import GeosquareGrid
 from .model import CanonicalCell
@@ -70,9 +71,16 @@ def wgs84_cell_geometry(
         raise GeometryDependencyError("wgs84 geometry requires Shapely 2.x") from exc
 
     projected = segmentize(projected_cell_geometry(grid, cell_or_gid), max_segment_length=float(max_segment_length_m))
-    transformer = Transformer.from_crs(
-        CRS.from_user_input(profile_grid_crs(grid.profile)),
-        CRS.from_epsg(4326),
-        always_xy=True,
+    transformer = wgs84_to_grid_transformer(grid.profile)
+    try:
+        from pyproj.enums import TransformDirection
+    except ImportError as exc:  # pragma: no cover - pyproj is pinned by the extra
+        raise GeometryDependencyError("wgs84 geometry requires pyproj") from exc
+    return transform(
+        lambda x, y: transformer.transform(
+            x,
+            y,
+            direction=TransformDirection.INVERSE,
+        ),
+        projected,
     )
-    return transform(transformer.transform, projected)

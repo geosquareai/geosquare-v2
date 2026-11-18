@@ -41,7 +41,10 @@ def test_property_migration_then_load_round_trip_preserves_profile_data(tmp_path
         if field.name in {"scale_metadata_sha256", "scale_error_evaluation_metadata", "boundary_file"}:
             continue
         if field.name in profile_document:
-            assert getattr(profile, field.name) == profile_document[field.name], field.name
+            actual = getattr(profile, field.name)
+            if field.name == "datum_transformation":
+                actual = actual.as_mapping()
+            assert actual == profile_document[field.name], field.name
 
 
 def test_domain_registry_api_surface_unchanged(tmp_path):

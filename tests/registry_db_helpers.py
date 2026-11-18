@@ -106,6 +106,25 @@ def build_legacy_json_registry(root: Path, domain_codes: tuple[str, ...] = _DOMA
                 "boundary_file": f"../boundaries/{code}.geojson",
                 "boundary_sha256": _sha256(boundary_path),
                 "boundary_source": "synthetic test fixture",
+                "datum_transformation": {
+                    "source_crs": "EPSG:4326",
+                    "axis_order": "longitude_latitude",
+                    "mode": "none",
+                    "operation_id": None,
+                    "operation_pipeline": (
+                        "+proj=pipeline +step +proj=merc +a=6378137 +b=6378137 "
+                        "+lon_0=0 +k=1 +x_0=0 +y_0=0 +units=m"
+                    ),
+                    "operation_source": "synthetic test fixture",
+                    "area_of_use": {
+                        "west_lon": -180.0,
+                        "south_lat": -85.0,
+                        "east_lon": 180.0,
+                        "north_lat": 85.0,
+                    },
+                    "stated_accuracy_m": 0.0,
+                    "reference_epoch": 2000.0 + index,
+                },
             },
         )
 

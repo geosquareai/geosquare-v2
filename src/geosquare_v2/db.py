@@ -24,12 +24,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
+from .datum import DatumTransformation
 from .errors import (
     ArtifactHashMismatchError,
     ManifestSignatureError,
     ManifestValidationError,
     ProjResourceVerificationError,
     RegistryDependencyError,
+    ValidationError,
 )
 from .proj_digest import verify_proj_database
 from .registry import DomainRegistry
@@ -79,7 +81,8 @@ CREATE TABLE profiles (
     boundary_source_crs       TEXT NOT NULL,
     boundary_file             TEXT NOT NULL,
     boundary_sha256           TEXT NOT NULL,
-    boundary_source           TEXT NOT NULL
+    boundary_source           TEXT NOT NULL,
+    datum_transformation_json TEXT NOT NULL
 );
 
 CREATE TABLE scale_metadata (
@@ -180,6 +183,15 @@ def _canonical_scale_metadata_json(row: Mapping[str, Any]) -> bytes:
     return json.dumps(document, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
+def _canonical_datum_transformation_json(value: Any) -> str:
+    """Serialize datum metadata into one stable JSON value for SQLite."""
+    return json.dumps(
+        DatumTransformation.from_mapping(value).as_mapping(),
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+
 @dataclass(frozen=True, slots=True)
 class _ValidatedDomain:
     """A fully hash-verified (domain, profile, scale metadata) triple ready to persist."""
@@ -253,6 +265,12 @@ class MigrationTool:
         profile = _load_json(profile_path, "profile")
         if profile.get("domain_id") != domain_id or profile.get("domain_code") != domain_code:
             raise ManifestValidationError("profile identity does not match manifest entry")
+        try:
+            DatumTransformation.from_mapping(profile.get("datum_transformation"))
+        except ValidationError as exc:
+            raise ManifestValidationError(
+                f"profile {domain_code!r} has invalid datum_transformation"
+            ) from exc
 
         scale_relative = _require_string(profile, "scale_error_evaluation_metadata")
         scale_path = _safe_path(self._root, profile_path.parent, scale_relative)
@@ -359,7 +377,7 @@ class MigrationTool:
             "INSERT INTO profiles (domain_id, profile_version, crs_authority, crs_wkt2, "
             "equal_area_crs_authority, equal_area_crs_wkt2, min_level, max_level, scale_error_max_pct, "
             "scale_error_method, scale_metadata_sha256, boundary_source_crs, boundary_file, "
-            "boundary_sha256, boundary_source) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "boundary_sha256, boundary_source, datum_transformation_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 domain["domain_id"],
                 profile.get("profile_version"),
@@ -376,6 +394,7 @@ class MigrationTool:
                 profile.get("boundary_file"),
                 profile.get("boundary_sha256"),
                 profile.get("boundary_source"),
+                _canonical_datum_transformation_json(profile.get("datum_transformation")),
             ),
         )
 
@@ -634,7 +653,7 @@ class DbRegistryLoader:
                 "p.profile_version, p.crs_authority, p.crs_wkt2, p.equal_area_crs_authority, "
                 "p.equal_area_crs_wkt2, p.min_level, p.max_level, p.scale_error_max_pct, "
                 "p.scale_error_method, p.scale_metadata_sha256, p.boundary_source_crs, p.boundary_file, "
-                "p.boundary_sha256, p.boundary_source, "
+                "p.boundary_sha256, p.boundary_source, p.datum_transformation_json, "
                 "s.algorithm, s.proj_version, s.pyproj_version, s.boundary_sha256, s.sample_count, "
                 "s.max_error_pct, s.max_error_coordinate_crs84_lon, s.max_error_coordinate_crs84_lat, "
                 "s.meridional_scale, s.parallel_scale "
@@ -681,6 +700,7 @@ class DbRegistryLoader:
             boundary_file,
             boundary_sha256,
             boundary_source,
+            datum_transformation_json,
             algorithm,
             proj_version,
             pyproj_version,
@@ -718,6 +738,12 @@ class DbRegistryLoader:
             _verify_hash(boundary_path, boundary_sha256, "boundary")
 
         self._verify_profile_crs(crs_wkt2, equal_area_crs_wkt2, domain_code)
+        try:
+            datum_transformation = json.loads(datum_transformation_json)
+        except (TypeError, json.JSONDecodeError) as exc:
+            raise ManifestValidationError(
+                f"domain {domain_code!r} has invalid datum transformation JSON"
+            ) from exc
 
         return ReleaseProfile(
             domain_id=domain_id,
@@ -744,6 +770,7 @@ class DbRegistryLoader:
             boundary_file=boundary_file,
             boundary_sha256=boundary_sha256,
             boundary_source=boundary_source,
+            datum_transformation=datum_transformation,
         )
 
     @staticmethod

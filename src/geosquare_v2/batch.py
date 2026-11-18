@@ -104,7 +104,14 @@ def encode_projected_numpy(grid: GeosquareGrid, x_m: Any, y_m: Any, level: int) 
     )
 
 
-def encode_lonlat_numpy(grid: GeosquareGrid, longitude: Any, latitude: Any, level: int) -> BatchEncoding:
+def encode_lonlat_numpy(
+    grid: GeosquareGrid,
+    longitude: Any,
+    latitude: Any,
+    level: int,
+    *,
+    allow_candidate_crs: bool = False,
+) -> BatchEncoding:
     """Transform WGS84 arrays with ``always_xy=True`` then encode without row loops."""
     np, lon, lat = _coordinate_arrays(longitude, latitude)
     area = grid.profile.datum_transformation.area_of_use
@@ -118,7 +125,7 @@ def encode_lonlat_numpy(grid: GeosquareGrid, longitude: Any, latitude: Any, leve
         raise ValidationError(
             f"{int(outside.sum())} coordinates are outside the datum operation area of use"
         )
-    require_crs_released(grid.profile)
+    require_crs_released(grid.profile, allow_candidate=allow_candidate_crs)
     transformer = wgs84_to_grid_transformer(grid.profile)
     # PyProj 3.7.2's scalar fast path misclassifies NumPy 2.3 arrays on Python 3.14.
     # Lists select PyProj's vector transform path; numeric indexing remains NumPy-vectorized.
@@ -162,6 +169,8 @@ def encode_lonlat_pandas(
     longitude_column: str,
     latitude_column: str,
     level: int,
+    *,
+    allow_candidate_crs: bool = False,
 ) -> Any:
     """Transform WGS84 Pandas columns then return vectorized V2 outputs."""
     try:
@@ -170,7 +179,17 @@ def encode_lonlat_pandas(
         raise GeometryDependencyError("Pandas adapters require the 'batch' optional dependency group") from exc
     if not isinstance(frame, pd.DataFrame):
         raise ValidationError("frame must be a pandas.DataFrame")
-    return _pandas_result(grid, encode_lonlat_numpy(grid, frame[longitude_column].to_numpy(), frame[latitude_column].to_numpy(), level), frame.index)
+    return _pandas_result(
+        grid,
+        encode_lonlat_numpy(
+            grid,
+            frame[longitude_column].to_numpy(),
+            frame[latitude_column].to_numpy(),
+            level,
+            allow_candidate_crs=allow_candidate_crs,
+        ),
+        frame.index,
+    )
 
 
 def _arrow_result(pa: Any, grid: GeosquareGrid, result: BatchEncoding) -> Any:
@@ -206,7 +225,25 @@ def encode_projected_arrow(grid: GeosquareGrid, table: Any, x_column: str, y_col
     return _arrow_result(pa, grid, encode_projected_numpy(grid, x, y, level))
 
 
-def encode_lonlat_arrow(grid: GeosquareGrid, table: Any, longitude_column: str, latitude_column: str, level: int) -> Any:
+def encode_lonlat_arrow(
+    grid: GeosquareGrid,
+    table: Any,
+    longitude_column: str,
+    latitude_column: str,
+    level: int,
+    *,
+    allow_candidate_crs: bool = False,
+) -> Any:
     """Transform WGS84 Arrow columns then return vectorized V2 outputs."""
     pa, longitude, latitude = _arrow_coordinates(table, longitude_column, latitude_column)
-    return _arrow_result(pa, grid, encode_lonlat_numpy(grid, longitude, latitude, level))
+    return _arrow_result(
+        pa,
+        grid,
+        encode_lonlat_numpy(
+            grid,
+            longitude,
+            latitude,
+            level,
+            allow_candidate_crs=allow_candidate_crs,
+        ),
+    )

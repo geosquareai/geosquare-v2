@@ -92,3 +92,16 @@ def test_canonical_service_names_match_legacy_aliases(profile):
     assert point == service.index_point("TS", 0.0, 0.0, level=9)
     assert service.cell_distance(point.uri, point.uri) == 0
     assert service.cell_neighbours(point.uri, 1) == service.neighbourhood(point.uri, 1)
+
+
+def test_candidate_crs_requires_service_opt_in(profile):
+    candidate = replace(profile, support_status="candidate")
+
+    with pytest.raises(ValidationError, match="candidate"):
+        GeosquareService(DomainRegistry([candidate])).index_point("TS", 0.0, 0.0, level=9)
+
+    result = GeosquareService(
+        DomainRegistry([candidate]),
+        allow_candidate_crs=True,
+    ).index_point("TS", 0.0, 0.0, level=9)
+    assert result.cell.domain_code == "TS"

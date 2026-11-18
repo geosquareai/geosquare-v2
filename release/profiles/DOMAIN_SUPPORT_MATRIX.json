@@ -3,12 +3,12 @@
   "release_version": "2.2.0-rc1",
   "profile_version": "2.2.0-explicit-datum",
   "policy": "option-1-explicit-datum-operation",
-  "overall_status": "datum-qa-candidate-vn-blocked",
+  "overall_status": "datum-qa-candidate-vn-provisional",
   "production_geodetic_claim": "none until the profile passes the CRS release gate",
   "boundary_claim": "Bundled boundaries are candidate administrative inputs, not legal or sovereign boundary certification.",
   "interpretation": "This candidate release writes every WGS84-to-grid operation explicitly. Candidate status is not an official national-authority endorsement or legal/geodetic certification.",
   "approval_record": {
-    "decision": "Use explicit EPSG operations for ID, LA, and PH. Keep VN blocked until its operation review closes.",
+    "decision": "Use explicit EPSG operations for ID, LA, and PH. Allow EPSG:6960 for provisional VN use with explicit opt-in.",
     "decision_date": "2026-11-18",
     "decision_scope": "Engineering QA decision; release-owner approval is still required"
   },
@@ -145,15 +145,15 @@
     },
     {
       "domain_code": "VN",
-      "support_status": "blocked",
+      "support_status": "candidate",
       "production_ready": false,
       "datum_basis": "VN-2000",
       "datum_authority": "EPSG:4756",
       "reference_epoch": 2000.0,
       "profile_file": "VN.v2.json",
       "scale_report": "../scale/VN_GRID_V2.json",
-      "review_status": "blocked-datum-operation-review",
-      "approval_basis": "INVERSE(EPSG:6960) is provisional only",
+      "review_status": "provisional-technical-only",
+      "approval_basis": "INVERSE(EPSG:6960)",
       "evidence_gaps": ["official VN-2000 operation selection", "regional operation policy", "independent datum control points", "release-owner approval"]
     }
   ]

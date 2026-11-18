@@ -112,7 +112,14 @@ def table_to_cells(
         _validate_columns(frame, [longitude_column, latitude_column])
         from .batch import encode_lonlat_pandas
 
-        encoded = encode_lonlat_pandas(context.grid, frame, longitude_column, latitude_column, level)
+        encoded = encode_lonlat_pandas(
+            context.grid,
+            frame,
+            longitude_column,
+            latitude_column,
+            level,
+            allow_candidate_crs=service.allow_candidate_crs,
+        )
         source_coordinates = list(zip(frame[longitude_column].tolist(), frame[latitude_column].tolist()))
         coordinate_mode = "lonlat"
 
@@ -154,6 +161,7 @@ def table_to_cells(
                 gid,
                 output_crs=geometry_crs,
                 geometry_format=geometry_format,
+                allow_candidate_crs=service.allow_candidate_crs,
             )
             for gid in result["gid"]
         ]

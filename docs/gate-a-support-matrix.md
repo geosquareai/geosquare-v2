@@ -19,7 +19,7 @@ The profile now writes the full WGS 84 longitude/latitude to grid pipeline. PROJ
 | `SG` | Candidate | SVY21, `EPSG:4757` | None; explicit projection pipeline | No |
 | `TH*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
 | `TL*` | Candidate | WGS84-style technical base | None; explicit projection pipeline | No |
-| `VN` | **Blocked** | VN-2000, `EPSG:4756` | `INVERSE(EPSG:6960)`, provisional | No |
+| `VN` | Candidate | VN-2000, `EPSG:4756` | `INVERSE(EPSG:6960)`, provisional opt-in only | No |
 
 `*` marks a provisional technical candidate.
 
@@ -29,7 +29,7 @@ The report is [`release/crs-qa-2.2.0-rc1.json`](../release/crs-qa-2.2.0-rc1.json
 
 ID, LA, and PH match the pinned PROJ result with the written pipeline. Their GID checks also match at levels 9 and 12. This proves reproducibility. It does not prove real-world accuracy without independent control points.
 
-VN stays blocked because EPSG offers more than one operation. The chosen `EPSG:6960` pipeline differs from automatic PROJ selection by up to `0.82 m` in the sample. One level-12 GID changed.
+VN is available only with explicit provisional opt-in. The chosen `EPSG:6960` pipeline differs from automatic PROJ selection by up to `0.82 m` in the sample. It has no production guarantee.
 
 ## Release gate still open
 

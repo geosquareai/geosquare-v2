@@ -8,6 +8,7 @@ from typing import Any, Iterable
 
 from .boundary import BoundaryPredicate, OperationalBoundary
 from .codec import side_cell_count
+from .crs import require_crs_released
 from .errors import CandidateLimitExceededError, GeometryDependencyError, ValidationError
 from .geometry import _require_geometry, profile_grid_crs, projected_cell_geometry, wgs84_cell_geometry
 from .grid import CoordinateTransformer, GeosquareGrid
@@ -58,6 +59,7 @@ def cell_to_geometry(
     output_crs: str = "grid",
     geometry_format: str = "shapely",
     max_segment_length_m: float = 25_000.0,
+    allow_candidate_crs: bool = False,
 ) -> Any:
     """Build one cell geometry in the grid CRS, WGS84, or another CRS."""
     if output_crs.lower() in {"grid", "projected"}:
@@ -67,6 +69,7 @@ def cell_to_geometry(
             grid,
             cell_or_gid,
             max_segment_length_m=max_segment_length_m,
+            allow_candidate_crs=allow_candidate_crs,
         )
     else:
         CRS, Transformer, _, _, transform, _ = _require_conversion_geometry()
@@ -86,10 +89,17 @@ def cells_to_geometry(
     *,
     output_crs: str = "grid",
     geometry_format: str = "shapely",
+    allow_candidate_crs: bool = False,
 ) -> tuple[Any, ...]:
     """Build geometries for a sequence of cell IDs."""
     return tuple(
-        cell_to_geometry(grid, cell, output_crs=output_crs, geometry_format=geometry_format)
+        cell_to_geometry(
+            grid,
+            cell,
+            output_crs=output_crs,
+            geometry_format=geometry_format,
+            allow_candidate_crs=allow_candidate_crs,
+        )
         for cell in cells
     )
 

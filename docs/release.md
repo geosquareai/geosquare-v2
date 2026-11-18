@@ -2,20 +2,16 @@
 
 ## 1. Current release state
 
-The stable release is `1.0.0`, prepared in the isolated worktree and not published. The previous `0.1.0rc1` candidate was uploaded to TestPyPI and verified in a clean Python 3.14 environment. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are already on PyPI. The 1.0.0 release keeps the signed SQLite registry model and uses option 2: `KH*`, `MM*`, `TH*`, and `TL*` remain bundled as explicitly technical/provisional profiles. The asterisk marks them. It has not been uploaded to TestPyPI or PyPI. The signed registry and bundled boundaries remain subject to final release approval and are not a claim of official national geodetic or legal-boundary status. See [NOTICE](../NOTICE) and [the national CRS plan](national-crs-plan.md).
+The current stable release is `1.1.0`. It was published to PyPI on 2026-11-18 and tagged `v1.1.0`. This release contains the explicit datum pipelines and signed registry used by the package. Version `1.0.0` was published on 2026-11-17. Earlier versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are also on PyPI.
+
+`VN` uses `EPSG:6960` only through explicit provisional opt-in. It remains a technical candidate and has no production field-accuracy guarantee. `KH`, `MM`, `TH`, and `TL` remain provisional technical profiles. Use the support matrix for each domain's current status. Bundled boundaries remain subject to final release-owner attribution and redistribution terms. See [NOTICE](../NOTICE) and the [Gate B license-family review](gate-b-license-review.md).
 
 ```text
 src/geosquare_v2/db/registry.db
 src/geosquare_v2/db/registry.db.sig
 ```
 
-The stable candidate contains all 11 ASEAN domains. The seven datum-backed domains
-`BN`, `ID`, `LA`, `MY`, `PH`, `SG`, and `VN` are classified production-ready
-within the GeoSquare support scope. `KH`, `MM`, `TH`, and `TL` remain provisional
-technical profiles. All bundled boundary files have a recorded release-owner
-redistribution approval under their existing license terms, with attribution,
-change-disclosure, and non-endorsement requirements retained. See [NOTICE](../NOTICE)
-and the [Gate B license-family review](gate-b-license-review.md).
+The release contains all 11 ASEAN domains. The signed registry records each domain's CRS, datum operation, area of use, epoch policy, accuracy metadata, and support status. The registry and bundled boundaries are not claims of official national geodetic or legal-boundary status.
 
 ### Option-2 stable support model
 
@@ -142,23 +138,19 @@ Load the signed registry from the installed package.
 
 ## 8. Release gates
 
-For this local `0.1.0rc1` preparation, verify:
+For release `1.1.0`, verify:
 
-- no private key is in Git, source inputs, or either candidate archive;
+- no private key is in Git, source inputs, or either release archive;
 - the clean package contains the database and signature;
 - the trusted public key verifies the signature;
 - the pinned PROJ environment passes;
-- scalar conformance tests pass;
-- geometry and boundary tests pass;
-- batch outputs match scalar outputs;
-- table, dataset, and aggregation tests pass;
-- migration fixtures pass;
-- candidate profile and static-epoch status remain clearly non-production;
+- scalar, geometry, boundary, batch, table, dataset, aggregation, and migration tests pass;
+- VN remains a provisional technical candidate and requires explicit opt-in;
 - boundary attribution is present in [NOTICE](../NOTICE), and the project release owner has accepted redistribution under the recorded file-specific terms; this is not an independent legal determination;
-- the candidate package size is explicitly reviewed; and
-- the full candidate wheel/sdist inspection and clean installs pass.
+- the release wheel and sdist pass inspection and clean-install checks; and
+- the same approved version is published to TestPyPI and PyPI.
 
-TestPyPI upload and clean-install verification are complete. No PyPI or Conda upload, tag, commit, or push is part of this preparation.
+Release `1.1.0` passed these gates, except that Python 3.15 support remains a separate follow-up because the pinned PROJ version is unavailable there.
 
 ## 9. Validation commands
 
@@ -183,6 +175,8 @@ Do not edit:
 
 Change the source artifact. Regenerate the database. Review it. Sign it again.
 
-## 11. Candidate preparation boundary
+## 11. Published release boundary
 
-This task prepared and verified local `0.1.0rc1` artifacts and verified the TestPyPI publication. It does not run a PyPI or Conda upload. PyPI publication remains a separate, explicitly authorized step after the file-level attribution decision and final release review.
+Release `1.1.0` was published to PyPI on 2026-11-18 from the merged `main` commit. The immutable tag is [`v1.1.0`](https://github.com/geosquareai/geosquare-v2/releases/tag/v1.1.0), and the GitHub release records the validation results and VN limitation.
+
+Do not overwrite version `1.1.0` or edit its signed registry. Any package or registry change requires a new version, a new signature, fresh TestPyPI verification, and a new PyPI publication.

@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.1.0 — explicit datum pipelines and provisional VN support
+
+Status: published to PyPI on 2026-11-18. See the [GitHub release](https://github.com/geosquareai/geosquare-v2/releases/tag/v1.1.0).
+
+### Changes
+
+- added explicit WGS 84-to-grid datum pipelines for `ID`, `LA`, `PH`, and `VN`;
+- added signed registry metadata for the explicit datum rules;
+- added 300-point pipeline parity QA for every domain;
+- added explicit opt-in for provisional VN support through `EPSG:6960`; and
+- kept VN outside the default production path.
+
+### Validation
+
+- GitHub tests passed;
+- a clean Python 3.12 installation passed;
+- signed registry loading passed; and
+- VN opt-in indexing passed.
+
+### Limits
+
+- VN remains a provisional technical candidate;
+- this release does not claim VN field accuracy; and
+- Python 3.15 support remains a separate follow-up because the pinned PROJ version is unavailable there.
+
 ## 2.2.0-rc1 — explicit datum QA candidate
 
 Status: engineering candidate. No domain has a production guarantee yet.
@@ -24,7 +49,7 @@ Status: engineering candidate. No domain has a production guarantee yet.
 
 ## 1.0.0 — first stable major release
 
-Status: prepared in the isolated `release/v1.0.0` worktree and not published. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are already on PyPI. 1.0.0 carries the frozen 0.2.0 contract forward.
+Status: published to PyPI on 2026-11-17. Versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are also on PyPI. 1.0.0 carries the frozen 0.2.0 contract forward.
 
 ### Support scope (option 2)
 

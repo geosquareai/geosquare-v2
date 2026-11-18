@@ -8,15 +8,26 @@ from .errors import GeometryDependencyError, ValidationError
 from .release import ReleaseProfile
 
 
-def require_crs_released(profile: ReleaseProfile) -> None:
-    """Reject profiles that have not passed the CRS release gate."""
+def require_crs_released(profile: ReleaseProfile, *, allow_candidate: bool = False) -> None:
+    """Reject profiles outside the normal CRS release gate.
+
+    Candidate profiles require an explicit caller opt-in. Blocked profiles always fail.
+    """
     if not isinstance(profile, ReleaseProfile):
         raise ValidationError("CRS release checks require a verified ReleaseProfile")
-    if profile.support_status != "released":
+    if profile.support_status == "released":
+        return
+    if profile.support_status == "candidate" and allow_candidate:
+        return
+    if profile.support_status == "candidate":
         raise ValidationError(
-            f"domain {profile.domain_code} CRS status is {profile.support_status}; "
-            "the domain has not passed the CRS release gate"
+            f"domain {profile.domain_code} CRS is a candidate; "
+            "set allow_candidate_crs=True for provisional use"
         )
+    raise ValidationError(
+        f"domain {profile.domain_code} CRS status is {profile.support_status}; "
+        "the domain has not passed the CRS release gate"
+    )
 
 
 def validate_wgs84_point(profile: ReleaseProfile, longitude: float, latitude: float) -> None:

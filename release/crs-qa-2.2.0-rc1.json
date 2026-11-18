@@ -97,7 +97,7 @@
     },
     {
       "domain_code": "VN",
-      "support_status": "blocked",
+      "support_status": "candidate",
       "mode": "explicit_operation",
       "operation_id": "INVERSE(EPSG:6960)",
       "stated_accuracy_m": 1.0,

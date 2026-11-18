@@ -69,7 +69,7 @@
       "domain_id": 2,
       "domain_code": "VN",
       "profile_file": "profiles/VN.v2.json",
-      "profile_sha256": "b251868dd562104f840bd36134c8221ecba9690d742df5dec63df52e753054ab"
+      "profile_sha256": "9fdda8ec30c258fc2c42d14bf98091818b8d3bed2f624b26b3946c9c5d85d70c"
     }
   ]
 }

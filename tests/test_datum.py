@@ -77,3 +77,11 @@ def test_unreleased_profile_fails_the_runtime_gate(profile):
 
     with pytest.raises(ValidationError, match="has not passed the CRS release gate"):
         require_crs_released(blocked)
+
+
+def test_candidate_profile_requires_explicit_opt_in(profile):
+    candidate = replace(profile, support_status="candidate")
+
+    with pytest.raises(ValidationError, match="candidate"):
+        require_crs_released(candidate)
+    require_crs_released(candidate, allow_candidate=True)

@@ -23,7 +23,7 @@
   "boundary_file": "../boundaries/VN_full.geojson",
   "boundary_sha256": "2e82dbe0662f0f592902ef3e79011e438d63c7a356d43b3df0553b38866b501b",
   "boundary_source": "geoBoundaries gbOpen VNM ADM0, VNM-ADM0-46766057, 2016, Creative Commons Attribution 4.0 International (CC BY 4.0)",
-  "support_status": "blocked",
+  "support_status": "candidate",
   "datum_transformation": {
     "source_crs": "EPSG:4326",
     "axis_order": "longitude_latitude",

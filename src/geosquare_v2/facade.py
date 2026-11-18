@@ -79,11 +79,13 @@ class GeosquareService:
         registry: DomainRegistry,
         *,
         boundary_root: str | Path | None = None,
+        allow_candidate_crs: bool = False,
     ) -> None:
         if not isinstance(registry, DomainRegistry):
             raise ValidationError("registry must be a DomainRegistry")
         self.registry = registry
         self.boundary_root = Path(boundary_root).resolve() if boundary_root is not None else None
+        self.allow_candidate_crs = bool(allow_candidate_crs)
         self._contexts: dict[str, _DomainContext] = {}
 
     @property
@@ -161,7 +163,7 @@ class GeosquareService:
         """Index a lon/lat point without manually creating a CRS transformer."""
         longitude, latitude = _validate_lonlat(longitude, latitude)
         context = self._context(domain_code)
-        require_crs_released(context.profile)
+        require_crs_released(context.profile, allow_candidate=self.allow_candidate_crs)
         validate_wgs84_point(context.profile, longitude, latitude)
         cell = context.grid.canonical_from_lonlat(
             longitude,
@@ -214,6 +216,7 @@ class GeosquareService:
             result.cell,
             output_crs=output_crs,
             geometry_format=geometry_format,
+            allow_candidate_crs=self.allow_candidate_crs,
         )
 
     def cells_to_geometry(
@@ -240,6 +243,7 @@ class GeosquareService:
             (result.cell for result in results),
             output_crs=output_crs,
             geometry_format=geometry_format,
+            allow_candidate_crs=self.allow_candidate_crs,
         )
 
     def polygon_to_cells(

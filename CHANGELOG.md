@@ -11,14 +11,14 @@ Status: engineering candidate. No domain has a production guarantee yet.
 - selected `INVERSE(EPSG:15912) + EPSG:9472` for ID;
 - selected `INVERSE(EPSG:1065)` for LA;
 - selected `INVERSE(EPSG:15708)` for PH;
-- selected `INVERSE(EPSG:6960)` for VN, but kept VN blocked;
+- selected `INVERSE(EPSG:6960)` for VN as a provisional, opt-in operation;
 - added 300-point pipeline parity QA for every domain; and
 - added a runtime gate for candidate and blocked profiles.
 
 ### Limits
 
 - ID, LA, and PH still need independent control points.
-- VN has two competing EPSG operations and stays blocked.
+- VN remains provisional because competing EPSG operations still exist.
 - The report proves repeatable numbers, not field accuracy.
 - The registry must be rebuilt and signed before release.
 

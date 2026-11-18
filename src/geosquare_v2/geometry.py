@@ -52,6 +52,7 @@ def wgs84_cell_geometry(
     cell_or_gid: CanonicalCell | str,
     *,
     max_segment_length_m: float = 25_000.0,
+    allow_candidate_crs: bool = False,
 ) -> BaseGeometry:
     """Return a densified WGS84 polygon for display or geographic interchange.
 
@@ -71,7 +72,7 @@ def wgs84_cell_geometry(
         raise GeometryDependencyError("wgs84 geometry requires Shapely 2.x") from exc
 
     projected = segmentize(projected_cell_geometry(grid, cell_or_gid), max_segment_length=float(max_segment_length_m))
-    require_crs_released(grid.profile)
+    require_crs_released(grid.profile, allow_candidate=allow_candidate_crs)
     transformer = wgs84_to_grid_transformer(grid.profile)
     try:
         from pyproj.enums import TransformDirection

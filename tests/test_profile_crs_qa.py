@@ -79,4 +79,4 @@ def test_selected_support_statuses():
     assert _profile("ID").support_status == "candidate"
     assert _profile("LA").support_status == "candidate"
     assert _profile("PH").support_status == "candidate"
-    assert _profile("VN").support_status == "blocked"
+    assert _profile("VN").support_status == "candidate"

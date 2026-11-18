@@ -101,7 +101,7 @@
     }
   },
   "generated_by": "tools/generate_conformance_vectors.py",
-  "geosquare_v2_version": "1.1.0rc1",
+  "geosquare_v2_version": "1.1.0",
   "proj_version": "9.5.1",
   "proj_version_exact": "9.5.1",
   "registry_version": "2.0.0",

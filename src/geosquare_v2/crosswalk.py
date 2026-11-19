@@ -13,6 +13,8 @@ from .errors import InvalidGIDError, ValidationError
 _FORMAT_VERSION = "1.0"
 _SPEC_VERSION = "2.0"
 _WEIGHT_KINDS = frozenset(("luas", "bangunan", "populasi", "lainnya"))
+# The eleven ASEAN domains in registry 2.0.0 (release/registry.v2.json).
+KNOWN_DOMAIN_CODES = frozenset(("BN", "ID", "KH", "LA", "MM", "MY", "PH", "SG", "TH", "TL", "VN"))
 _REQUIRED_MANIFEST_FIELDS = frozenset(
     (
         "format_version",
@@ -46,8 +48,9 @@ def _validate_manifest(manifest: Mapping[str, Any]) -> int:
         raise _fail("manifest spec_version must be '2.0'")
 
     domain_code = manifest["domain_code"]
-    if not isinstance(domain_code, str) or not domain_code.strip():
-        raise _fail("manifest domain_code must be a non-empty string")
+    if not isinstance(domain_code, str) or domain_code not in KNOWN_DOMAIN_CODES:
+        choices = ", ".join(sorted(KNOWN_DOMAIN_CODES))
+        raise _fail(f"manifest domain_code must be one of {choices}")
 
     level = manifest["level"]
     if type(level) is not int or not 0 <= level <= MAX_LEVEL:
@@ -137,6 +140,9 @@ def validate_crosswalk(rows: Iterable[Mapping[str, Any]], manifest: Mapping[str,
         totals[sumber_id] = totals.get(sumber_id, 0.0) + bobot
         cells.add(gid)
         row_count += 1
+
+    if not totals:
+        raise _fail("crosswalk has no rows")
 
     for sumber_id, total in totals.items():
         if abs(total - 1.0) > 1e-9:

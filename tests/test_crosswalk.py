@@ -102,3 +102,18 @@ def test_sum_within_tolerance_passes(manifest):
     assert validate_crosswalk(
         [{"sumber_id": "DESA-001", "gid": "22", "bobot": almost_one}], manifest
     ) == {"sources": 1, "rows": 1, "cells": 1}
+
+
+def test_empty_table_is_refused(manifest):
+    assert_invalid([], manifest, "no rows")
+
+
+def test_unknown_domain_code_is_refused(manifest):
+    manifest["domain_code"] = "XX"
+    assert_invalid(rows(), manifest, "domain_code must be one of")
+
+
+def test_every_registry_domain_is_accepted(manifest):
+    for code in ("BN", "ID", "KH", "LA", "MM", "MY", "PH", "SG", "TH", "TL", "VN"):
+        manifest["domain_code"] = code
+        assert validate_crosswalk(rows(), manifest)["sources"] == 2

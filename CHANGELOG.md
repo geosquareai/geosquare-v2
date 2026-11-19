@@ -42,7 +42,8 @@ Status: engineering candidate. No domain has a production guarantee yet.
 
 ### Limits
 
-- ID, LA, and PH still need independent control points.
+- ID, LA, and PH have no independent field-accuracy check. Their stated accuracy is the value written by the operation source.
+- Control points are not a release requirement. Accuracy claims cite the operation source, not a GeoSquare field test.
 - VN remains provisional because competing EPSG operations still exist.
 - The report proves repeatable numbers, not field accuracy.
 - The registry must be rebuilt and signed before release.

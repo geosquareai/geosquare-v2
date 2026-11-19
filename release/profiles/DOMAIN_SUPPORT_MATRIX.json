@@ -154,7 +154,7 @@
       "scale_report": "../scale/VN_GRID_V2.json",
       "review_status": "provisional-technical-only",
       "approval_basis": "INVERSE(EPSG:6960)",
-      "evidence_gaps": ["official VN-2000 operation selection", "regional operation policy", "independent datum control points", "release-owner approval"]
+      "evidence_gaps": ["official VN-2000 operation selection", "regional operation policy", "release-owner approval"]
     }
   ]
 }

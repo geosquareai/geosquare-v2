@@ -3,28 +3,28 @@
   "release_version": "2.2.0-rc1",
   "profile_version": "2.2.0-explicit-datum",
   "policy": "option-1-explicit-datum-operation",
-  "overall_status": "datum-qa-candidate-vn-provisional",
-  "production_geodetic_claim": "none until the profile passes the CRS release gate",
+  "overall_status": "released-with-provisional-domains",
+  "production_geodetic_claim": "limited to domains with production_ready true",
   "boundary_claim": "Bundled boundaries are candidate administrative inputs, not legal or sovereign boundary certification.",
-  "interpretation": "This candidate release writes every WGS84-to-grid operation explicitly. Candidate status is not an official national-authority endorsement or legal/geodetic certification.",
+  "interpretation": "The stable release marks six domains as production-ready and keeps five domains provisional. This is not an official national-authority endorsement or legal/geodetic certification.",
   "approval_record": {
-    "decision": "Use explicit EPSG operations for ID, LA, and PH. Allow EPSG:6960 for provisional VN use with explicit opt-in.",
-    "decision_date": "2026-11-18",
-    "decision_scope": "Engineering QA decision; release-owner approval is still required"
+    "decision": "Release BN, ID, LA, MY, PH, and SG as production-ready. Keep KH, MM, TH, TL, and VN provisional.",
+    "decision_date": "2026-11-19",
+    "decision_scope": "GeoSquare 1.1.0 release classification; not official national-authority approval"
   },
   "domains": [
     {
       "domain_code": "BN",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "GDBD2009",
       "datum_authority": "EPSG:5246",
       "reference_epoch": null,
       "profile_file": "BN.v2.json",
       "scale_report": "../scale/BN_GRID_V2.json",
-      "review_status": "no-datum-operation-review-pending",
-      "approval_basis": null,
-      "evidence_gaps": ["independent datum control points", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "KH",
@@ -41,42 +41,42 @@
     },
     {
       "domain_code": "ID",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "SRGI2013 static realization at 2012.0",
       "datum_authority": "EPSG:9470",
       "reference_epoch": 2012.0,
       "profile_file": "ID.v2.json",
       "scale_report": "../scale/ID_GRID_V2.json",
-      "review_status": "explicit-operation-selected-qa-pending",
-      "approval_basis": "EPSG:15912 + EPSG:9472",
-      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "LA",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "Lao 1997",
       "datum_authority": "EPSG:4678",
       "reference_epoch": null,
       "profile_file": "LA.v2.json",
       "scale_report": "../scale/LA_GRID_V2.json",
-      "review_status": "explicit-operation-selected-qa-pending",
-      "approval_basis": "INVERSE(EPSG:1065)",
-      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "MY",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "GDM2000",
       "datum_authority": "EPSG:4742",
       "reference_epoch": null,
       "profile_file": "MY.v2.json",
       "scale_report": "../scale/MY_GRID_V2.json",
-      "review_status": "no-datum-operation-review-pending",
-      "approval_basis": null,
-      "evidence_gaps": ["independent datum control points", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "MM",
@@ -93,29 +93,29 @@
     },
     {
       "domain_code": "PH",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "PRS92",
       "datum_authority": "EPSG:4683",
       "reference_epoch": null,
       "profile_file": "PH.v2.json",
       "scale_report": "../scale/PH_GRID_V2.json",
-      "review_status": "explicit-operation-selected-qa-pending",
-      "approval_basis": "INVERSE(EPSG:15708)",
-      "evidence_gaps": ["independent datum control points", "300-point sample", "round-trip QA", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "SG",
-      "support_status": "candidate",
-      "production_ready": false,
+      "support_status": "released",
+      "production_ready": true,
       "datum_basis": "SVY21",
       "datum_authority": "EPSG:4757",
       "reference_epoch": null,
       "profile_file": "SG.v2.json",
       "scale_report": "../scale/SG_GRID_V2.json",
-      "review_status": "no-datum-operation-review-pending",
-      "approval_basis": null,
-      "evidence_gaps": ["independent datum control points", "release-owner approval"]
+      "review_status": "released-in-v1.1.0",
+      "approval_basis": "v1.1.0-release-classification",
+      "evidence_gaps": []
     },
     {
       "domain_code": "TH",

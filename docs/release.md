@@ -4,12 +4,14 @@
 
 The current stable release is `1.1.0`. It was published to PyPI on 2026-11-18 and tagged `v1.1.0`. This release contains the explicit datum pipelines and signed registry used by the package. Version `1.0.0` was published on 2026-11-17. Earlier versions `0.1.0rc1`, `0.1.0rc2`, and `0.2.0` are also on PyPI.
 
-`VN` uses `EPSG:6960` only through explicit provisional opt-in. It remains a technical candidate and has no production field-accuracy guarantee. `KH`, `MM`, `TH`, and `TL` remain provisional technical profiles. Use the support matrix for each domain's current status. Bundled boundaries remain subject to final release-owner attribution and redistribution terms. See [NOTICE](../NOTICE) and the [Gate B license-family review](gate-b-license-review.md).
+`BN`, `ID`, `LA`, `MY`, `PH`, and `SG` are production-ready under GeoSquare's support policy. `VN` uses `EPSG:6960` only through explicit provisional opt-in. `KH`, `MM`, `TH`, `TL`, and `VN` remain provisional technical profiles. Use the support matrix for each domain's current status. Bundled boundaries remain subject to final release-owner attribution and redistribution terms. See [NOTICE](../NOTICE) and the [Gate B license-family review](gate-b-license-review.md).
 
 ```text
 src/geosquare_v2/db/registry.db
 src/geosquare_v2/db/registry.db.sig
 ```
+
+This E8.1 branch changes the source support matrix. Regenerate and sign the database before the next package release. The old signed `1.1.0` artifacts stay unchanged.
 
 The release contains all 11 ASEAN domains. The signed registry records each domain's CRS, datum operation, area of use, epoch policy, accuracy metadata, and support status. The registry and bundled boundaries are not claims of official national geodetic or legal-boundary status.
 
@@ -145,7 +147,9 @@ For release `1.1.0`, verify:
 - the trusted public key verifies the signature;
 - the pinned PROJ environment passes;
 - scalar, geometry, boundary, batch, table, dataset, aggregation, and migration tests pass;
+- six domains are production-ready under the support matrix;
 - VN remains a provisional technical candidate and requires explicit opt-in;
+- KH, MM, TH, and TL remain provisional technical candidates;
 - boundary attribution is present in [NOTICE](../NOTICE), and the project release owner has accepted redistribution under the recorded file-specific terms; this is not an independent legal determination;
 - the release wheel and sdist pass inspection and clean-install checks; and
 - the same approved version is published to TestPyPI and PyPI.

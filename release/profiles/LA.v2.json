@@ -26,7 +26,7 @@
   "datum_base_authority": "EPSG:4678",
   "epoch_policy": "static_realization",
   "input_coordinate_policy": "WGS 84 longitude/latitude is accepted; runtime applies the declared static Lao 1997 operation.",
-  "support_status": "candidate",
+  "support_status": "released",
   "datum_transformation": {
     "source_crs": "EPSG:4326",
     "axis_order": "longitude_latitude",

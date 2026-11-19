@@ -26,7 +26,7 @@
   "datum_base_authority": "EPSG:4683",
   "epoch_policy": "static_realization",
   "input_coordinate_policy": "WGS 84 longitude/latitude is accepted; runtime applies the declared static PRS92 operation.",
-  "support_status": "candidate",
+  "support_status": "released",
   "datum_transformation": {
     "source_crs": "EPSG:4326",
     "axis_order": "longitude_latitude",

@@ -25,7 +25,7 @@
   "boundary_source": "geoBoundaries gbOpen MYS ADM0, MYS-ADM0-87038898, 2017, Open Data Commons Open Database License 1.0",
   "datum_base_authority": "EPSG:4742",
   "epoch_policy": "static_realization",
-  "support_status": "candidate",
+  "support_status": "released",
   "datum_transformation": {
     "source_crs": "EPSG:4326",
     "axis_order": "longitude_latitude",

@@ -9,7 +9,7 @@
       "domain_id": 3,
       "domain_code": "BN",
       "profile_file": "profiles/BN.v2.json",
-      "profile_sha256": "b1208c27a3fedccb979c7d6c78936097149326964e756813001d937dbd95f3e7"
+      "profile_sha256": "c311b10bab6ddcfeaadfc1e84bd8d4e08d71af695252556631e4159b2fef4e5a"
     },
     {
       "domain_id": 4,
@@ -21,19 +21,19 @@
       "domain_id": 1,
       "domain_code": "ID",
       "profile_file": "profiles/ID.v2.json",
-      "profile_sha256": "335b2471160d2c369ae26c022eb8dd3a55cae0a604726f9d0bdad75ab7e99164"
+      "profile_sha256": "1bd413ae02f148329b66a83ca788d00bc2a1ea9ae30912ec74dc8d5bdd9956d4"
     },
     {
       "domain_id": 5,
       "domain_code": "LA",
       "profile_file": "profiles/LA.v2.json",
-      "profile_sha256": "7f234351d7e223f2599b3e56c8ec910a4d69add6da61c8a7a076e5cdecb4803b"
+      "profile_sha256": "73ea123551ab7d9546651d57ffe25dec797fb05921fbf6ae265d6181be61503d"
     },
     {
       "domain_id": 6,
       "domain_code": "MY",
       "profile_file": "profiles/MY.v2.json",
-      "profile_sha256": "12662d23955693e70361a7c48bcb88cad15930c75cfcccf556bdf1559f5bec06"
+      "profile_sha256": "751b091e65ba00aa44229a37ee9fe3d05888628a2be332b528955a5bc702f9f6"
     },
     {
       "domain_id": 7,
@@ -45,13 +45,13 @@
       "domain_id": 8,
       "domain_code": "PH",
       "profile_file": "profiles/PH.v2.json",
-      "profile_sha256": "5016c5a1248af80369451cd879e84bc7382c7968d82b3b0ef07f949f37c8bac0"
+      "profile_sha256": "9234fff4b6e120732ae78aedbff99a238dd4296e61fcf9c57cc095c70af4a97a"
     },
     {
       "domain_id": 9,
       "domain_code": "SG",
       "profile_file": "profiles/SG.v2.json",
-      "profile_sha256": "e205394c7ac43f04879070141eee971f6cd0ce7a015bfb11ef6abd8e4d48d765"
+      "profile_sha256": "a44cb3ec47bb6dda132c7a5efca83b95d440801d22f44fdbd628ddca9ff84344"
     },
     {
       "domain_id": 10,

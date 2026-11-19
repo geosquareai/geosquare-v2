@@ -149,3 +149,48 @@ def validate_crosswalk(rows: Iterable[Mapping[str, Any]], manifest: Mapping[str,
             raise _fail(f"weights for sumber_id {sumber_id!r} sum to {total:.17g}, expected 1 within 1e-9")
 
     return {"sources": len(totals), "rows": row_count, "cells": len(cells)}
+
+
+def polygon_crosswalk_rows(polygons: Iterable[tuple[str, Any]], grid: Any, level: int, *, tolerance: float = 1e-6) -> list[dict[str, Any]]:
+    """Build area-share crosswalk rows from source polygons already in the grid CRS.
+
+    Each ``(sumber_id, polygon)`` pair gives one row per overlapped cell. The weight is the
+    overlap area divided by the polygon area, both measured in the grid CRS. Candidate cells
+    come from ``polygon_to_cells``. A polygon whose candidate cells do not cover its full area
+    raises ``ValidationError``, so no source loses area silently. Weights are renormalised so
+    each source sums to exactly 1, as ``validate_crosswalk`` requires.
+    """
+    from .conversion import polygon_to_cells
+    from .geometry import projected_cell_geometry
+
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for sumber_id, polygon in polygons:
+        if not isinstance(sumber_id, str) or not sumber_id.strip():
+            raise _fail("polygon sumber_id must be a non-empty string")
+        if sumber_id in seen:
+            raise _fail(f"duplicate sumber_id {sumber_id!r}")
+        seen.add(sumber_id)
+        total = polygon.area
+        if polygon.is_empty or not math.isfinite(total) or total <= 0:
+            raise _fail(f"sumber_id {sumber_id!r} has no area")
+
+        pieces: dict[str, float] = {}
+        for record in polygon_to_cells(grid, polygon, grid.profile.crs_wkt2, level):
+            if record.gid in pieces:
+                raise _fail(f"sumber_id {sumber_id!r} lists cell {record.gid!r} twice")
+            overlap = projected_cell_geometry(grid, record.gid).intersection(polygon).area
+            if overlap > 0:
+                pieces[record.gid] = overlap
+
+        covered = sum(pieces.values())
+        if abs(covered / total - 1) > tolerance:
+            raise _fail(
+                f"candidate cells cover {covered / total:.9f} of sumber_id {sumber_id!r}; expected 1"
+            )
+        for gid, area in pieces.items():
+            rows.append({"sumber_id": sumber_id, "gid": gid, "bobot": area / covered})
+
+    if not rows:
+        raise _fail("no polygons produced cells")
+    return rows

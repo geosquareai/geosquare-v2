@@ -76,7 +76,7 @@ def test_explicit_profile_pipeline_matches_pinned_proj(code: str):
 
 
 def test_selected_support_statuses():
-    assert _profile("ID").support_status == "candidate"
-    assert _profile("LA").support_status == "candidate"
-    assert _profile("PH").support_status == "candidate"
-    assert _profile("VN").support_status == "candidate"
+    for code in ("BN", "ID", "LA", "MY", "PH", "SG"):
+        assert _profile(code).support_status == "released"
+    for code in ("KH", "MM", "TH", "TL", "VN"):
+        assert _profile(code).support_status == "candidate"

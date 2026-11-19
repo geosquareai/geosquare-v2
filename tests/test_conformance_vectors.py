@@ -19,7 +19,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 VECTOR_DIR = REPO_ROOT / "conformance" / "spec-2.0"
 GENERATOR = REPO_ROOT / "tools" / "generate_conformance_vectors.py"
 EXPECTED_DOMAIN_COUNT = 11
-EXPECTED_PROVISIONAL_DOMAINS = {"BN", "KH", "ID", "LA", "MY", "MM", "PH", "SG", "TH", "TL", "VN"}
+EXPECTED_PRODUCTION_DOMAINS = {"BN", "ID", "LA", "MY", "PH", "SG"}
+EXPECTED_PROVISIONAL_DOMAINS = {"KH", "MM", "TH", "TL", "VN"}
 
 
 def _load_generator():
@@ -59,7 +60,9 @@ def test_manifest_declares_spec_and_all_domains():
     manifest = _committed("manifest.json")
     assert manifest["spec_version"] == "2.0"
     assert len(manifest["domains"]) == EXPECTED_DOMAIN_COUNT
+    production = {d["domain_code"] for d in manifest["domains"] if d["production_ready"]}
     provisional = {d["domain_code"] for d in manifest["domains"] if not d["production_ready"]}
+    assert production == EXPECTED_PRODUCTION_DOMAINS
     assert provisional == EXPECTED_PROVISIONAL_DOMAINS
 
 
@@ -123,7 +126,7 @@ def test_projected_cases_cover_every_domain_and_boundary_rule():
         assert gid_to_indices(gid) == (case["level"], case["expect"]["x_idx"], case["expect"]["y_idx"])
 
 
-def test_points_cover_every_domain_and_flag_provisional_ones():
+def test_points_cover_every_domain_and_match_support_flags():
     points = _committed("points.json")
     domains = {case["domain_code"] for case in points["cases"]}
     assert len(domains) == EXPECTED_DOMAIN_COUNT
@@ -132,7 +135,9 @@ def test_points_cover_every_domain_and_flag_provisional_ones():
         gids = case["gids"]
         assert len(gids["12"]) == 12
         assert gids["12"].startswith(gids["9"]) and gids["9"].startswith(gids["7"]) and gids["7"].startswith(gids["5"])
-        assert case["production_ready"] is False
+        expected_production = case["domain_code"] in EXPECTED_PRODUCTION_DOMAINS
+        assert case["production_ready"] is expected_production
+        assert case["support_status"] == ("released" if expected_production else "candidate")
 
 
 def test_packed_ids_by_domain_decode_to_their_own_domain():

@@ -360,8 +360,7 @@ def _points_section(service, profiles, support) -> dict[str, Any]:
             )
     return {
         "description": (
-            "Lon/lat to GID at several levels. Points come from each boundary's representative point. "
-            "Provisional domains are included and marked with their support status."
+            "Lon/lat to GID at several levels. Six released domains and five provisional domains are included with their support status."
         ),
         "cases": cases,
     }

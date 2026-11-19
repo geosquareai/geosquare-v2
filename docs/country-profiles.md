@@ -82,26 +82,23 @@ Source and license details are in:
 - [`ASEAN_COVERAGE_PROJECTION.md`](../internal/research/ASEAN_COVERAGE_PROJECTION.md); and
 - [`ASEAN_BOUNDARY_METADATA.json`](../release/boundaries/ASEAN_BOUNDARY_METADATA.json).
 
-## 4. Profile review results
+## 4. Current support classes
 
-The review files are:
+The stable `1.1.0` release marks six profiles as production-ready under GeoSquare's support policy. Five profiles remain provisional technical candidates.
 
-- [`ASEAN_PRIORITY_PROFILE_REVIEW.md`](../internal/research/ASEAN_PRIORITY_PROFILE_REVIEW.md);
-- [`ASEAN_PRIORITY_PROFILE_REVIEW.json`](../release/scale/ASEAN_PRIORITY_PROFILE_REVIEW.json); and
-- [`ASEAN_PRIORITY_PROFILE_DECISIONS.json`](../release/profiles/ASEAN_PRIORITY_PROFILE_DECISIONS.json).
-
-First-pass recommended candidates:
-
-| Country | Candidate | Sampled scale error | Review status |
-|---|---|---:|---|
-| Indonesia | LCC 1/6 | about 0.61% | datum review |
-| Philippines | LCC 1/6 | about 0.59% | datum and island review |
-| Viet Nam | existing VN-2000 LCC | about 0.49% | datum review |
-| Myanmar | LCC 1/6 | about 0.77% | datum and boundary review |
-| Thailand | LCC 1/6 | about 0.47% | datum and boundary review |
-| Malaysia | LCC 1/6 | about 0.09% | component and datum review |
-
-These candidates are included in the signed 11-domain registry candidate. They are not automatically approved production profiles.
+| Domain | Support status | Datum or CRS basis | Review note |
+|---|---|---|---|
+| BN | Released | GDBD2009 | Production-ready in the support matrix |
+| ID | Released | SRGI2013 at epoch 2012.0 | Explicit datum operation |
+| LA | Released | Lao 1997 | Explicit datum operation |
+| MY | Released | GDM2000 | Production-ready in the support matrix |
+| PH | Released | PRS92 | Explicit datum operation |
+| SG | Released | SVY21 | Production-ready in the support matrix |
+| KH | Candidate | WGS84-style technical base | Provisional |
+| MM | Candidate | WGS84-style technical base | Provisional |
+| TH | Candidate | WGS84-style technical base | Provisional |
+| TL | Candidate | WGS84-style technical base | Provisional |
+| VN | Candidate | VN-2000 with `EPSG:6960` | Explicit opt-in only |
 
 ## 5. Approval bands
 

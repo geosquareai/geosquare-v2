@@ -26,7 +26,7 @@
   "datum_base_authority": "EPSG:9470",
   "epoch_policy": "static_realization",
   "input_coordinate_policy": "WGS 84 longitude/latitude is accepted; the declared static operation targets SRGI2013 at epoch 2012.0.",
-  "support_status": "candidate",
+  "support_status": "released",
   "datum_transformation": {
     "source_crs": "EPSG:4326",
     "axis_order": "longitude_latitude",

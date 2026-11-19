@@ -10,8 +10,8 @@
       },
       "lat": 0.114714,
       "lon": 113.321534,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "ID",
@@ -23,8 +23,8 @@
       },
       "lat": -6.2088,
       "lon": 106.8456,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "VN",
@@ -49,8 +49,8 @@
       },
       "lat": 4.525753,
       "lon": 114.535538,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "KH",
@@ -75,8 +75,8 @@
       },
       "lat": 18.206297,
       "lon": 104.692439,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "MY",
@@ -88,8 +88,8 @@
       },
       "lat": 3.995855,
       "lon": 102.08728,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "MM",
@@ -114,8 +114,8 @@
       },
       "lat": 7.689755,
       "lon": 125.236552,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "SG",
@@ -127,8 +127,8 @@
       },
       "lat": 1.340438,
       "lon": 103.830237,
-      "production_ready": false,
-      "support_status": "candidate"
+      "production_ready": true,
+      "support_status": "released"
     },
     {
       "domain_code": "TH",
@@ -157,5 +157,5 @@
       "support_status": "candidate"
     }
   ],
-  "description": "Lon/lat to GID at several levels. Points come from each boundary's representative point. Provisional domains are included and marked with their support status."
+  "description": "Lon/lat to GID at several levels. Six released domains and five provisional domains are included with their support status."
 }

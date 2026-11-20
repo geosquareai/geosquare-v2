@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -34,10 +35,8 @@ SCALE = RELEASE / "scale"
 BOUNDARIES = RELEASE / "boundaries"
 DB = PROJECT / "src" / "geosquare_v2" / "db" / "registry.db"
 SIG = PROJECT / "src" / "geosquare_v2" / "db" / "registry.db.sig"
-PRIVATE_KEY = Path(
-    "/Users/sawungrana/Documents/map/geosquare/geosquare-system-v2/"
-    "_gsq_v2/geosquare-registry-private.pem"
-)
+# The signing key never lives in this repository. Set GSQ_REGISTRY_PRIVATE_KEY to its path.
+PRIVATE_KEY_ENV = "GSQ_REGISTRY_PRIVATE_KEY"
 KEY_ID = "geosquare-registry-2026-09"
 PROFILE_VERSION = "2.1.0-rc2-static-datum"
 PACKAGE_VERSION = "0.1.0rc2"
@@ -266,12 +265,15 @@ def build_registry() -> None:
     from geosquare_v2.db import MigrationTool
 
     MigrationTool(RELEASE).migrate(PROJECT / "src" / "geosquare_v2" / "db" / "registry.db")
+    private_key = os.environ.get(PRIVATE_KEY_ENV)
+    if not private_key:
+        raise SystemExit(f"set {PRIVATE_KEY_ENV} to the registry signing key path")
     subprocess.run(
         [
             sys.executable,
             str(PROJECT / "tools" / "sign_registry_db.py"),
             "--private-key",
-            str(PRIVATE_KEY),
+            private_key,
             "--db",
             str(DB),
             "--output",

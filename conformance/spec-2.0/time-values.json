@@ -1,0 +1,694 @@
+{
+  "cases": [
+    {
+      "bucket_hours": null,
+      "expect": {
+        "start": "2024-02-29T00:00:00",
+        "valid": true
+      },
+      "label": "2024-02-29",
+      "name": "parse_leap_day",
+      "operation": "parse",
+      "period_type": "day"
+    },
+    {
+      "bucket_hours": null,
+      "expect": {
+        "valid": false
+      },
+      "label": "2023-02-29",
+      "name": "parse_invalid_calendar_day",
+      "operation": "parse",
+      "period_type": "day"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "start": "2026-11-19T04:00:00",
+        "valid": true
+      },
+      "label": "2026-11-19T04",
+      "name": "parse_aligned_four_hour_bucket",
+      "operation": "parse",
+      "period_type": "hour"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "valid": false
+      },
+      "label": "2026-11-19T02",
+      "name": "parse_unaligned_four_hour_bucket",
+      "operation": "parse",
+      "period_type": "hour"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "valid": false
+      },
+      "label": "2026-11-19T04+07",
+      "name": "parse_offset_rejected",
+      "operation": "parse",
+      "period_type": "hour"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "valid": false
+      },
+      "label": "2026-11-19 04",
+      "name": "parse_space_separator_rejected",
+      "operation": "parse",
+      "period_type": "hour"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "valid": false
+      },
+      "label": "2026-11-19",
+      "name": "parse_bucket_on_day_rejected",
+      "operation": "parse",
+      "period_type": "day"
+    },
+    {
+      "bucket_hours": 5,
+      "expect": {
+        "valid": false
+      },
+      "label": "2026-11-19T00",
+      "name": "parse_bucket_not_allowed_value",
+      "operation": "parse",
+      "period_type": "hour"
+    },
+    {
+      "bucket_hours": null,
+      "expect": {
+        "end": "2027-01-01T00:00:00",
+        "start": "2026-12-01T00:00:00"
+      },
+      "label": "2026-12",
+      "name": "interval_month_crosses_year",
+      "operation": "interval",
+      "period_type": "month"
+    },
+    {
+      "bucket_hours": 4,
+      "expect": {
+        "end": "2026-11-19T08:00:00",
+        "start": "2026-11-19T04:00:00"
+      },
+      "label": "2026-11-19T04",
+      "name": "interval_four_hour_bucket",
+      "operation": "interval",
+      "period_type": "hour"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "manifest_valid_day_cube",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "manifest": {
+        "bucket_hours": 4,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01T00",
+        "period_start": "2026-11-01T00",
+        "period_type": "hour",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "manifest_valid_hour_cube",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-11-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "manifest_empty_range_fails",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "Asia/Jakarta",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "manifest_local_timezone_fails",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": true,
+          "unique_key": [
+            "gid"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "manifest_unique_gid_true_fails",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "period",
+            "semantics": "COUNT"
+          }
+        ]
+      },
+      "name": "manifest_period_value_field_fails",
+      "operation": "manifest"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "rows_sorted_and_unique_pass",
+      "operation": "rows",
+      "rows": [
+        {
+          "gid": "222222222",
+          "period": "2026-11-19"
+        },
+        {
+          "gid": "222222222",
+          "period": "2026-11-20"
+        },
+        {
+          "gid": "222222227",
+          "period": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "rows_duplicate_pair_fails",
+      "operation": "rows",
+      "rows": [
+        {
+          "gid": "222222222",
+          "period": "2026-11-19"
+        },
+        {
+          "gid": "222222222",
+          "period": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "rows_end_is_exclusive",
+      "operation": "rows",
+      "rows": [
+        {
+          "gid": "222222222",
+          "period": "2026-12-01"
+        }
+      ]
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "rows_unsorted_fail",
+      "operation": "rows",
+      "rows": [
+        {
+          "gid": "222222227",
+          "period": "2026-11-19"
+        },
+        {
+          "gid": "222222222",
+          "period": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "expect": {
+        "valid": false
+      },
+      "manifest": {
+        "bucket_hours": null,
+        "dataset_type": "cell_time_values",
+        "domain_code": "ID",
+        "identity": {
+          "gid_column": "gid",
+          "period_column": "period",
+          "unique_gid": false,
+          "unique_key": [
+            "gid",
+            "period"
+          ]
+        },
+        "level": 9,
+        "manifest_version": "1.0",
+        "period_end": "2026-12-01",
+        "period_start": "2026-11-01",
+        "period_type": "day",
+        "storage": {
+          "partitioning": [],
+          "sorted_by": [
+            "gid",
+            "period"
+          ]
+        },
+        "timezone": "UTC",
+        "value_fields": [
+          {
+            "name": "rain_mm",
+            "semantics": "MEASUREMENT",
+            "time_aggregation": "mean"
+          }
+        ]
+      },
+      "name": "rows_wrong_level_fails",
+      "operation": "rows",
+      "rows": [
+        {
+          "gid": "22222222",
+          "period": "2026-11-19"
+        }
+      ]
+    },
+    {
+      "declared": null,
+      "expect": {
+        "rule": "sum"
+      },
+      "name": "rollup_count_sums",
+      "operation": "rollup",
+      "semantics": "COUNT"
+    },
+    {
+      "declared": "mean",
+      "expect": {
+        "rule": "mean"
+      },
+      "name": "rollup_measurement_declared_mean",
+      "operation": "rollup",
+      "semantics": "MEASUREMENT"
+    },
+    {
+      "declared": null,
+      "expect": {
+        "valid": false
+      },
+      "name": "rollup_measurement_undeclared_fails",
+      "operation": "rollup",
+      "semantics": "MEASUREMENT"
+    },
+    {
+      "declared": null,
+      "expect": {
+        "valid": false
+      },
+      "name": "rollup_categorical_fails",
+      "operation": "rollup",
+      "semantics": "CATEGORICAL"
+    },
+    {
+      "expect": {
+        "relation": "contains"
+      },
+      "left": {
+        "bucket_hours": null,
+        "label": "2026",
+        "period_type": "year"
+      },
+      "name": "relation_year_contains_day",
+      "operation": "relation",
+      "right": {
+        "bucket_hours": null,
+        "label": "2026-11-19",
+        "period_type": "day"
+      }
+    },
+    {
+      "expect": {
+        "relation": "contained"
+      },
+      "left": {
+        "bucket_hours": 4,
+        "label": "2026-11-19T04",
+        "period_type": "hour"
+      },
+      "name": "relation_bucket_inside_day",
+      "operation": "relation",
+      "right": {
+        "bucket_hours": null,
+        "label": "2026-11-19",
+        "period_type": "day"
+      }
+    },
+    {
+      "expect": {
+        "relation": "disjoint"
+      },
+      "left": {
+        "bucket_hours": null,
+        "label": "2026-11-19",
+        "period_type": "day"
+      },
+      "name": "relation_adjacent_days_disjoint",
+      "operation": "relation",
+      "right": {
+        "bucket_hours": null,
+        "label": "2026-11-20",
+        "period_type": "day"
+      }
+    }
+  ],
+  "dataset_type": "cell_time_values",
+  "description": "Labels, half-open UTC intervals, manifest and row rules, per-field time rollup and label relations. Expected values follow from the rules. Storage layout is not covered here.",
+  "rules": "docs/cell-dataset-contract.md, section 2",
+  "spec_version": "2.0"
+}

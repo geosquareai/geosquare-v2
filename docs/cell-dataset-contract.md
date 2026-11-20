@@ -88,6 +88,30 @@ Rules:
 
 Reference rules and test vectors: `src/geosquare_v2/compact.py` and `conformance/spec-2.0/compact-set.json`.
 
+### `cell_time_values`
+
+One row per cell and period. Use this for values that change over time.
+
+```text
+gid,period,rain_mm
+222222222,2026-11-19,12.4
+222222222,2026-11-20,0.0
+```
+
+Rules:
+
+- `period` is reserved. Its label is one of `YYYY`, `YYYY-MM`, `YYYY-MM-DD`, or `YYYY-MM-DDTHH`. Offsets, spaces and short forms are not allowed.
+- The manifest sets one `period_type`: `year`, `month`, `day`, or `hour`. All rows use it.
+- `hour` needs `bucket_hours`: 1, 2, 3, 4, 6, 8, or 12. The label is the bucket start in UTC and must align to 00.
+- `timezone` must be `UTC`. Convert local time, such as WIB, before storing.
+- `period_start` is included. `period_end` is excluded. The range must not be empty. A range may have gaps.
+- The unique key is `(gid, period)`. Rows are sorted by `gid`, then `period`.
+- One dataset has one cell level. A row's GID must be at that level.
+- Time rollup: COUNT and TOTAL sum. MEASUREMENT needs `time_aggregation` set to `mean`, `min`, or `max`. CATEGORICAL cannot roll up in time.
+- Two labels relate by their UTC intervals: `equal`, `contains`, `contained`, `overlap`, or `disjoint`. Joins across periods use that relation.
+
+Reference rules and test vectors: `src/geosquare_v2/timecube.py` and `conformance/spec-2.0/time-values.json`. Storage layout and partitioning are not covered yet.
+
 ## 3. Dataset scope
 
 One dataset must use one:

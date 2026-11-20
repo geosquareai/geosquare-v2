@@ -83,6 +83,10 @@
       "bytes": 128083,
       "sha256": "87c362e4dc9085403ca9453a88a51bfd8783f299f72ce33d6b792c3688c383bd"
     },
+    "compact-set.json": {
+      "bytes": 10072,
+      "sha256": "ffaa4454c88d55c40eefe43d8f40d944be122b8a27726c2903af0ed0f40242b9"
+    },
     "detect.json": {
       "bytes": 16927,
       "sha256": "5828f8cffba2857317badba2fba95d4ed39cc522fe48c6054fbf8b8a49d390cb"

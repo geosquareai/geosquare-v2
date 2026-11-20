@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.2.0 — stores for cell_compact_set and cell_time_values
+
+Status: prepared. Not yet published.
+
+### Changes
+
+- added `geosquare_v2.compact_store` to write and read `cell_compact_set` datasets;
+- added `geosquare_v2.time_store` to write and read `cell_time_values` datasets, including hour buckets in UTC;
+- every read checks the manifest, columns, row count and rules, and rejects bad data without repair;
+- added the `cell_compact_set` and `cell_time_values` rules to the contract (no change to `cell_values` or `cell_contributions`);
+- added the `cell_time_values` reference rules and 33 conformance cases.
+
+### Validation
+
+- targeted tests: compact, time-cube and store suites pass;
+- the full suite is run before the TestPyPI upload.
+
+### Limits
+
+- there is no JSON schema file for the two new types yet;
+- partitioning for time values is not defined.
+
 ## 1.1.0 — explicit datum pipelines and provisional VN support
 
 Status: published to PyPI on 2026-11-18. See the [GitHub release](https://github.com/geosquareai/geosquare-v2/releases/tag/v1.1.0).

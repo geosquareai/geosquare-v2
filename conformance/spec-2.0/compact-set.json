@@ -1,0 +1,613 @@
+{
+  "cases": [
+    {
+      "expect": {
+        "gids": [
+          ""
+        ]
+      },
+      "input": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "C",
+        "E",
+        "F",
+        "G",
+        "H",
+        "J",
+        "L",
+        "M",
+        "N",
+        "P",
+        "Q",
+        "R",
+        "T",
+        "V",
+        "W",
+        "X",
+        "Y"
+      ],
+      "name": "five_by_five_children_promote_to_root",
+      "operation": "canonicalize"
+    },
+    {
+      "expect": {
+        "gids": [
+          "2"
+        ]
+      },
+      "input": [
+        "22",
+        "23",
+        "24",
+        "25"
+      ],
+      "name": "two_by_two_children_promote_to_parent",
+      "operation": "canonicalize"
+    },
+    {
+      "expect": {
+        "gids": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "C",
+          "E",
+          "F",
+          "G",
+          "H",
+          "J",
+          "L",
+          "M",
+          "N",
+          "P",
+          "Q",
+          "R",
+          "T",
+          "V",
+          "W",
+          "X"
+        ]
+      },
+      "input": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "C",
+        "E",
+        "F",
+        "G",
+        "H",
+        "J",
+        "L",
+        "M",
+        "N",
+        "P",
+        "Q",
+        "R",
+        "T",
+        "V",
+        "W",
+        "X"
+      ],
+      "name": "one_missing_child_blocks_promotion",
+      "operation": "canonicalize"
+    },
+    {
+      "expect": {
+        "gids": [
+          ""
+        ]
+      },
+      "input": [
+        "22",
+        "23",
+        "32",
+        "33",
+        "42",
+        "43",
+        "52",
+        "53",
+        "62",
+        "63",
+        "24",
+        "25",
+        "34",
+        "35",
+        "44",
+        "45",
+        "54",
+        "55",
+        "64",
+        "65",
+        "72",
+        "73",
+        "82",
+        "83",
+        "92",
+        "93",
+        "C2",
+        "C3",
+        "E2",
+        "E3",
+        "74",
+        "75",
+        "84",
+        "85",
+        "94",
+        "95",
+        "C4",
+        "C5",
+        "E4",
+        "E5",
+        "F2",
+        "F3",
+        "G2",
+        "G3",
+        "H2",
+        "H3",
+        "J2",
+        "J3",
+        "L2",
+        "L3",
+        "F4",
+        "F5",
+        "G4",
+        "G5",
+        "H4",
+        "H5",
+        "J4",
+        "J5",
+        "L4",
+        "L5",
+        "M2",
+        "M3",
+        "N2",
+        "N3",
+        "P2",
+        "P3",
+        "Q2",
+        "Q3",
+        "R2",
+        "R3",
+        "M4",
+        "M5",
+        "N4",
+        "N5",
+        "P4",
+        "P5",
+        "Q4",
+        "Q5",
+        "R4",
+        "R5",
+        "T2",
+        "T3",
+        "V2",
+        "V3",
+        "W2",
+        "W3",
+        "X2",
+        "X3",
+        "Y2",
+        "Y3",
+        "T4",
+        "T5",
+        "V4",
+        "V5",
+        "W4",
+        "W5",
+        "X4",
+        "X5",
+        "Y4",
+        "Y5"
+      ],
+      "name": "promotion_cascades_across_two_and_five_steps",
+      "operation": "canonicalize"
+    },
+    {
+      "expect": {
+        "gids": [
+          "2"
+        ]
+      },
+      "input": [
+        "2",
+        "22"
+      ],
+      "name": "ancestor_suppresses_descendants",
+      "operation": "canonicalize"
+    },
+    {
+      "expect": {
+        "count": 100
+      },
+      "input": [
+        ""
+      ],
+      "level": 2,
+      "name": "expand_root_to_level_two",
+      "operation": "expand"
+    },
+    {
+      "expect": {
+        "count": 5,
+        "gids": [
+          "22",
+          "23",
+          "24",
+          "25",
+          "32"
+        ]
+      },
+      "input": [
+        "2",
+        "32"
+      ],
+      "level": 2,
+      "name": "expand_mixed_set_to_level_two",
+      "operation": "expand"
+    },
+    {
+      "expect": {
+        "error": "CompactSetError"
+      },
+      "input": [
+        "2"
+      ],
+      "level": 0,
+      "name": "expand_below_row_level_fails",
+      "operation": "expand"
+    },
+    {
+      "expect": {
+        "member": true
+      },
+      "gid": "25",
+      "input": [
+        "2"
+      ],
+      "name": "contains_descendant_of_stored_cell",
+      "operation": "contains"
+    },
+    {
+      "expect": {
+        "member": false
+      },
+      "gid": "32",
+      "input": [
+        "2"
+      ],
+      "name": "contains_outside_cell_is_false",
+      "operation": "contains"
+    },
+    {
+      "expect": {
+        "error": "CompactSetError",
+        "valid": false
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 1
+        },
+        {
+          "gid": "3",
+          "level": 1
+        },
+        {
+          "gid": "4",
+          "level": 1
+        },
+        {
+          "gid": "5",
+          "level": 1
+        },
+        {
+          "gid": "6",
+          "level": 1
+        },
+        {
+          "gid": "7",
+          "level": 1
+        },
+        {
+          "gid": "8",
+          "level": 1
+        },
+        {
+          "gid": "9",
+          "level": 1
+        },
+        {
+          "gid": "C",
+          "level": 1
+        },
+        {
+          "gid": "E",
+          "level": 1
+        },
+        {
+          "gid": "F",
+          "level": 1
+        },
+        {
+          "gid": "G",
+          "level": 1
+        },
+        {
+          "gid": "H",
+          "level": 1
+        },
+        {
+          "gid": "J",
+          "level": 1
+        },
+        {
+          "gid": "L",
+          "level": 1
+        },
+        {
+          "gid": "M",
+          "level": 1
+        },
+        {
+          "gid": "N",
+          "level": 1
+        },
+        {
+          "gid": "P",
+          "level": 1
+        },
+        {
+          "gid": "Q",
+          "level": 1
+        },
+        {
+          "gid": "R",
+          "level": 1
+        },
+        {
+          "gid": "T",
+          "level": 1
+        },
+        {
+          "gid": "V",
+          "level": 1
+        },
+        {
+          "gid": "W",
+          "level": 1
+        },
+        {
+          "gid": "X",
+          "level": 1
+        },
+        {
+          "gid": "Y",
+          "level": 1
+        }
+      ],
+      "name": "complete_child_group_is_not_canonical",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 1
+        },
+        {
+          "gid": "3",
+          "level": 1
+        },
+        {
+          "gid": "4",
+          "level": 1
+        },
+        {
+          "gid": "5",
+          "level": 1
+        },
+        {
+          "gid": "6",
+          "level": 1
+        },
+        {
+          "gid": "7",
+          "level": 1
+        },
+        {
+          "gid": "8",
+          "level": 1
+        },
+        {
+          "gid": "9",
+          "level": 1
+        },
+        {
+          "gid": "C",
+          "level": 1
+        },
+        {
+          "gid": "E",
+          "level": 1
+        },
+        {
+          "gid": "F",
+          "level": 1
+        },
+        {
+          "gid": "G",
+          "level": 1
+        },
+        {
+          "gid": "H",
+          "level": 1
+        },
+        {
+          "gid": "J",
+          "level": 1
+        },
+        {
+          "gid": "L",
+          "level": 1
+        },
+        {
+          "gid": "M",
+          "level": 1
+        },
+        {
+          "gid": "N",
+          "level": 1
+        },
+        {
+          "gid": "P",
+          "level": 1
+        },
+        {
+          "gid": "Q",
+          "level": 1
+        },
+        {
+          "gid": "R",
+          "level": 1
+        },
+        {
+          "gid": "T",
+          "level": 1
+        },
+        {
+          "gid": "V",
+          "level": 1
+        },
+        {
+          "gid": "W",
+          "level": 1
+        },
+        {
+          "gid": "X",
+          "level": 1
+        }
+      ],
+      "name": "partial_child_group_is_canonical",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 1
+        },
+        {
+          "gid": "32",
+          "level": 2
+        }
+      ],
+      "name": "mixed_levels_are_allowed",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "valid": true
+      },
+      "input": [
+        {
+          "gid": "",
+          "level": 0
+        }
+      ],
+      "name": "root_row_is_valid_alone",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "error": "CompactSetError",
+        "valid": false
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 2
+        }
+      ],
+      "name": "explicit_level_mismatch_fails",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "error": "CompactSetError",
+        "valid": false
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 1
+        },
+        {
+          "gid": "2",
+          "level": 1
+        }
+      ],
+      "name": "duplicate_gid_fails",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "error": "CompactSetError",
+        "valid": false
+      },
+      "input": [
+        {
+          "gid": "2",
+          "level": 1
+        },
+        {
+          "gid": "22",
+          "level": 2
+        }
+      ],
+      "name": "ancestor_and_descendant_rows_fail",
+      "operation": "validate"
+    },
+    {
+      "expect": {
+        "error": "InvalidGIDError",
+        "valid": false
+      },
+      "input": [
+        {
+          "gid": "A",
+          "level": 1
+        }
+      ],
+      "name": "invalid_character_fails",
+      "operation": "validate"
+    }
+  ],
+  "dataset_type": "cell_compact_set",
+  "description": "Canonicalization, validation, expansion and membership for cell_compact_set. Expected values follow from the rules; point lookup and manifest checks are not covered here.",
+  "rules": "docs/cell-dataset-contract.md, section 2",
+  "spec_version": "2.0"
+}

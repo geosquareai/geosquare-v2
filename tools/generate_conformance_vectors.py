@@ -32,6 +32,7 @@ import geosquare_v2
 from geosquare_v2 import DbRegistryLoader, GeosquareService
 from geosquare_v2.codec import SUBDIVISIONS, canonical_to_gid, cell_side_m, gid_to_indices, side_cell_count
 from geosquare_v2.errors import GeosquareError, OutOfDomainError
+from geosquare_v2.compact import canonicalize, contains, expand, validate_compact_set
 from geosquare_v2.grid import GeosquareGrid
 from geosquare_v2.model import CanonicalCell
 from geosquare_v2.packing import pack_int64, unpack_int64
@@ -619,6 +620,109 @@ def _domain_ranges_section(grid: GeosquareGrid, profiles) -> dict[str, Any]:
     }
 
 
+def _compact_cases() -> list[dict[str, Any]]:
+    """Hand-written ``cell_compact_set`` cases.
+
+    Expected values come from the rules in docs/cell-dataset-contract.md, not from
+    the reference. The generator still refuses to write a case the reference misses.
+    """
+    root = canonical_to_gid(0, 0, 0)
+    level1 = [canonical_to_gid(1, x, y) for y in range(5) for x in range(5)]
+    cell_a = canonical_to_gid(1, 0, 0)
+    a_children = [canonical_to_gid(2, dx, dy) for dy in range(2) for dx in range(2)]
+    cell_b = canonical_to_gid(2, 2, 0)  # under level-1 cell (1, 0), not under cell_a
+    level2_all = [canonical_to_gid(2, x, y) for y in range(10) for x in range(10)]
+
+    def row(gid: str, level: int | None = None) -> dict[str, Any]:
+        return {"gid": gid, "level": len(gid) if level is None else level}
+
+    return [
+        {"name": "five_by_five_children_promote_to_root", "operation": "canonicalize",
+         "input": level1, "expect": {"gids": [root]}},
+        {"name": "two_by_two_children_promote_to_parent", "operation": "canonicalize",
+         "input": a_children, "expect": {"gids": [cell_a]}},
+        {"name": "one_missing_child_blocks_promotion", "operation": "canonicalize",
+         "input": level1[:-1], "expect": {"gids": sorted(level1[:-1])}},
+        {"name": "promotion_cascades_across_two_and_five_steps", "operation": "canonicalize",
+         "input": level2_all, "expect": {"gids": [root]}},
+        {"name": "ancestor_suppresses_descendants", "operation": "canonicalize",
+         "input": [cell_a, a_children[0]], "expect": {"gids": [cell_a]}},
+        {"name": "expand_root_to_level_two", "operation": "expand",
+         "input": [root], "level": 2, "expect": {"count": 100}},
+        {"name": "expand_mixed_set_to_level_two", "operation": "expand",
+         "input": [cell_a, cell_b], "level": 2,
+         "expect": {"count": 5, "gids": sorted(a_children + [cell_b])}},
+        {"name": "expand_below_row_level_fails", "operation": "expand",
+         "input": [cell_a], "level": 0, "expect": {"error": "CompactSetError"}},
+        {"name": "contains_descendant_of_stored_cell", "operation": "contains",
+         "input": [cell_a], "gid": a_children[3], "expect": {"member": True}},
+        {"name": "contains_outside_cell_is_false", "operation": "contains",
+         "input": [cell_a], "gid": cell_b, "expect": {"member": False}},
+        {"name": "complete_child_group_is_not_canonical", "operation": "validate",
+         "input": [row(gid) for gid in level1], "expect": {"valid": False, "error": "CompactSetError"}},
+        {"name": "partial_child_group_is_canonical", "operation": "validate",
+         "input": [row(gid) for gid in level1[:-1]], "expect": {"valid": True}},
+        {"name": "mixed_levels_are_allowed", "operation": "validate",
+         "input": [row(cell_a), row(cell_b)], "expect": {"valid": True}},
+        {"name": "root_row_is_valid_alone", "operation": "validate",
+         "input": [row(root)], "expect": {"valid": True}},
+        {"name": "explicit_level_mismatch_fails", "operation": "validate",
+         "input": [row(cell_a, level=2)], "expect": {"valid": False, "error": "CompactSetError"}},
+        {"name": "duplicate_gid_fails", "operation": "validate",
+         "input": [row(cell_a), row(cell_a)], "expect": {"valid": False, "error": "CompactSetError"}},
+        {"name": "ancestor_and_descendant_rows_fail", "operation": "validate",
+         "input": [row(cell_a), row(a_children[0])], "expect": {"valid": False, "error": "CompactSetError"}},
+        {"name": "invalid_character_fails", "operation": "validate",
+         "input": [row("A")], "expect": {"valid": False, "error": "InvalidGIDError"}},
+    ]
+
+
+def evaluate_compact_case(case: dict[str, Any]) -> dict[str, Any]:
+    """Run one ``cell_compact_set`` case through the reference and return the observed fields."""
+    operation = case["operation"]
+    try:
+        if operation == "canonicalize":
+            return {"gids": list(canonicalize(case["input"]))}
+        if operation == "expand":
+            cells = expand(case["input"], case["level"])
+            observed: dict[str, Any] = {"count": len(cells)}
+            if "gids" in case["expect"]:
+                observed["gids"] = sorted(cells)
+            return observed
+        if operation == "contains":
+            return {"member": contains(case["input"], case["gid"])}
+        if operation == "validate":
+            validate_compact_set((row["gid"], row["level"]) for row in case["input"])
+            return {"valid": True}
+    except GeosquareError as exc:
+        if operation == "expand":
+            return {"error": type(exc).__name__}
+        return {"valid": False, "error": type(exc).__name__}
+    raise AssertionError(f"unknown compact-set operation {operation!r}")
+
+
+def _compact_set_section() -> dict[str, Any]:
+    cases = _compact_cases()
+    names = [case["name"] for case in cases]
+    _require(len(names) == len(set(names)), "compact-set case names must be unique")
+    for case in cases:
+        observed = evaluate_compact_case(case)
+        _require(
+            observed == case["expect"],
+            f"compact-set case {case['name']!r}: reference gives {observed}, expected {case['expect']}",
+        )
+    return {
+        "spec_version": SPEC_VERSION,
+        "dataset_type": "cell_compact_set",
+        "rules": "docs/cell-dataset-contract.md, section 2",
+        "description": (
+            "Canonicalization, validation, expansion and membership for cell_compact_set. "
+            "Expected values follow from the rules; point lookup and manifest checks are not covered here."
+        ),
+        "cases": cases,
+    }
+
+
 def build_all() -> dict[str, bytes]:
     """Return every vector file as bytes, keyed by file name, including ``manifest.json``."""
     registry = _load_registry()
@@ -645,6 +749,7 @@ def build_all() -> dict[str, bytes]:
         "projected.json": _dumps(_projected_section(profiles)),
         "points.json": _dumps(_points_section(service, profiles, support)),
         "detect.json": _dumps(_detect_section()),
+        "compact-set.json": _dumps(_compact_set_section()),
     }
 
     manifest = {

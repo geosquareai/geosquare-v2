@@ -63,6 +63,31 @@ Use this before aggregation.
 
 A contribution dataset must have a stable `source_id` or `source_row` field.
 
+### `cell_compact_set`
+
+A set of cells that may mix levels. It stores area, not values.
+
+Large interior cells replace many small cells. Each row is one cell:
+
+```text
+gid,level
+2,1
+22,2
+```
+
+Rules:
+
+- `gid` and `level` are required. `level` must equal the length of `gid`. The level-0 root is the empty GID `""`.
+- The rows must be canonical. No row may lie inside another row. No complete child group may be present. A reader rejects input that breaks either rule. It does not fix the input. A writer runs `canonicalize` first.
+- A complete child group is all 25 children of a parent whose next step is 5×5, or all 4 children of a parent whose next step is 2×2. The parent must replace those children.
+- Mixed levels are allowed here. Other dataset types must still keep one level.
+- One set has one domain and one grid version.
+- A target level below a row's level is an error, not a roll-up.
+- A cell is covered when it is a row, or when one of its ancestors is a row.
+- Joins use ancestor lookup by default. Expand the set when it is reused for many joins or exported.
+
+Reference rules and test vectors: `src/geosquare_v2/compact.py` and `conformance/spec-2.0/compact-set.json`.
+
 ## 3. Dataset scope
 
 One dataset must use one:

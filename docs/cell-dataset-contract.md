@@ -86,7 +86,7 @@ Rules:
 - A cell is covered when it is a row, or when one of its ancestors is a row.
 - Joins use ancestor lookup by default. Expand the set when it is reused for many joins or exported.
 
-Reference rules and test vectors: `src/geosquare_v2/compact.py` and `conformance/spec-2.0/compact-set.json`.
+Reference rules and test vectors: `src/geosquare_v2/compact.py` and `conformance/spec-2.0/compact-set.json`. Writer and reader: `geosquare_v2.compact_store`. Each read checks the manifest, columns, row count and rules.
 
 ### `cell_time_values`
 
@@ -110,7 +110,7 @@ Rules:
 - Time rollup: COUNT and TOTAL sum. MEASUREMENT needs `time_aggregation` set to `mean`, `min`, or `max`. CATEGORICAL cannot roll up in time.
 - Two labels relate by their UTC intervals: `equal`, `contains`, `contained`, `overlap`, or `disjoint`. Joins across periods use that relation.
 
-Reference rules and test vectors: `src/geosquare_v2/timecube.py` and `conformance/spec-2.0/time-values.json`. Storage layout and partitioning are not covered yet.
+Reference rules and test vectors: `src/geosquare_v2/timecube.py` and `conformance/spec-2.0/time-values.json`. Writer and reader: `geosquare_v2.time_store`. Each read checks the manifest, columns, row count and rules. Partitioning is not covered yet.
 
 ## 3. Dataset scope
 

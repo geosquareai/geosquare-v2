@@ -33,6 +33,7 @@ from geosquare_v2 import DbRegistryLoader, GeosquareService
 from geosquare_v2.codec import SUBDIVISIONS, canonical_to_gid, cell_side_m, gid_to_indices, side_cell_count
 from geosquare_v2.errors import GeosquareError, OutOfDomainError
 from geosquare_v2.compact import canonicalize, contains, expand, validate_compact_set
+from geosquare_v2.timecube import TimeCubeError, interval, parse_label, relation, time_rollup, validate_manifest, validate_rows
 from geosquare_v2.grid import GeosquareGrid
 from geosquare_v2.model import CanonicalCell
 from geosquare_v2.packing import pack_int64, unpack_int64
@@ -723,6 +724,145 @@ def _compact_set_section() -> dict[str, Any]:
     }
 
 
+def _time_manifest(**overrides: Any) -> dict[str, Any]:
+    manifest: dict[str, Any] = {
+        "dataset_type": "cell_time_values",
+        "manifest_version": "1.0",
+        "domain_code": "ID",
+        "level": 9,
+        "period_type": "day",
+        "bucket_hours": None,
+        "timezone": "UTC",
+        "period_start": "2026-11-01",
+        "period_end": "2026-12-01",
+        "identity": {"gid_column": "gid", "period_column": "period", "unique_gid": False, "unique_key": ["gid", "period"]},
+        "storage": {"sorted_by": ["gid", "period"], "partitioning": []},
+        "value_fields": [{"name": "rain_mm", "semantics": "MEASUREMENT", "time_aggregation": "mean"}],
+    }
+    manifest.update(overrides)
+    return manifest
+
+
+def _compact_time_side(label: str, period_type: str, bucket_hours: int | None) -> dict[str, Any]:
+    return {"label": label, "period_type": period_type, "bucket_hours": bucket_hours}
+
+
+def _time_cases() -> list[dict[str, Any]]:
+    """Hand-written ``cell_time_values`` cases. Expected values follow from the rules."""
+    g1 = canonical_to_gid(9, 0, 0)
+    g2 = canonical_to_gid(9, 0, 1)
+    coarse = canonical_to_gid(8, 0, 0)
+    hour_manifest = _time_manifest(period_type="hour", bucket_hours=4, period_start="2026-11-01T00", period_end="2026-12-01T00")
+    day1, day2 = "2026-11-19", "2026-11-20"
+    sorted_rows = [{"gid": g1, "period": day1}, {"gid": g1, "period": day2}, {"gid": g2, "period": day1}]
+
+    def parse(name, label, period_type, bucket, expect):
+        return {"name": name, "operation": "parse", "label": label, "period_type": period_type, "bucket_hours": bucket, "expect": expect}
+
+    return [
+        parse("parse_leap_day", "2024-02-29", "day", None, {"valid": True, "start": "2024-02-29T00:00:00"}),
+        parse("parse_invalid_calendar_day", "2023-02-29", "day", None, {"valid": False}),
+        parse("parse_aligned_four_hour_bucket", "2026-11-19T04", "hour", 4, {"valid": True, "start": "2026-11-19T04:00:00"}),
+        parse("parse_unaligned_four_hour_bucket", "2026-11-19T02", "hour", 4, {"valid": False}),
+        parse("parse_offset_rejected", "2026-11-19T04+07", "hour", 4, {"valid": False}),
+        parse("parse_space_separator_rejected", "2026-11-19 04", "hour", 4, {"valid": False}),
+        parse("parse_bucket_on_day_rejected", "2026-11-19", "day", 4, {"valid": False}),
+        parse("parse_bucket_not_allowed_value", "2026-11-19T00", "hour", 5, {"valid": False}),
+        {"name": "interval_month_crosses_year", "operation": "interval", "label": "2026-12", "period_type": "month",
+         "bucket_hours": None, "expect": {"start": "2026-12-01T00:00:00", "end": "2027-01-01T00:00:00"}},
+        {"name": "interval_four_hour_bucket", "operation": "interval", "label": "2026-11-19T04", "period_type": "hour",
+         "bucket_hours": 4, "expect": {"start": "2026-11-19T04:00:00", "end": "2026-11-19T08:00:00"}},
+        {"name": "manifest_valid_day_cube", "operation": "manifest", "manifest": _time_manifest(), "expect": {"valid": True}},
+        {"name": "manifest_valid_hour_cube", "operation": "manifest", "manifest": hour_manifest, "expect": {"valid": True}},
+        {"name": "manifest_empty_range_fails", "operation": "manifest",
+         "manifest": _time_manifest(period_end="2026-11-01"), "expect": {"valid": False}},
+        {"name": "manifest_local_timezone_fails", "operation": "manifest",
+         "manifest": _time_manifest(timezone="Asia/Jakarta"), "expect": {"valid": False}},
+        {"name": "manifest_unique_gid_true_fails", "operation": "manifest",
+         "manifest": _time_manifest(identity={"gid_column": "gid", "period_column": "period", "unique_gid": True, "unique_key": ["gid"]}),
+         "expect": {"valid": False}},
+        {"name": "manifest_period_value_field_fails", "operation": "manifest",
+         "manifest": _time_manifest(value_fields=[{"name": "period", "semantics": "COUNT"}]), "expect": {"valid": False}},
+        {"name": "rows_sorted_and_unique_pass", "operation": "rows", "manifest": _time_manifest(), "rows": sorted_rows,
+         "expect": {"valid": True}},
+        {"name": "rows_duplicate_pair_fails", "operation": "rows", "manifest": _time_manifest(),
+         "rows": [{"gid": g1, "period": day1}, {"gid": g1, "period": day1}], "expect": {"valid": False}},
+        {"name": "rows_end_is_exclusive", "operation": "rows", "manifest": _time_manifest(),
+         "rows": [{"gid": g1, "period": "2026-12-01"}], "expect": {"valid": False}},
+        {"name": "rows_unsorted_fail", "operation": "rows", "manifest": _time_manifest(),
+         "rows": [{"gid": g2, "period": day1}, {"gid": g1, "period": day1}], "expect": {"valid": False}},
+        {"name": "rows_wrong_level_fails", "operation": "rows", "manifest": _time_manifest(),
+         "rows": [{"gid": coarse, "period": day1}], "expect": {"valid": False}},
+        {"name": "rollup_count_sums", "operation": "rollup", "semantics": "COUNT", "declared": None, "expect": {"rule": "sum"}},
+        {"name": "rollup_measurement_declared_mean", "operation": "rollup", "semantics": "MEASUREMENT", "declared": "mean",
+         "expect": {"rule": "mean"}},
+        {"name": "rollup_measurement_undeclared_fails", "operation": "rollup", "semantics": "MEASUREMENT", "declared": None,
+         "expect": {"valid": False}},
+        {"name": "rollup_categorical_fails", "operation": "rollup", "semantics": "CATEGORICAL", "declared": None,
+         "expect": {"valid": False}},
+        {"name": "relation_year_contains_day", "operation": "relation",
+         "left": _compact_time_side("2026", "year", None), "right": _compact_time_side(day1, "day", None),
+         "expect": {"relation": "contains"}},
+        {"name": "relation_bucket_inside_day", "operation": "relation",
+         "left": _compact_time_side("2026-11-19T04", "hour", 4), "right": _compact_time_side(day1, "day", None),
+         "expect": {"relation": "contained"}},
+        {"name": "relation_adjacent_days_disjoint", "operation": "relation",
+         "left": _compact_time_side(day1, "day", None), "right": _compact_time_side(day2, "day", None),
+         "expect": {"relation": "disjoint"}},
+    ]
+
+
+def evaluate_time_case(case: dict[str, Any]) -> dict[str, Any]:
+    """Run one ``cell_time_values`` case through the reference and return the observed fields."""
+    operation = case["operation"]
+    try:
+        if operation == "parse":
+            moment = parse_label(case["label"], case["period_type"], case["bucket_hours"])
+            return {"valid": True, "start": moment.isoformat()}
+        if operation == "interval":
+            start, end = interval(case["label"], case["period_type"], case["bucket_hours"])
+            return {"start": start.isoformat(), "end": end.isoformat()}
+        if operation == "manifest":
+            validate_manifest(case["manifest"])
+            return {"valid": True}
+        if operation == "rows":
+            validate_rows(case["rows"], case["manifest"])
+            return {"valid": True}
+        if operation == "rollup":
+            return {"rule": time_rollup(case["semantics"], case["declared"])}
+        if operation == "relation":
+            left, right = case["left"], case["right"]
+            return {"relation": relation(
+                (left["label"], left["period_type"], left["bucket_hours"]),
+                (right["label"], right["period_type"], right["bucket_hours"]),
+            )}
+    except TimeCubeError:
+        return {"valid": False}
+    raise AssertionError(f"unknown time-value operation {operation!r}")
+
+
+def _time_values_section() -> dict[str, Any]:
+    cases = _time_cases()
+    names = [case["name"] for case in cases]
+    _require(len(names) == len(set(names)), "time-value case names must be unique")
+    for case in cases:
+        observed = evaluate_time_case(case)
+        _require(
+            observed == case["expect"],
+            f"time-value case {case['name']!r}: reference gives {observed}, expected {case['expect']}",
+        )
+    return {
+        "spec_version": SPEC_VERSION,
+        "dataset_type": "cell_time_values",
+        "rules": "docs/cell-dataset-contract.md, section 2",
+        "description": (
+            "Labels, half-open UTC intervals, manifest and row rules, per-field time rollup and label relations. "
+            "Expected values follow from the rules. Storage layout is not covered here."
+        ),
+        "cases": cases,
+    }
+
+
 def build_all() -> dict[str, bytes]:
     """Return every vector file as bytes, keyed by file name, including ``manifest.json``."""
     registry = _load_registry()
@@ -750,6 +890,7 @@ def build_all() -> dict[str, bytes]:
         "points.json": _dumps(_points_section(service, profiles, support)),
         "detect.json": _dumps(_detect_section()),
         "compact-set.json": _dumps(_compact_set_section()),
+        "time-values.json": _dumps(_time_values_section()),
     }
 
     manifest = {

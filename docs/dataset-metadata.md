@@ -57,7 +57,7 @@ When a map shows a parent cell, its value comes from its children. Each value fi
 | COUNT | `sum`, `none` | null | Counts add up. |
 | TOTAL | `sum`, `none` | null | Totals add up. |
 | DENSITY | `weighted_mean`, `none` | `area` | Density is per area. Summing it is wrong. |
-| MEASUREMENT | `weighted_mean`, `max`, `min`, `none` | required for `weighted_mean` | Use `max` for values such as flood depth. |
+| MEASUREMENT | `weighted_mean`, `median`, `max`, `min`, `none` | required for `weighted_mean`, null for `median` | Use `median` for typical values such as price per m². Use `max` for values such as flood depth. |
 | RATE | `weighted_mean`, `none` | required | A rate needs its denominator. A 12% rate averaged without population weights gives a wrong parent rate. |
 | CATEGORICAL | `majority_weighted`, `none` | null, `area`, or a COUNT field | Most common class wins. |
 | ORDINAL | `max`, `min`, `none` | null | Order only. No mean. |
@@ -70,6 +70,8 @@ When a map shows a parent cell, its value comes from its children. Each value fi
 - A field name: another COUNT or TOTAL column in the same dataset. For example, `population` weights `unemployment_rate`.
 
 `weighted_mean` without a weight is rejected. `none` opts a column out of rollup.
+
+`median` is the plain median of the child values. It has no weight. It needs at least 3 child cells with a value. With fewer, the parent value is null. A median cannot be rebuilt from child medians, so a pyramid level (S9) must be computed from the base cells.
 
 ## 5. Rules outside the schema
 

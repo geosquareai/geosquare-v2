@@ -177,6 +177,7 @@
             "sum",
             "weighted_mean",
             "majority_weighted",
+            "median",
             "max",
             "min",
             "none"
@@ -284,6 +285,7 @@
               "space_aggregation": {
                 "enum": [
                   "weighted_mean",
+                  "median",
                   "max",
                   "min",
                   "none"
@@ -413,6 +415,7 @@
               "space_aggregation": {
                 "enum": [
                   "sum",
+                  "median",
                   "max",
                   "min"
                 ]

@@ -24,6 +24,7 @@ Start with the [root README](../README.md) for installation and the runnable che
 - [Boundary policy](boundary-policy.md)
 - [Cell dataset contract](cell-dataset-contract.md)
 - [Cell dataset manifest schema](../schemas/cell-dataset-manifest-v1.schema.json)
+- [Dataset metadata and space aggregation, manifest 1.1 (draft)](dataset-metadata.md) — [1.1 schema](../schemas/cell-dataset-manifest-v1.1.schema.json)
 - [Data-to-grid contract](data-to-grid-contract.md)
 - [V1 to V2 migration](migration-v1-v2.md)
 - [SQLite registry](sqlite-registry.md)

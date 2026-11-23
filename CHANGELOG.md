@@ -1,41 +1,29 @@
 # Changelog
 
-## Unreleased — read datasets written by 1.0.0
+## 1.3.0 — manifest 1.1 and reading of 1.0.0 datasets
 
 Status: prepared. Not yet published.
 
-### Changes
+### Reading datasets written by 1.0.0
 
 - readers accept profile `2.1.0-static-datum`, written by geosquare-v2 1.0.0, for all 11 domains. Writers refuse it.
 - each manifest reports `profile_status`: `current`, `legacy_same_gids` or `legacy_gids_differ`.
 - reading a dataset for VN or LA written under the legacy profile emits a warning. Their GIDs differ from the current profile for some points.
 - added 1.0.0 regression fixtures and `tests/test_legacy_profile_read.py`.
 - added `docs/profile-compatibility.md` with the measurements.
+- limits: the current code refuses VN points outside the datum area of use (10.4% of sampled box points) and LA points outside it (6.0%). Points that 1.0.0 indexed are now refused. Which VN and LA result is correct is an open decision. See the doc.
 
-### Limits
-
-- VN and LA: the current code refuses points outside the datum area of use (VN 10.4%, LA 6.0% of sampled box points). Points that 1.0.0 indexed are now refused.
-- which VN and LA result is correct is an open decision. See the doc.
-
-## Unreleased — manifest 1.1 (prepared)
-
-Status: prepared. Not yet published. The version number is set at release.
-
-### Changes
+### Manifest 1.1
 
 - `CellDatasetManifest` reads manifest 1.1. Manifest 1.0 is unchanged.
 - Manifest 1.1 adds per-column `space_aggregation`, `space_weight`, `null_share`, `min_value` and `max_value`; `extent`; `governance`; `storage.data_files` with `content_sha256`; and `provenance.spec_version` and `derived_from`. Rules are in `docs/dataset-metadata.md`.
 - `CellDataset` checks 1.1 content hashes, row counts and column statistics against the data.
 - added `geosquare_v2.cell_metadata` with `content_sha256`, `data_file_entry` and cross-field checks.
-
-### Limits
-
-- `extent.bbox_wgs84` is not checked against the cells yet.
-- there is no packaged JSON schema for 1.1 yet. `CellDatasetManifest.schema()` still returns the 1.0 schema.
+- limits: `extent.bbox_wgs84` is not checked against the cells yet. There is no packaged JSON schema for 1.1 yet. `CellDatasetManifest.schema()` still returns the 1.0 schema.
 
 ## 1.2.0 — stores for cell_compact_set and cell_time_values
 
-Status: prepared. Not yet published.
+Status: published on PyPI.
 
 ### Changes
 

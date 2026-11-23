@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "geosquare-v2"
-version = "1.2.0"
+version = "1.3.0"
 description = "Profile-driven hierarchical metric grid core for Geosquare V2."
 readme = "README.md"
 requires-python = ">=3.11"

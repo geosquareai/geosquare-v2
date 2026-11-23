@@ -18,6 +18,13 @@ from .model import DomainProfile
 from .registry import DomainRegistry
 
 _SUPPORTED_MANIFEST_VERSIONS = frozenset(("1.0", "1.1"))
+
+# Profile versions that geosquare-v2 1.0.0 wrote, mapped to the current version. Reading them is
+# allowed. Writing them is not. See docs/profile-compatibility.md.
+_LEGACY_PROFILE_VERSIONS = {"2.1.0-static-datum": "2.2.0-explicit-datum"}
+# Measured in docs/profile-compatibility.md. For these domains the 1.0.0 and current profiles
+# assign different GIDs for some points. For every other domain the GIDs are identical.
+_LEGACY_GID_CHANGED_DOMAINS = frozenset(("LA", "VN"))
 _GRID_SYSTEM = "geosquare"
 _GRID_VERSION = "v2"
 _MAX_LEVEL = 14
@@ -601,10 +608,11 @@ class CellDatasetManifest:
         if profile_version is None:
             raise _error("profile_version", "trusted registry profile does not expose a profile version")
         if profile_version != self.profile_version:
-            raise _error(
-                "profile_version",
-                f"{self.profile_version!r} does not match trusted profile {profile_version!r}",
-            )
+            if _LEGACY_PROFILE_VERSIONS.get(self.profile_version) != profile_version:
+                raise _error(
+                    "profile_version",
+                    f"{self.profile_version!r} does not match trusted profile {profile_version!r}",
+                )
         boundary_sha256 = self.coverage["boundary_sha256"]
         trusted_boundary_sha256 = getattr(profile, "boundary_sha256", None)
         if boundary_sha256 is not None and trusted_boundary_sha256 is not None and boundary_sha256 != trusted_boundary_sha256:
@@ -712,6 +720,15 @@ class CellDatasetManifest:
     def governance(self) -> dict[str, Any] | None:
         """Owner, license, sharing and refresh metadata (manifest 1.1). None for manifest 1.0."""
         return deepcopy(self._document.get("governance"))
+
+    @property
+    def profile_status(self) -> str:
+        """'current', 'legacy_same_gids', or 'legacy_gids_differ'. See docs/profile-compatibility.md."""
+        if self.profile_version not in _LEGACY_PROFILE_VERSIONS:
+            return "current"
+        if self.domain_code in _LEGACY_GID_CHANGED_DOMAINS:
+            return "legacy_gids_differ"
+        return "legacy_same_gids"
 
     @property
     def is_queryable(self) -> bool:

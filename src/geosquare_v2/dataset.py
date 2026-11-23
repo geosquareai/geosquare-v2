@@ -8,9 +8,10 @@ import os
 from pathlib import Path
 import shutil
 import tempfile
+import warnings
 from typing import Any
 
-from .cell_manifest import CellDatasetManifest
+from .cell_manifest import _LEGACY_PROFILE_VERSIONS, CellDatasetManifest
 from .cell_metadata import content_sha256
 from .codec import gid_to_canonical, side_cell_count
 from .errors import (
@@ -196,6 +197,10 @@ class CellDataset:
             if isinstance(manifest, CellDatasetManifest)
             else CellDatasetManifest.from_dict(manifest, registry=registry)
         )
+        if parsed.profile_status != "current":
+            raise ValidationError(
+                f"new datasets must use the current profile; {parsed.profile_version!r} is read-only"
+            )
         if parsed.manifest_version == "1.1":
             files = parsed.storage["data_files"]
             if len(files) != 1 or files[0]["path"] != f"{_DATA_DIRECTORY}/{_PARQUET_FILENAME}":
@@ -227,6 +232,15 @@ class CellDataset:
             manifest = CellDatasetManifest.from_file(sidecar_path, registry=registry)
         except CellDatasetManifestError as exc:
             raise _dataset_error(str(sidecar_path), f"sidecar manifest is invalid: {exc}") from exc
+        if manifest.profile_status == "legacy_gids_differ":
+            current = _LEGACY_PROFILE_VERSIONS[manifest.profile_version]
+            warnings.warn(
+                f"{sidecar_path}: written with profile {manifest.profile_version!r} for domain "
+                f"{manifest.domain_code}. Its GIDs differ from profile {current!r} for some points. "
+                "Do not join it with current datasets without rewriting it.",
+                UserWarning,
+                stacklevel=2,
+            )
 
         parquet_files = sorted(data_path.glob("*.parquet"))
         if not parquet_files:

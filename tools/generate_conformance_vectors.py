@@ -863,6 +863,114 @@ def _time_values_section() -> dict[str, Any]:
     }
 
 
+
+# Content hash vectors: docs/dataset-metadata.md section 3.1 (frozen 2026-11-23).
+import pyarrow as pa  # noqa: E402
+
+from geosquare_v2.cell_metadata import _canonical_value, content_sha256  # noqa: E402
+
+DOUBLE = {"name": "value", "parquet_type": "double"}
+INT64 = {"name": "count", "parquet_type": "int64"}
+STRING = {"name": "label", "parquet_type": "string"}
+
+CONTENT_HASH_CASES = [
+    {
+        "name": "doubles_in_python_repr",
+        "description": "Fixed notation from 1e-4 up to 1e16, scientific outside it, -0.0 keeps its sign.",
+        "value_fields": [DOUBLE],
+        "rows": [
+            ["a", 0.5], ["b", -2.25], ["c", 0.0001], ["d", 0.00001], ["e", 1e15],
+            ["f", 1e16], ["g", -0.0], ["h", 0.1 + 0.2], ["i", 1 / 3], ["j", 5e-324],
+            ["k", 1.7976931348623157e308],
+        ],
+    },
+    {
+        "name": "integer_in_double_field",
+        "description": "A whole number in a double field is written with a point: 3 becomes 3.0.",
+        "value_fields": [DOUBLE],
+        "rows": [["a", 3], ["b", 0], ["c", -7]],
+    },
+    {
+        "name": "int64_extremes",
+        "description": "Integer fields keep their digits, with no point.",
+        "value_fields": [INT64],
+        "rows": [["a", 9223372036854775807], ["b", -9223372036854775808], ["c", 0], ["d", 42]],
+    },
+    {
+        "name": "string_escapes",
+        "description": "Quote and backslash are escaped. Control characters use short or \\u00xx escapes. U+2028 and U+007F stay raw.",
+        "value_fields": [STRING],
+        "rows": [
+            ["a", 'say "hi"'], ["b", "back\\slash"], ["c", "\u0001\u001f"], ["d", "\u00e9t\u00e9"],
+            ["e", "\U0001F600"], ["f", "\u2028"], ["g", "\u007f"], ["h", "\n\t\b\f\r"],
+        ],
+    },
+    {
+        "name": "nulls",
+        "description": "A null is written as null for any type.",
+        "value_fields": [DOUBLE, STRING],
+        "rows": [["a", None, "x"], ["b", 1.5, None], ["c", None, None]],
+    },
+    {
+        "name": "field_order_and_unsorted_duplicates",
+        "description": "Fields follow value_fields order. Rows are sorted by bytes and duplicates are kept.",
+        "value_fields": [STRING, INT64],
+        "rows": [["c", "z", 2], ["a", "b", 1], ["c", "z", 2], ["b", "y", 0]],
+    },
+    {
+        "name": "unicode_gid",
+        "description": "The gid is a JSON string, encoded as UTF-8.",
+        "value_fields": [INT64],
+        "rows": [["\u00e9-1", 1], ["\U0001F600-2", 2], ["a-3", 3]],
+    },
+    {
+        "name": "zero_rows",
+        "description": "No rows: the digest of empty input.",
+        "value_fields": [DOUBLE],
+        "rows": [],
+    },
+]
+
+
+def content_hash_table(case):
+    names = ["gid", *(field["name"] for field in case["value_fields"])]
+    columns = {name: [row[i] for row in case["rows"]] for i, name in enumerate(names)}
+    arrays = {}
+    for field in case["value_fields"]:
+        values = columns[field["name"]]
+        if field["parquet_type"] == "double":
+            arrays[field["name"]] = pa.array(values, type=pa.float64())
+        elif field["parquet_type"] == "int64":
+            arrays[field["name"]] = pa.array(values, type=pa.int64())
+        else:
+            arrays[field["name"]] = pa.array(values, type=pa.string())
+    arrays["gid"] = pa.array(columns["gid"], type=pa.string())
+    return pa.table(arrays)
+
+
+def content_hash_encoded(case):
+    names = ["gid", *(field["name"] for field in case["value_fields"])]
+    kinds = ["string", *(field["parquet_type"] for field in case["value_fields"])]
+    lines = []
+    for row in case["rows"]:
+        canonical = [_canonical_value(v, k, n) for v, k, n in zip(row, kinds, names)]
+        lines.append(json.dumps(canonical, ensure_ascii=False, separators=(",", ":"), allow_nan=False))
+    return sorted(lines)
+
+
+
+def _content_hash_section() -> dict[str, Any]:
+    cases = []
+    for case in CONTENT_HASH_CASES:
+        digest = content_sha256(content_hash_table(case), case["value_fields"])
+        cases.append({**case, "encoded": content_hash_encoded(case), "sha256": digest})
+    return {
+        "spec": "docs/dataset-metadata.md section 3.1 (frozen 2026-11-23)",
+        "generator": "tools/generate_conformance_vectors.py",
+        "cases": cases,
+    }
+
+
 def build_all() -> dict[str, bytes]:
     """Return every vector file as bytes, keyed by file name, including ``manifest.json``."""
     registry = _load_registry()
@@ -891,6 +999,7 @@ def build_all() -> dict[str, bytes]:
         "detect.json": _dumps(_detect_section()),
         "compact-set.json": _dumps(_compact_set_section()),
         "time-values.json": _dumps(_time_values_section()),
+        "content-hash.json": _dumps(_content_hash_section()),
     }
 
     manifest = {

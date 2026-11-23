@@ -692,6 +692,10 @@ class CellDatasetManifest:
         return tuple(field["name"] for field in self._document["value_fields"])
 
     @property
+    def value_fields(self) -> tuple[dict[str, Any], ...]:
+        return tuple(self._document["value_fields"])
+
+    @property
     def identity(self) -> dict[str, Any]:
         return deepcopy(self._document["identity"])
 

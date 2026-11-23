@@ -1,0 +1,319 @@
+{
+  "cases": [
+    {
+      "description": "Fixed notation from 1e-4 up to 1e16, scientific outside it, -0.0 keeps its sign.",
+      "encoded": [
+        "[\"a\",0.5]",
+        "[\"b\",-2.25]",
+        "[\"c\",0.0001]",
+        "[\"d\",1e-05]",
+        "[\"e\",1000000000000000.0]",
+        "[\"f\",1e+16]",
+        "[\"g\",-0.0]",
+        "[\"h\",0.30000000000000004]",
+        "[\"i\",0.3333333333333333]",
+        "[\"j\",5e-324]",
+        "[\"k\",1.7976931348623157e+308]"
+      ],
+      "name": "doubles_in_python_repr",
+      "rows": [
+        [
+          "a",
+          0.5
+        ],
+        [
+          "b",
+          -2.25
+        ],
+        [
+          "c",
+          0.0001
+        ],
+        [
+          "d",
+          1e-05
+        ],
+        [
+          "e",
+          1000000000000000.0
+        ],
+        [
+          "f",
+          1e+16
+        ],
+        [
+          "g",
+          -0.0
+        ],
+        [
+          "h",
+          0.30000000000000004
+        ],
+        [
+          "i",
+          0.3333333333333333
+        ],
+        [
+          "j",
+          5e-324
+        ],
+        [
+          "k",
+          1.7976931348623157e+308
+        ]
+      ],
+      "sha256": "0fda048175ffd6fb61c8972044880aad3d39532e62cbff79a1b77b670525aa1b",
+      "value_fields": [
+        {
+          "name": "value",
+          "parquet_type": "double"
+        }
+      ]
+    },
+    {
+      "description": "A whole number in a double field is written with a point: 3 becomes 3.0.",
+      "encoded": [
+        "[\"a\",3.0]",
+        "[\"b\",0.0]",
+        "[\"c\",-7.0]"
+      ],
+      "name": "integer_in_double_field",
+      "rows": [
+        [
+          "a",
+          3
+        ],
+        [
+          "b",
+          0
+        ],
+        [
+          "c",
+          -7
+        ]
+      ],
+      "sha256": "f1d48dd3c930ffbecdf5eb8df02ba0c7b4b5bfa2673bda64a441bf45278195e0",
+      "value_fields": [
+        {
+          "name": "value",
+          "parquet_type": "double"
+        }
+      ]
+    },
+    {
+      "description": "Integer fields keep their digits, with no point.",
+      "encoded": [
+        "[\"a\",9223372036854775807]",
+        "[\"b\",-9223372036854775808]",
+        "[\"c\",0]",
+        "[\"d\",42]"
+      ],
+      "name": "int64_extremes",
+      "rows": [
+        [
+          "a",
+          9223372036854775807
+        ],
+        [
+          "b",
+          -9223372036854775808
+        ],
+        [
+          "c",
+          0
+        ],
+        [
+          "d",
+          42
+        ]
+      ],
+      "sha256": "7b8ba209f1501ab5a1bfad12691872cc7e17c7f57e0ba3aa7e5f5a5c83289a13",
+      "value_fields": [
+        {
+          "name": "count",
+          "parquet_type": "int64"
+        }
+      ]
+    },
+    {
+      "description": "Quote and backslash are escaped. Control characters use short or \\u00xx escapes. U+2028 and U+007F stay raw.",
+      "encoded": [
+        "[\"a\",\"say \\\"hi\\\"\"]",
+        "[\"b\",\"back\\\\slash\"]",
+        "[\"c\",\"\\u0001\\u001f\"]",
+        "[\"d\",\"été\"]",
+        "[\"e\",\"😀\"]",
+        "[\"f\",\" \"]",
+        "[\"g\",\"\"]",
+        "[\"h\",\"\\n\\t\\b\\f\\r\"]"
+      ],
+      "name": "string_escapes",
+      "rows": [
+        [
+          "a",
+          "say \"hi\""
+        ],
+        [
+          "b",
+          "back\\slash"
+        ],
+        [
+          "c",
+          "\u0001\u001f"
+        ],
+        [
+          "d",
+          "été"
+        ],
+        [
+          "e",
+          "😀"
+        ],
+        [
+          "f",
+          " "
+        ],
+        [
+          "g",
+          ""
+        ],
+        [
+          "h",
+          "\n\t\b\f\r"
+        ]
+      ],
+      "sha256": "4b15a74aa0b05b010621a4a6382d706339816563b0b99554cb8a346c8f2eae8d",
+      "value_fields": [
+        {
+          "name": "label",
+          "parquet_type": "string"
+        }
+      ]
+    },
+    {
+      "description": "A null is written as null for any type.",
+      "encoded": [
+        "[\"a\",null,\"x\"]",
+        "[\"b\",1.5,null]",
+        "[\"c\",null,null]"
+      ],
+      "name": "nulls",
+      "rows": [
+        [
+          "a",
+          null,
+          "x"
+        ],
+        [
+          "b",
+          1.5,
+          null
+        ],
+        [
+          "c",
+          null,
+          null
+        ]
+      ],
+      "sha256": "494b18588532d2c7efb08dd335006e3211f6c30fee989c40b7df9a007013c67a",
+      "value_fields": [
+        {
+          "name": "value",
+          "parquet_type": "double"
+        },
+        {
+          "name": "label",
+          "parquet_type": "string"
+        }
+      ]
+    },
+    {
+      "description": "Fields follow value_fields order. Rows are sorted by bytes and duplicates are kept.",
+      "encoded": [
+        "[\"a\",\"b\",1]",
+        "[\"b\",\"y\",0]",
+        "[\"c\",\"z\",2]",
+        "[\"c\",\"z\",2]"
+      ],
+      "name": "field_order_and_unsorted_duplicates",
+      "rows": [
+        [
+          "c",
+          "z",
+          2
+        ],
+        [
+          "a",
+          "b",
+          1
+        ],
+        [
+          "c",
+          "z",
+          2
+        ],
+        [
+          "b",
+          "y",
+          0
+        ]
+      ],
+      "sha256": "53504367dfdeb0e8c53cbb9e2d638e625e09db4040ce5c41dcb80a46351a7fd0",
+      "value_fields": [
+        {
+          "name": "label",
+          "parquet_type": "string"
+        },
+        {
+          "name": "count",
+          "parquet_type": "int64"
+        }
+      ]
+    },
+    {
+      "description": "The gid is a JSON string, encoded as UTF-8.",
+      "encoded": [
+        "[\"a-3\",3]",
+        "[\"é-1\",1]",
+        "[\"😀-2\",2]"
+      ],
+      "name": "unicode_gid",
+      "rows": [
+        [
+          "é-1",
+          1
+        ],
+        [
+          "😀-2",
+          2
+        ],
+        [
+          "a-3",
+          3
+        ]
+      ],
+      "sha256": "79cd72fb310c99656cd0f40cf3622e873039263407aa30d303dfc1c3482346d0",
+      "value_fields": [
+        {
+          "name": "count",
+          "parquet_type": "int64"
+        }
+      ]
+    },
+    {
+      "description": "No rows: the digest of empty input.",
+      "encoded": [],
+      "name": "zero_rows",
+      "rows": [],
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "value_fields": [
+        {
+          "name": "value",
+          "parquet_type": "double"
+        }
+      ]
+    }
+  ],
+  "generator": "tools/generate_conformance_vectors.py",
+  "spec": "docs/dataset-metadata.md section 3.1 (frozen 2026-11-23)"
+}

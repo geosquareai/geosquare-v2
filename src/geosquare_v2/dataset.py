@@ -145,7 +145,7 @@ def _check_files_against_manifest(parquet_files: list[Path], tables: list[Any], 
         raise _dataset_error(_DATA_DIRECTORY, "Parquet files do not match storage.data_files")
     if len(tables) == 1:
         return
-    names = manifest.value_field_names
+    fields = manifest.value_fields
     for parquet_file, file_table in zip(parquet_files, tables):
         entry = declared[f"{_DATA_DIRECTORY}/{parquet_file.name}"]
         if file_table.num_rows != entry["row_count"]:
@@ -153,7 +153,7 @@ def _check_files_against_manifest(parquet_files: list[Path], tables: list[Any], 
                 str(parquet_file),
                 f"declares {entry['row_count']} rows, but contains {file_table.num_rows}",
             )
-        if content_sha256(file_table, names) != entry["content_sha256"]:
+        if content_sha256(file_table, fields) != entry["content_sha256"]:
             raise _dataset_error(str(parquet_file), "content does not match storage.data_files content_sha256")
 
 
@@ -334,7 +334,7 @@ class CellDataset:
                 "storage.data_files[0].row_count",
                 f"declares {entry['row_count']}, but data contains {self._table.num_rows} rows",
             )
-        if content_sha256(self._table, self._manifest.value_field_names) != entry["content_sha256"]:
+        if content_sha256(self._table, self._manifest.value_fields) != entry["content_sha256"]:
             raise _dataset_error("storage.data_files[0].content_sha256", "does not match the data content")
 
     def write(self, path: str | Path) -> Path:

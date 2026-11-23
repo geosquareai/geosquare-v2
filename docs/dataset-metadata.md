@@ -81,6 +81,8 @@ The schema checks the shape of each file and the rule table in section 4. Reader
 4. `null_share`, `min_value`, and `max_value` match the data files.
 5. `extent.bbox_wgs84` contains every cell in the dataset.
 
+Items 1 and 2 are implemented in `src/geosquare_v2/cell_metadata.py`, with tests in `tests/test_cell_metadata.py`. Items 3 to 5 need the Parquet files, so they wait for the data-reading step.
+
 Platform policy, not spec: an upload with `governance.license` set to null is refused.
 
 ## 6. Compatibility

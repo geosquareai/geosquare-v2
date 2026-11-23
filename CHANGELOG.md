@@ -10,7 +10,7 @@ Status: prepared. Not yet published.
 - added `geosquare_v2.time_store` to write and read `cell_time_values` datasets, including hour buckets in UTC;
 - every read checks the manifest, columns, row count and rules, and rejects bad data without repair;
 - added the `cell_compact_set` and `cell_time_values` rules to the contract (no change to `cell_values` or `cell_contributions`);
-- added the `cell_time_values` reference rules and 33 conformance cases.
+- added the `cell_time_values` reference rules and 28 conformance cases.
 
 ### Validation
 

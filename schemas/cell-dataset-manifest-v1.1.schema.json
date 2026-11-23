@@ -713,7 +713,7 @@
           "minimum": 0
         },
         "data_files": {
-          "description": "Each Parquet file with its SHA-256. Used to detect changes and to pin snapshots.",
+          "description": "Each Parquet file with a content hash of its rows (docs/dataset-metadata.md, section 3.1). Used to detect changes and to pin snapshots.",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -721,7 +721,7 @@
             "additionalProperties": false,
             "required": [
               "path",
-              "sha256",
+              "content_sha256",
               "row_count"
             ],
             "properties": {
@@ -729,7 +729,7 @@
                 "type": "string",
                 "pattern": "^(?!/)data/.+\\.parquet$"
               },
-              "sha256": {
+              "content_sha256": {
                 "type": "string",
                 "pattern": "^[0-9a-f]{64}$"
               },

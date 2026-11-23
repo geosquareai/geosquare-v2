@@ -40,13 +40,25 @@ The platform `csv_import` writes `aggregation_rule: "sum"` for COUNT fields. Tha
 | `governance.title`, `owner`, `source_name`, `license` | string or null | person | Catalog entry and license check. |
 | `governance.share_policy` | `internal`, `k_anon_only`, `public` | person, default `internal` | Export rule. |
 | `governance.refresh` | `once`, `daily`, `weekly`, `monthly`, `yearly`, `irregular` | person, default `once` | Stale badge. |
-| `storage.data_files[]` | path, SHA-256, row count | machine | Change detection and snapshot pinning (L18). |
+| `storage.data_files[]` | path, content hash, row count | machine | Change detection and snapshot pinning (L18). |
 | `provenance.spec_version` | string | machine | Spec version the writer followed, for example `2.0`. |
 | `provenance.derived_from` | string list | person or pipeline | Lineage: source dataset IDs, crosswalk IDs. |
 
 **Last updated** uses `provenance.created_at`. Platform datasets are never overwritten, so the creation time is the last update. Add a separate field only if overwrites become allowed.
 
 **Time coverage** is not added here. Time-value datasets already store `period_start` and `period_end`.
+
+### 3.1 Content hash
+
+`content_sha256` hashes the rows, not the file bytes. The Parquet file embeds the manifest, so a hash of the file would depend on a value inside the file itself.
+
+1. Build one JSON array per row. Put `gid` first, then each value field in `value_fields` order. Use `null` for null values. Use no spaces.
+2. Encode numbers in their shortest round-trip form. For float64 this is Python's `repr`. Reject NaN and infinity.
+3. Encode each array as UTF-8 JSON with non-ASCII characters kept as they are.
+4. Sort the encoded rows by bytes.
+5. Hash each sorted row followed by a line feed (0x0A) with SHA-256. Write the digest in lowercase hex.
+
+The hash does not depend on the row order in the file. Each data file has its own hash over its own rows.
 
 ## 4. Space aggregation rules
 
@@ -83,7 +95,7 @@ The schema checks the shape of each file and the rule table in section 4. Reader
 4. `null_share`, `min_value`, and `max_value` match the data files.
 5. `extent.bbox_wgs84` contains every cell in the dataset.
 
-Items 1 and 2 are implemented in `src/geosquare_v2/cell_metadata.py`, with tests in `tests/test_cell_metadata.py`. Items 3 to 5 need the Parquet files, so they wait for the data-reading step.
+Items 1 and 2 are implemented in `src/geosquare_v2/cell_metadata.py`, with tests in `tests/test_cell_metadata.py`. Item 3 already holds for every manifest version. Items 4 and 5 need the Parquet files: `CellDataset.validate` checks item 4 for manifest 1.1 (`null_share`, `min_value`, `max_value`). Item 5 is not implemented yet.
 
 Platform policy, not spec: an upload with `governance.license` set to null is refused.
 
@@ -96,7 +108,7 @@ Platform policy, not spec: an upload with `governance.license` set to null is re
 
 ## 7. Example (1.1)
 
-Synthetic values. The SHA-256 values are placeholders of 64 zeros, so the example passes the pattern check.
+Synthetic values. The content hashes are placeholders of 64 zeros, so the example passes the pattern check.
 
 ```json
 {
@@ -201,7 +213,7 @@ Synthetic values. The SHA-256 values are placeholders of 64 zeros, so the exampl
     "data_files": [
       {
         "path": "data/part-00000.parquet",
-        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
         "row_count": 830000
       }
     ]
@@ -225,4 +237,4 @@ Synthetic values. The SHA-256 values are placeholders of 64 zeros, so the exampl
 2. Confirm the `share_policy` values and their meanings.
 3. Confirm the `refresh` values.
 4. Decide whether compact cell set and time-value manifests get `extent` and `governance` now or in a later step.
-5. Confirm that the platform writes `aggregation_rule: null` for CSV import, before L15 starts.
+5. Decide whether the content hash definition in section 3.1 is final. It must be final before 1.3.0 is released.

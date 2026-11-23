@@ -11,6 +11,7 @@ import tempfile
 from typing import Any
 
 from .cell_manifest import CellDatasetManifest
+from .cell_metadata import content_sha256
 from .codec import gid_to_canonical, side_cell_count
 from .errors import (
     CellDatasetError,
@@ -132,6 +133,29 @@ def _read_embedded_manifest(path: Path, pq: Any, *, registry: DomainRegistry | N
         raise _dataset_error(str(path), f"embedded manifest is invalid: {exc}") from exc
 
 
+def _check_files_against_manifest(parquet_files: list[Path], tables: list[Any], manifest: CellDatasetManifest) -> None:
+    """Check that the data files match ``storage.data_files``. Hashes are checked for multi-file reads only.
+
+    A single file is checked by ``CellDataset.validate`` on the joined table, so it is not hashed twice.
+    """
+    declared = {entry["path"]: entry for entry in manifest.storage["data_files"]}
+    found = {f"{_DATA_DIRECTORY}/{parquet_file.name}" for parquet_file in parquet_files}
+    if found != set(declared):
+        raise _dataset_error(_DATA_DIRECTORY, "Parquet files do not match storage.data_files")
+    if len(tables) == 1:
+        return
+    names = manifest.value_field_names
+    for parquet_file, file_table in zip(parquet_files, tables):
+        entry = declared[f"{_DATA_DIRECTORY}/{parquet_file.name}"]
+        if file_table.num_rows != entry["row_count"]:
+            raise _dataset_error(
+                str(parquet_file),
+                f"declares {entry['row_count']} rows, but contains {file_table.num_rows}",
+            )
+        if content_sha256(file_table, names) != entry["content_sha256"]:
+            raise _dataset_error(str(parquet_file), "content does not match storage.data_files content_sha256")
+
+
 class CellDataset:
     """A validated local GeoSquare cell dataset backed by a PyArrow table.
 
@@ -172,6 +196,13 @@ class CellDataset:
             if isinstance(manifest, CellDatasetManifest)
             else CellDatasetManifest.from_dict(manifest, registry=registry)
         )
+        if parsed.manifest_version == "1.1":
+            files = parsed.storage["data_files"]
+            if len(files) != 1 or files[0]["path"] != f"{_DATA_DIRECTORY}/{_PARQUET_FILENAME}":
+                raise ValidationError(
+                    "manifest 1.1 written by from_table needs exactly one data_files entry "
+                    f"at {_DATA_DIRECTORY}/{_PARQUET_FILENAME}"
+                )
         return cls(table, parsed, registry=registry)
 
     @classmethod
@@ -213,6 +244,8 @@ class CellDataset:
             table = tables[0] if len(tables) == 1 else __import__("pyarrow").concat_tables(tables)
         except Exception as exc:
             raise _dataset_error(str(data_path), f"could not read Parquet data: {exc}") from exc
+        if manifest.manifest_version == "1.1":
+            _check_files_against_manifest(parquet_files, tables, manifest)
         return cls(table, manifest, registry=registry)
 
     @property
@@ -243,11 +276,52 @@ class CellDataset:
         return self._table.to_pandas()
 
     def validate(self) -> "CellDataset":
-        """Validate manifest, Arrow schema, row values, counts, and identity columns."""
+        """Validate manifest, Arrow schema, row values, counts, identity columns, and content hash."""
         self._manifest.validate(registry=self._registry, columns=self._table.column_names)
         self._validate_schema()
         self._validate_rows()
+        self._validate_content_hash()
+        self._validate_value_statistics()
         return self
+
+    def _validate_value_statistics(self) -> None:
+        """For manifest 1.1, check null_share, min_value and max_value against the table."""
+        if self._manifest.manifest_version != "1.1":
+            return
+        rows = self._table.num_rows
+        for value_field in self._manifest.value_fields:
+            name = value_field["name"]
+            values = _column(self._table, name).to_pylist()
+            present = [value for value in values if value is not None]
+            share = (len(values) - len(present)) / rows if rows else 0.0
+            declared_share = value_field["null_share"]
+            if declared_share is not None and not math.isclose(declared_share, share, rel_tol=1e-9, abs_tol=1e-12):
+                raise _dataset_error(f"value_fields[{name}].null_share", f"declares {declared_share}, but data has {share}")
+            if value_field["logical_type"] != "numeric":
+                continue
+            actual = {"min_value": min(present) if present else None, "max_value": max(present) if present else None}
+            for label, observed in actual.items():
+                if value_field[label] != observed:
+                    raise _dataset_error(f"value_fields[{name}].{label}", f"declares {value_field[label]}, but data has {observed}")
+
+    def _validate_content_hash(self) -> None:
+        """For manifest 1.1 with one data file, check that entry against this table.
+
+        Datasets with several files are checked per file in ``read``, before the files are joined.
+        """
+        if self._manifest.manifest_version != "1.1":
+            return
+        files = self._manifest.storage["data_files"]
+        if len(files) != 1:
+            return
+        entry = files[0]
+        if entry["row_count"] != self._table.num_rows:
+            raise _dataset_error(
+                "storage.data_files[0].row_count",
+                f"declares {entry['row_count']}, but data contains {self._table.num_rows} rows",
+            )
+        if content_sha256(self._table, self._manifest.value_field_names) != entry["content_sha256"]:
+            raise _dataset_error("storage.data_files[0].content_sha256", "does not match the data content")
 
     def write(self, path: str | Path) -> Path:
         """Write an atomic local dataset directory and return its path.

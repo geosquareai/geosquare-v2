@@ -12,11 +12,12 @@ import re
 from importlib import resources
 from typing import Any
 
+from .cell_metadata import check_dataset_metadata
 from .errors import CellDatasetManifestError, UnknownDomainError
 from .model import DomainProfile
 from .registry import DomainRegistry
 
-_MANIFEST_VERSION = "1.0"
+_SUPPORTED_MANIFEST_VERSIONS = frozenset(("1.0", "1.1"))
 _GRID_SYSTEM = "geosquare"
 _GRID_VERSION = "v2"
 _MAX_LEVEL = 14
@@ -96,6 +97,31 @@ _STORAGE_KEYS = frozenset(
 )
 _PROVENANCE_KEYS = frozenset(("created_at", "created_by", "generator", "aggregation_rule", "value_semantics", "notes"))
 
+# Manifest 1.1 adds these keys. See docs/dataset-metadata.md.
+_TOP_LEVEL_KEYS_V11 = _TOP_LEVEL_KEYS | frozenset(("extent", "governance"))
+_VALUE_FIELD_KEYS_V11 = _VALUE_FIELD_KEYS | frozenset(
+    ("space_aggregation", "space_weight", "null_share", "min_value", "max_value")
+)
+_STORAGE_KEYS_V11 = _STORAGE_KEYS | frozenset(("data_files",))
+_PROVENANCE_KEYS_V11 = _PROVENANCE_KEYS | frozenset(("spec_version", "derived_from"))
+_EXTENT_KEYS = frozenset(("bbox_wgs84", "compact_set_path"))
+_GOVERNANCE_KEYS = frozenset(("title", "owner", "source_name", "license", "share_policy", "refresh"))
+_DATA_FILE_KEYS = frozenset(("path", "content_sha256", "row_count"))
+_DATA_FILE_PATTERN = re.compile(r"^(?!/)data/.+\.parquet$")
+_SHARE_POLICIES = frozenset(("internal", "k_anon_only", "public"))
+_REFRESH_RATES = frozenset(("once", "daily", "weekly", "monthly", "yearly", "irregular"))
+# Allowed space_aggregation values per semantics. Weight rules are in _validate_space_rule.
+_SPACE_RULES: dict[str, frozenset[str]] = {
+    "COUNT": frozenset(("sum", "none")),
+    "TOTAL": frozenset(("sum", "none")),
+    "DENSITY": frozenset(("weighted_mean", "none")),
+    "MEASUREMENT": frozenset(("weighted_mean", "median", "max", "min", "none")),
+    "RATE": frozenset(("weighted_mean", "none")),
+    "CATEGORICAL": frozenset(("majority_weighted", "none")),
+    "ORDINAL": frozenset(("max", "min", "none")),
+    "RANGE": frozenset(("none",)),
+}
+
 
 def _error(path: str, message: str) -> CellDatasetManifestError:
     return CellDatasetManifestError(f"{path}: {message}")
@@ -170,16 +196,17 @@ def _string_list(value: Any, path: str) -> None:
         seen.add(item_string)
 
 
-def _validate_value_fields(value: Any) -> None:
+def _validate_value_fields(value: Any, *, v11: bool) -> None:
     path = "value_fields"
     if not isinstance(value, list) or not value:
         raise _error(path, "must be a non-empty array")
 
+    field_keys = _VALUE_FIELD_KEYS_V11 if v11 else _VALUE_FIELD_KEYS
     names: set[str] = set()
     for index, raw_field in enumerate(value):
         field_path = f"{path}[{index}]"
         field = _mapping(raw_field, field_path)
-        _keys(field, _VALUE_FIELD_KEYS, _VALUE_FIELD_KEYS, field_path)
+        _keys(field, field_keys, field_keys, field_path)
         name = _string(field["name"], f"{field_path}.name", non_empty=True, pattern=_IDENTIFIER_PATTERN)
         if name in _RESERVED_COLUMNS:
             raise _error(f"{field_path}.name", f"uses reserved column name {name!r}")
@@ -208,6 +235,93 @@ def _validate_value_fields(value: Any) -> None:
         _nullable_string(field["unit"], f"{field_path}.unit")
         _boolean(field["nullable"], f"{field_path}.nullable")
         _nullable_string(field["aggregation_rule"], f"{field_path}.aggregation_rule")
+        if v11:
+            _validate_space_rule(field, field_path)
+            _validate_column_stats(field, field_path)
+
+
+def _choice(value: Any, allowed: frozenset[str], path: str) -> str:
+    if not isinstance(value, str) or value not in allowed:
+        raise _error(path, f"must be one of {sorted(allowed)}")
+    return value
+
+
+def _validate_space_rule(field: Mapping[str, Any], path: str) -> None:
+    """Check space_aggregation and space_weight against the rule table in docs/dataset-metadata.md."""
+    semantics = field["semantics"]
+    aggregation = _string(field["space_aggregation"], f"{path}.space_aggregation")
+    if aggregation not in _SPACE_RULES[semantics]:
+        raise _error(f"{path}.space_aggregation", f"{aggregation!r} is not allowed for semantics {semantics!r}")
+    weight = field["space_weight"]
+    if weight is not None:
+        _string(weight, f"{path}.space_weight", non_empty=True)
+    if semantics == "DENSITY" and weight != "area":
+        raise _error(f"{path}.space_weight", "must be 'area' for DENSITY")
+    if semantics in ("COUNT", "TOTAL", "ORDINAL", "RANGE") and weight is not None:
+        raise _error(f"{path}.space_weight", f"must be null for semantics {semantics!r}")
+    if aggregation == "weighted_mean" and weight is None:
+        raise _error(f"{path}.space_weight", "is required when space_aggregation is 'weighted_mean'")
+    if aggregation in ("sum", "median", "max", "min") and weight is not None:
+        raise _error(f"{path}.space_weight", f"must be null when space_aggregation is {aggregation!r}")
+
+
+def _validate_column_stats(field: Mapping[str, Any], path: str) -> None:
+    if field["null_share"] is not None:
+        _number(field["null_share"], f"{path}.null_share", minimum=0.0, maximum=1.0)
+    low, high = field["min_value"], field["max_value"]
+    if low is not None:
+        _number(low, f"{path}.min_value")
+    if high is not None:
+        _number(high, f"{path}.max_value")
+    if low is not None and high is not None and low > high:
+        raise _error(path, "min_value must not exceed max_value")
+
+
+def _validate_data_files(value: Any) -> None:
+    path = "storage.data_files"
+    if not isinstance(value, list) or not value:
+        raise _error(path, "must be a non-empty array")
+    seen: set[str] = set()
+    for index, raw_entry in enumerate(value):
+        item_path = f"{path}[{index}]"
+        entry = _mapping(raw_entry, item_path)
+        _keys(entry, _DATA_FILE_KEYS, _DATA_FILE_KEYS, item_path)
+        file_path = _string(entry["path"], f"{item_path}.path", pattern=_DATA_FILE_PATTERN)
+        if file_path in seen:
+            raise _error(f"{item_path}.path", "must not be duplicated")
+        seen.add(file_path)
+        _string(entry["content_sha256"], f"{item_path}.content_sha256", pattern=_SHA256_PATTERN)
+        _integer(entry["row_count"], f"{item_path}.row_count", minimum=0)
+
+
+def _validate_extent(value: Any) -> None:
+    path = "extent"
+    extent = _mapping(value, path)
+    _keys(extent, _EXTENT_KEYS, _EXTENT_KEYS, path)
+    bbox = extent["bbox_wgs84"]
+    if bbox is not None:
+        if not isinstance(bbox, list) or len(bbox) != 4:
+            raise _error("extent.bbox_wgs84", "must be null or an array of 4 numbers")
+        min_lon, min_lat, max_lon, max_lat = (
+            _number(item, f"extent.bbox_wgs84[{index}]") for index, item in enumerate(bbox)
+        )
+        if not (-180 <= min_lon <= max_lon <= 180 and -90 <= min_lat <= max_lat <= 90):
+            raise _error("extent.bbox_wgs84", "must be [min_lon, min_lat, max_lon, max_lat] within WGS84 bounds")
+    compact_path = extent["compact_set_path"]
+    if compact_path is not None:
+        _string(compact_path, "extent.compact_set_path", non_empty=True)
+        if compact_path.startswith("/"):
+            raise _error("extent.compact_set_path", "must be relative to the dataset directory")
+
+
+def _validate_governance(value: Any) -> None:
+    path = "governance"
+    governance = _mapping(value, path)
+    _keys(governance, _GOVERNANCE_KEYS, _GOVERNANCE_KEYS, path)
+    for field_name in ("title", "owner", "source_name", "license"):
+        _nullable_string(governance[field_name], f"governance.{field_name}")
+    _choice(governance["share_policy"], _SHARE_POLICIES, "governance.share_policy")
+    _choice(governance["refresh"], _REFRESH_RATES, "governance.refresh")
 
 
 def _validate_identity(value: Any, domain_code: str, dataset_type: str) -> None:
@@ -275,10 +389,11 @@ def _validate_source(value: Any) -> None:
         _integer(source["source_row_count"], "source.source_row_count", minimum=0)
 
 
-def _validate_storage(value: Any, dataset_type: str) -> None:
+def _validate_storage(value: Any, dataset_type: str, *, v11: bool) -> None:
     path = "storage"
     storage = _mapping(value, path)
-    _keys(storage, _STORAGE_KEYS, _STORAGE_KEYS, path)
+    storage_keys = _STORAGE_KEYS_V11 if v11 else _STORAGE_KEYS
+    _keys(storage, storage_keys, storage_keys, path)
 
     compression = storage["parquet_compression"]
     if compression is not None:
@@ -310,12 +425,15 @@ def _validate_storage(value: Any, dataset_type: str) -> None:
             raise _error("storage.unique_cell_count", "must not exceed storage.row_count")
         if dataset_type == "cell_values" and unique_cell_count != row_count:
             raise _error("storage.unique_cell_count", "must equal storage.row_count for cell_values datasets")
+    if v11:
+        _validate_data_files(storage["data_files"])
 
 
-def _validate_provenance(value: Any) -> None:
+def _validate_provenance(value: Any, *, v11: bool) -> None:
     path = "provenance"
     provenance = _mapping(value, path)
-    _keys(provenance, _PROVENANCE_KEYS, _PROVENANCE_KEYS, path)
+    provenance_keys = _PROVENANCE_KEYS_V11 if v11 else _PROVENANCE_KEYS
+    _keys(provenance, provenance_keys, provenance_keys, path)
     for field_name in ("created_at", "created_by", "generator"):
         _string(provenance[field_name], f"provenance.{field_name}", non_empty=True)
     _nullable_string(provenance["aggregation_rule"], "provenance.aggregation_rule")
@@ -325,12 +443,18 @@ def _validate_provenance(value: Any) -> None:
         if value_semantics not in _ALLOWED_SEMANTICS:
             raise _error("provenance.value_semantics", f"must be one of {sorted(_ALLOWED_SEMANTICS)}")
     _nullable_string(provenance["notes"], "provenance.notes")
+    if v11:
+        _string(provenance["spec_version"], "provenance.spec_version", non_empty=True)
+        _string_list(provenance["derived_from"], "provenance.derived_from")
 
 
 def _validate_document(document: Mapping[str, Any]) -> None:
-    _keys(document, _TOP_LEVEL_KEYS, _TOP_LEVEL_KEYS, "manifest")
-    if document["manifest_version"] != _MANIFEST_VERSION:
-        raise _error("manifest_version", f"must be {_MANIFEST_VERSION!r}")
+    version = document.get("manifest_version")
+    if not isinstance(version, str) or version not in _SUPPORTED_MANIFEST_VERSIONS:
+        raise _error("manifest_version", f"must be one of {sorted(_SUPPORTED_MANIFEST_VERSIONS)}")
+    v11 = version == "1.1"
+    top_level_keys = _TOP_LEVEL_KEYS_V11 if v11 else _TOP_LEVEL_KEYS
+    _keys(document, top_level_keys, top_level_keys, "manifest")
     dataset_type = _string(document["dataset_type"], "dataset_type")
     if dataset_type not in _ALLOWED_DATASET_TYPES:
         raise _error("dataset_type", f"must be one of {sorted(_ALLOWED_DATASET_TYPES)}")
@@ -347,12 +471,17 @@ def _validate_document(document: Mapping[str, Any]) -> None:
     _string(document["profile_version"], "profile_version", non_empty=True)
     _string(document["registry_version"], "registry_version", non_empty=True)
 
-    _validate_value_fields(document["value_fields"])
+    _validate_value_fields(document["value_fields"], v11=v11)
     _validate_identity(document["identity"], domain_code, dataset_type)
     _validate_coverage(document["coverage"])
     _validate_source(document["source"])
-    _validate_storage(document["storage"], dataset_type)
-    _validate_provenance(document["provenance"])
+    if v11:
+        _validate_extent(document["extent"])
+        _validate_governance(document["governance"])
+    _validate_storage(document["storage"], dataset_type, v11=v11)
+    _validate_provenance(document["provenance"], v11=v11)
+    if v11:
+        check_dataset_metadata(document)
 
 
 @dataclass(frozen=True, slots=True, init=False)
@@ -573,6 +702,16 @@ class CellDatasetManifest:
     @property
     def provenance(self) -> dict[str, Any]:
         return deepcopy(self._document["provenance"])
+
+    @property
+    def extent(self) -> dict[str, Any] | None:
+        """Covered area (manifest 1.1). None for manifest 1.0."""
+        return deepcopy(self._document.get("extent"))
+
+    @property
+    def governance(self) -> dict[str, Any] | None:
+        """Owner, license, sharing and refresh metadata (manifest 1.1). None for manifest 1.0."""
+        return deepcopy(self._document.get("governance"))
 
     @property
     def is_queryable(self) -> bool:

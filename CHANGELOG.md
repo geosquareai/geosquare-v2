@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased — read datasets written by 1.0.0
+
+Status: prepared. Not yet published.
+
+### Changes
+
+- readers accept profile `2.1.0-static-datum`, written by geosquare-v2 1.0.0, for all 11 domains. Writers refuse it.
+- each manifest reports `profile_status`: `current`, `legacy_same_gids` or `legacy_gids_differ`.
+- reading a dataset for VN or LA written under the legacy profile emits a warning. Their GIDs differ from the current profile for some points.
+- added 1.0.0 regression fixtures and `tests/test_legacy_profile_read.py`.
+- added `docs/profile-compatibility.md` with the measurements.
+
+### Limits
+
+- VN and LA: the current code refuses points outside the datum area of use (VN 10.4%, LA 6.0% of sampled box points). Points that 1.0.0 indexed are now refused.
+- which VN and LA result is correct is an open decision. See the doc.
+
 ## 1.2.0 — stores for cell_compact_set and cell_time_values
 
 Status: prepared. Not yet published.

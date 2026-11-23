@@ -17,6 +17,22 @@ Status: prepared. Not yet published.
 - VN and LA: the current code refuses points outside the datum area of use (VN 10.4%, LA 6.0% of sampled box points). Points that 1.0.0 indexed are now refused.
 - which VN and LA result is correct is an open decision. See the doc.
 
+## Unreleased — manifest 1.1 (prepared)
+
+Status: prepared. Not yet published. The version number is set at release.
+
+### Changes
+
+- `CellDatasetManifest` reads manifest 1.1. Manifest 1.0 is unchanged.
+- Manifest 1.1 adds per-column `space_aggregation`, `space_weight`, `null_share`, `min_value` and `max_value`; `extent`; `governance`; `storage.data_files` with `content_sha256`; and `provenance.spec_version` and `derived_from`. Rules are in `docs/dataset-metadata.md`.
+- `CellDataset` checks 1.1 content hashes, row counts and column statistics against the data.
+- added `geosquare_v2.cell_metadata` with `content_sha256`, `data_file_entry` and cross-field checks.
+
+### Limits
+
+- `extent.bbox_wgs84` is not checked against the cells yet.
+- there is no packaged JSON schema for 1.1 yet. `CellDatasetManifest.schema()` still returns the 1.0 schema.
+
 ## 1.2.0 — stores for cell_compact_set and cell_time_values
 
 Status: prepared. Not yet published.

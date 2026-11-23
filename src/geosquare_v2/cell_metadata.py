@@ -7,7 +7,9 @@ manifest, not the Parquet files. See ``docs/dataset-metadata.md``, section 5.
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping, Sequence
+import hashlib
+import json
 from typing import Any
 
 from .errors import CellDatasetManifestError
@@ -83,3 +85,32 @@ def check_dataset_metadata(manifest: Mapping[str, Any]) -> None:
     """Run every manifest 1.1 cross-field check that needs only the manifest."""
     check_space_weights(manifest)
     check_row_counts(manifest)
+
+
+def content_sha256(table: Any, value_field_names: Sequence[str]) -> str:
+    """Hash the rows of a table in canonical form (docs/dataset-metadata.md, section 3.1).
+
+    ``table`` needs ``num_rows`` and ``column(name).to_pylist()``, as a PyArrow table has.
+    Each row becomes a JSON array: gid first, then the value fields in the given order.
+    The encoded rows are sorted by bytes. Each row is hashed followed by a line feed.
+    """
+    names = ["gid", *value_field_names]
+    columns = [table.column(name).to_pylist() for name in names]
+    lines = sorted(
+        json.dumps(list(row), ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        for row in zip(*columns)
+    )
+    digest = hashlib.sha256()
+    for line in lines:
+        digest.update(line)
+        digest.update(b"\n")
+    return digest.hexdigest()
+
+
+def data_file_entry(table: Any, value_field_names: Iterable[str], *, path: str) -> dict[str, Any]:
+    """Build one ``storage.data_files`` entry for ``table``. Call it before the manifest is built."""
+    return {
+        "path": path,
+        "content_sha256": content_sha256(table, list(value_field_names)),
+        "row_count": int(table.num_rows),
+    }

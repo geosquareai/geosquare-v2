@@ -18,13 +18,15 @@ It covers 11 ASEAN domains: `BN`, `KH*`, `ID`, `LA`, `MM*`, `MY`, `PH`, `SG`, `T
 ## Why use it
 
 - **Square on the ground.** Each country has its own projected coordinate system. [Comparison with S2, H3, geohash and Web Mercator](docs/comparison.md).
-- **Stable IDs.** Store the URI (`geosquare:v2:<domain>:<gid>`), not the bare GID. Datasets written with 1.0.0 still load. For some points in LA and VN, the GID differs from the current profile, and the reader warns. See [profile compatibility](docs/profile-compatibility.md).
+- **Stable IDs.** Store the URI (`geosquare:v2:<domain>:<gid>`), not the bare GID. Datasets written with 1.0.0 still load. For some points in LA and VN, the GID differs from the current profile, and the reader warns. Do not join legacy VN or LA data with current VN or LA data. See [profile compatibility](docs/profile-compatibility.md).
 - **Explicit aggregation.** You choose the rule for each column, such as sum, mean or weighted mean. See [data and aggregation](docs/data-and-aggregation.md).
 - **Errors, not guesses.** Invalid coordinates raise an error.
 
 ## Install
 
 The package is on PyPI as `geosquare-v2`. The import name is `geosquare_v2`. Python 3.11 or newer is required.
+
+The PyPI package does not include the trust file in `release/` or the registry files in `src/`. The [quick start](#quick-start) and the registry loading need a git clone of this repo.
 
 ```zsh
 python -m pip install "geosquare-v2[registry]"
@@ -40,14 +42,14 @@ Add extras only when you need them, such as `geo`, `table` or `s3`. The [optiona
 
 ## Quick start
 
-The example reads the trust file in `release/`, so run it from a checkout:
+The example reads the trust file in `release/`, so run it from a git clone:
 
 ```zsh
 python -m pip install -e ".[registry]"
 python examples/quickstart.py
 ```
 
-Output from the 1.3.0 checkout:
+Output from version 1.3.0:
 
 ```text
 URI: geosquare:v2:ID:H2X545V39

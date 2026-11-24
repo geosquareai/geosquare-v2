@@ -40,7 +40,7 @@ The core package has no required runtime dependency. Pick the smallest set of ex
 | `geo` | PyProj and Shapely geometry and polyfill operations | `registry` for verified profile workflows |
 | `batch` | NumPy, Pandas, and Arrow vectorized encoders | batch point and projected-coordinate processing |
 | `table` | Pandas, Arrow, and XLSX table input and output, plus dataset APIs | `registry` for table point indexing |
-| `analytics` | The `geo` and `batch` runtime dependencies | `registry` and or `table` as needed |
+| `analytics` | The `geo` and `batch` runtime dependencies | `registry` and/or `table` as needed |
 | `filesystem` | fsspec-backed dataset storage | `table` |
 | `s3` | fsspec and s3fs S3 storage | `table` |
 | `dev` | Pytest and Hypothesis | local development and validation |

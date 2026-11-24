@@ -2,9 +2,17 @@
 
 This page runs the main calls in order. Each code block runs as written. The output shown came from a real run.
 
-Run the blocks from the root of a checkout, because the registry files live in `src/` and `release/`.
+**Needs a git clone.** The PyPI package does not include the trust file in `release/` or the registry files in `src/`. A PyPI-only install can do step 1. Steps 2 to 7 fail with `FileNotFoundError` unless you run them from a clone of this repo, from its root.
 
 ## 1. Install
+
+From PyPI, for the package only:
+
+```zsh
+python -m pip install "geosquare-v2[registry,geo,table]"
+```
+
+From a git clone, which steps 2 to 7 need:
 
 ```zsh
 python -m pip install -e ".[registry,geo,table]"
@@ -38,10 +46,10 @@ registry = DbRegistryLoader(
     boundary_root=boundary_root,
     verify_boundaries=True,
 ).load()
-service = GeosquareService(registry, boundary_root=boundary_root)
+service = GeosquareService(registry, boundary_root=boundary_root, allow_candidate_crs=True)
 ```
 
-The trust file in `release/` is an example. Production code must manage its own trusted public keys.
+The flag lets candidate domains (`KH`, `MM`, `TH`, `TL`, `VN`) run. Without it, those domains raise `ValidationError`. `ID` is a released domain. The trust file in `release/` is an example. Production code must manage its own trusted public keys.
 
 ## 3. Encode a point to a cell
 

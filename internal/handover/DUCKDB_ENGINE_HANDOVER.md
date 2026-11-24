@@ -47,16 +47,17 @@ report any PR status. Do not trust a status from this file or from memory.
 
 ## 3. Known risks, most serious first
 
-1. **Iceberg tables have no catalog.** The engine finds the current table through
-   `metadata/version-hint.text` and the newest metadata file. A Glue or REST catalog does not
-   see these commits. Athena or Spark reading through a catalog would read stale data without
-   an error. **This is the main open question.** See section 7.
+1. **Iceberg tables have no catalog, and Glue needs a pointer update after every write.** The
+   engine finds the current table through `metadata/version-hint.text`. Glue can register the
+   table, but Glue keeps its own pointer. Each write must update it. Otherwise Athena and any
+   Glue-based reader see old data without an error. DuckDB, Spark and pyiceberg read the path
+   directly, so they are not affected. See section 8.
 2. **Commits on real S3 are untested.** The version hint uses a conditional PUT. Tests ran
    against a local S3 emulator only (`tests/test_s3.py`). Concurrent writers have not been
    tried on AWS.
 3. **Writes stage the rows in memory.** `write_cell_dataset` stages the query result in an
    in-memory DuckDB table. Very large writes need enough RAM. Test with the largest table
-   before relying on it.
+   before relying on it. The largest table is `hazard_v2026`: 753M rows, 10.3 GB. It is not tested at that size.
 4. **Compacted data before #34 has zeros.** `compact_cell_dataset` wrote NULL numbers as 0
    until #34. Datasets compacted before that keep the zeros. A new compact does not restore
    them. Find these datasets and rebuild them from the source.
@@ -65,8 +66,10 @@ report any PR status. Do not trust a status from this file or from memory.
 6. **`update_cell_metadata` on a 1.0 flat or partitioned folder breaks the Python reader.** It
    rewrites `manifest.json` but not the Parquet footers, and the reader requires them to match.
    This is not fixed. Iceberg is not affected.
-7. **The extension is not released.** No `duckdb-v*` tag exists. The S3 bucket for the static
-   extension must be checked before any tag is pushed (open item).
+7. **Builds are on S3, but there is no release.** The data engineer uploaded builds to
+   `s3://geosquare-static/geosquare-v2/`. He tested the install on DuckDB 1.4.0 and later, on one
+   platform only. He has not tested Windows or macOS. We do not know which commit the builds came
+   from. `Cargo.toml` still says `0.1.0` for every build, so old and new builds look the same.
 8. **Default `fill_nulls` writes NULL numbers as 0** for new writes. That keeps the existing
    behaviour, so `null_share` is 0 for such columns. Pass `fill_nulls := false` to keep NULLs.
 9. **DuckDB 1.5.0 Python bug.** `min()` on a VARCHAR column read from Parquet can return a
@@ -74,6 +77,11 @@ report any PR status. Do not trust a status from this file or from memory.
    it with `ORDER BY ... LIMIT 1`.
 10. **Wasm CI can flake.** The browser job downloads DuckDB's Parquet extension from
     extensions.duckdb.org. A failed download fails the job. A rerun passed (PR #34).
+11. **Small files.** `hazard_v2026` has about 23k files, about 450 KB each. `people_v2023` has
+    about 27k files, about 150 KB each. Many small files slow reads. Compaction fixes that, but
+    compaction stages the whole table in memory (risk 3).
+12. **Wide table.** `people_v2023` has 228 columns. Manifest 1.1 needs every value column to be
+    an integer, a float or text. Check the types before any 1.1 plan.
 
 ## 4. Decisions made, and why
 
@@ -150,26 +158,31 @@ Working rules for this repo:
 
 ## 7. Next steps, in order
 
-1. **Ask the data engineer** (no code needed):
-   - Which catalog: Glue, a REST catalog, or folders only?
-   - Which engines read the tables: DuckDB only, or also Athena, Spark or pyiceberg?
-   - Table sizes, the largest first.
-   - Do they use upsert, rename, add or drop columns?
-   - Which DuckDB version, and where the extension comes from.
-2. **Test on the real AWS bucket**, using a test prefix and the user's own profile
-   (`--profile <name>`). Run two concurrent writers and check that one commit is refused
-   cleanly. Run `expire_snapshots` with `dry_run` first. Credentials stay in the user's terminal.
-3. **Decide the catalog path.** If other engines read through a catalog, register the tables
-   with it, or keep to flat or partitioned Parquet folders, which any engine can read.
-4. **Choose 1.0 or 1.1 per table.** Tables that need upsert or alter stay on 1.0.
-5. **Audit compacted datasets** for NULLs written as 0 (risk 4). List them and rebuild them
-   from source.
-6. **Fix risk 6** (`update_cell_metadata` on 1.0 folders), in its own PR.
-7. **Decide on 1.1 upsert and rename** (section 5). Engine work if yes.
-8. **Release the extension** only after the S3 bucket check. Then tag `duckdb-v*`.
-9. **Test a large write** on the biggest table, watching memory (risk 3).
+1. **Keep the five tables on 1.0.** They use upsert and alter, which 1.1 refuses.
+2. **Measure memory on `hazard_v2026`.** Write a 5% sample with `write_cell_dataset`, and record
+   the peak RAM. If it does not fit, the engine needs a writer that does not stage the whole
+   table. That is engine work.
+3. **Decide whether Athena is needed.** If yes, update the Glue pointer after every write.
+   Test that on a test table first.
+4. **Get the commit for the S3 builds.** Bump the version in `Cargo.toml` before the next build.
+5. **Check whether any table was compacted before #34.** The engineer says the tables are new,
+   so confirm it. If one was, rebuild it (risk 4).
+6. **Test on Windows and macOS** before calling the extension supported.
+7. **Fix risk 6** (`update_cell_metadata` on 1.0 folders), in its own PR.
+8. **Decide on 1.1 upsert and rename** (section 5). Engine work if yes.
+9. **Release** only after steps 2 and 4. Then tag `duckdb-v*`.
 
-## 8. Pointers
+## 8. Data engineer answers (2026-11-24)
+
+| Question | Answer | What it means |
+|---|---|---|
+| Catalog | Plain folder with `metadata/version-hint.text`. Can register in Glue. | Glue needs a pointer update after every write (risk 1). |
+| Readers | DuckDB (extension or `iceberg_scan`), Spark and pyiceberg read the path. Athena needs Glue first. | Path readers work now. |
+| Tables | Five tables. 0.6 to 10.3 GB, 16 to 753 million rows, 6 to 228 columns, 17k to 27k files each. | Risks 3, 11 and 12. |
+| Operations | Upsert, append, overwrite and create through `write_cell_dataset`. Column changes through `alter_cell_dataset`. | Upsert and alter are refused on 1.1. Keep 1.0. |
+| Versions | Tested on DuckDB 1.4.0 and later. Builds are in `s3://geosquare-static/geosquare-v2/`. Installed with `INSTALL ... FROM`. | Risk 7. Windows and macOS are untested by him. |
+
+## 9. Pointers
 
 - Spec: `geosquare-v2/docs/dataset-metadata.md`. Section 3.1 is the content hash, frozen.
 - Engine write guide: `bindings/duckdb/docs/write-guide.md`.

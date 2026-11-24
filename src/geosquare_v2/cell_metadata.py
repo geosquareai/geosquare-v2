@@ -10,6 +10,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping, Sequence
 import hashlib
 import json
+import math
 from typing import Any
 
 from .errors import CellDatasetManifestError
@@ -87,30 +88,60 @@ def check_dataset_metadata(manifest: Mapping[str, Any]) -> None:
     check_row_counts(manifest)
 
 
-def content_sha256(table: Any, value_field_names: Sequence[str]) -> str:
+_FLOAT_TYPES = frozenset(("double", "float"))
+_INTEGER_TYPES = frozenset(("int8", "int16", "int32", "int64", "uint8", "uint16", "uint32", "uint64"))
+
+
+def _canonical_value(value: Any, parquet_type: str, field_name: str) -> Any:
+    """Encode one value by its declared type (docs/dataset-metadata.md, section 3.1)."""
+    if value is None:
+        return None
+    if parquet_type in _FLOAT_TYPES:
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise ValueError(f"{field_name}: {value!r} is not a number for {parquet_type}")
+        number = float(value)  # an integer stored in a double column is written as 3.0
+        if not math.isfinite(number):
+            raise ValueError(f"{field_name}: NaN and infinity cannot be hashed")
+        return number
+    if parquet_type in _INTEGER_TYPES:
+        if isinstance(value, bool) or not isinstance(value, int):
+            raise ValueError(f"{field_name}: {value!r} is not an integer for {parquet_type}")
+        return value
+    if parquet_type == "string":
+        if not isinstance(value, str):
+            raise ValueError(f"{field_name}: {value!r} is not a string")
+        return value
+    raise ValueError(f"{field_name}: parquet_type {parquet_type!r} is not supported by content_sha256")
+
+
+def content_sha256(table: Any, value_fields: Sequence[Mapping[str, Any]]) -> str:
     """Hash the rows of a table in canonical form (docs/dataset-metadata.md, section 3.1).
 
     ``table`` needs ``num_rows`` and ``column(name).to_pylist()``, as a PyArrow table has.
-    Each row becomes a JSON array: gid first, then the value fields in the given order.
-    The encoded rows are sorted by bytes. Each row is hashed followed by a line feed.
+    ``value_fields`` are the manifest entries, in order: each has ``name`` and ``parquet_type``.
+    Each row becomes a JSON array: gid first, then the value fields, each encoded by its declared
+    type. The encoded rows are sorted by bytes. Each row is followed by a line feed.
     """
-    names = ["gid", *value_field_names]
+    names = ["gid", *(field["name"] for field in value_fields)]
+    types = ["string", *(field["parquet_type"] for field in value_fields)]
     columns = [table.column(name).to_pylist() for name in names]
-    lines = sorted(
-        json.dumps(list(row), ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8")
-        for row in zip(*columns)
-    )
+    encoded = []
+    for row in zip(*columns):
+        canonical = [_canonical_value(value, kind, name) for value, kind, name in zip(row, types, names)]
+        encoded.append(
+            json.dumps(canonical, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8")
+        )
     digest = hashlib.sha256()
-    for line in lines:
+    for line in sorted(encoded):
         digest.update(line)
         digest.update(b"\n")
     return digest.hexdigest()
 
 
-def data_file_entry(table: Any, value_field_names: Iterable[str], *, path: str) -> dict[str, Any]:
+def data_file_entry(table: Any, value_fields: Sequence[Mapping[str, Any]], *, path: str) -> dict[str, Any]:
     """Build one ``storage.data_files`` entry for ``table``. Call it before the manifest is built."""
     return {
         "path": path,
-        "content_sha256": content_sha256(table, list(value_field_names)),
+        "content_sha256": content_sha256(table, value_fields),
         "row_count": int(table.num_rows),
     }

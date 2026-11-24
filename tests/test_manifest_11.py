@@ -19,6 +19,8 @@ from geosquare_v2.codec import canonical_to_gid
 from test_cell_manifest import _manifest_document
 
 
+POPULATION = [{"name": "population", "parquet_type": "int64"}]
+
 def _table(profile, values, *, start=0):
     gids = [canonical_to_gid(12, start + index, 0) for index in range(len(values))]
     return pa.table({"gid": pa.array(gids, type=pa.string()), "population": pa.array(list(values), type=pa.int64())})
@@ -40,7 +42,7 @@ def _v11_document(profile, table):
         "refresh": "once",
     }
     document["storage"]["data_files"] = [
-        data_file_entry(table, ["population"], path="data/part-00000.parquet")
+        data_file_entry(table, POPULATION, path="data/part-00000.parquet")
     ]
     document["provenance"].update(spec_version="2.0", derived_from=[])
     return document
@@ -101,7 +103,7 @@ def test_content_hash_ignores_row_order(profile):
     forward = _table(profile, (10, 20))
     reverse = forward.take([1, 0])
 
-    assert content_sha256(forward, ["population"]) == content_sha256(reverse, ["population"])
+    assert content_sha256(forward, POPULATION) == content_sha256(reverse, POPULATION)
 
 
 def test_declared_row_count_must_match_data_files(profile):
@@ -137,8 +139,8 @@ def test_two_file_dataset_reads_when_each_hash_matches(tmp_path, profile):
     combined = _table(profile, (10, 20))
     document = _v11_document(profile, combined)
     document["storage"]["data_files"] = [
-        data_file_entry(first, ["population"], path="data/part-00000.parquet"),
-        data_file_entry(second, ["population"], path="data/part-00001.parquet"),
+        data_file_entry(first, POPULATION, path="data/part-00000.parquet"),
+        data_file_entry(second, POPULATION, path="data/part-00001.parquet"),
     ]
     _write_raw_dataset(tmp_path / "dataset", profile, document, [first, second])
 
@@ -153,8 +155,8 @@ def test_two_file_dataset_rejects_a_wrong_file_hash(tmp_path, profile):
     combined = _table(profile, (10, 20))
     document = _v11_document(profile, combined)
     document["storage"]["data_files"] = [
-        data_file_entry(first, ["population"], path="data/part-00000.parquet"),
-        {**data_file_entry(second, ["population"], path="data/part-00001.parquet"), "content_sha256": "1" * 64},
+        data_file_entry(first, POPULATION, path="data/part-00000.parquet"),
+        {**data_file_entry(second, POPULATION, path="data/part-00001.parquet"), "content_sha256": "1" * 64},
     ]
     _write_raw_dataset(tmp_path / "dataset", profile, document, [first, second])
 

@@ -1,6 +1,6 @@
 # Dataset metadata and space aggregation (manifest 1.1)
 
-**Status:** draft for review (Phase 5, step 5a, spec item S8).
+**Status:** draft for review (Phase 5, step 5a, spec item S8). Section 3.1 is frozen.
 **Schema:** [schemas/cell-dataset-manifest-v1.1.schema.json](../schemas/cell-dataset-manifest-v1.1.schema.json)
 **Applies to:** `cell_values` and `cell_contributions` datasets, as in the 1.0 schema.
 
@@ -48,17 +48,27 @@ The platform `csv_import` writes `aggregation_rule: "sum"` for COUNT fields. Tha
 
 **Time coverage** is not added here. Time-value datasets already store `period_start` and `period_end`.
 
-### 3.1 Content hash
+### 3.1 Content hash (frozen 2026-11-23)
 
-`content_sha256` hashes the rows, not the file bytes. The Parquet file embeds the manifest, so a hash of the file would depend on a value inside the file itself.
+`content_sha256` hashes the rows of one data file, not the file bytes. The Parquet file embeds the manifest, so a hash of the file would depend on a value inside the file itself. The hash depends on the values and the declared types only. It does not depend on how a Parquet writer stored them.
 
-1. Build one JSON array per row. Put `gid` first, then each value field in `value_fields` order. Use `null` for null values. Use no spaces.
-2. Encode numbers in their shortest round-trip form. For float64 this is Python's `repr`. Reject NaN and infinity.
-3. Encode each array as UTF-8 JSON with non-ASCII characters kept as they are.
-4. Sort the encoded rows by bytes.
-5. Hash each sorted row followed by a line feed (0x0A) with SHA-256. Write the digest in lowercase hex.
+1. Build one JSON array per row. Put `gid` first, then each value field in `value_fields` order. Encode each element by the field's declared `parquet_type`, not by how it is stored:
+   - `gid`: a JSON string.
+   - `double` or `float`: a JSON number in Python's `float.__repr__` form. Use the shortest digits that round-trip. Use fixed notation when the decimal exponent is from -4 to 15, for example `3.0`, `0.0001`, `1000000000000000.0`. Otherwise use `d.ddde+XX` or `de-XX` with at least two exponent digits, for example `1e+16`, `1e-05`, `5e-324`. Keep the sign of `-0.0`. Reject NaN and both infinities. A `float` is first widened to `double`.
+   - `int8`, `int16`, `int32`, `int64`, `uint8`, `uint16`, `uint32`, `uint64`: a decimal integer with no point and no leading zeros. Encode an integer-typed value such as 3 as `3`, and a `double` value such as 3 as `3.0`.
+   - `string`: a JSON string. Escape `"` and `\`. Escape `\b`, `\f`, `\n`, `\r` and `\t` in their short forms. Escape any other character below U+0020 as `\u00xx` in lowercase hex. Keep everything else raw in UTF-8, including non-ASCII, U+2028 and U+007F.
+   - `null`: `null`, for any declared type.
+   - Any other `parquet_type` is not supported. A writer or reader must refuse the file.
+   Encode the array with no spaces, for example `["cell-1",3.0,null]`.
+2. Encode each row as UTF-8 bytes.
+3. Sort the encoded rows by bytes. Keep duplicate rows.
+4. Feed the sorted rows to one SHA-256 digest. Append one line feed (0x0A) after each row. Write the digest in lowercase hex. A file with no rows has the digest of empty input, `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
 
-The hash does not depend on the row order in the file. Each data file has its own hash over its own rows.
+The row order in the file does not change the digest. Each data file has its own hash over its own rows.
+
+The digest covers values only. Column names, the declared types and the field order are not hashed, because the manifest records them. A rename therefore does not change a row hash. A change of declared type or of field order is detected by the value encoding, or by the manifest check.
+
+Conformance vectors for this section are in `conformance/spec-2.0/content-hash.json`. Every implementation must reproduce them. Changing this section needs a new manifest version.
 
 ## 4. Space aggregation rules
 
@@ -237,4 +247,4 @@ Synthetic values. The content hashes are placeholders of 64 zeros, so the exampl
 2. Confirm the `share_policy` values and their meanings.
 3. Confirm the `refresh` values.
 4. Decide whether compact cell set and time-value manifests get `extent` and `governance` now or in a later step.
-5. Decide whether the content hash definition in section 3.1 is final. It must be final before 1.3.0 is released.
+5. Closed: the content hash definition in section 3.1 is frozen (2026-11-23). See conformance vectors.
